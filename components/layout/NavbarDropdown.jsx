@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Users, FileText, MessageCircle, Briefcase } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 export const NavbarDropdown = ({ isOpen, onClose }) => {
   const [activeItem, setActiveItem] = useState("about");
@@ -60,7 +61,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
         <div className="max-w-350 mx-auto px-20 py-4">
           <div className="flex min-h-[400px]">
             {/* Left Menu Panel */}
-            <div className="w-[490px] bg-[#111111] py-10 px-5 rounded-md">
+            <div className="w-[490px] bg-[#111111] py-4 px-5 rounded-md">
               <div className="space-y-0">
                 {menuItems.map((item, index) => {
                   const Icon = item.icon;
@@ -71,12 +72,12 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
                         href={item.href}
                         onMouseEnter={() => setActiveItem(item.id)}
                         onClick={onClose}
-                        className="flex items-center justify-between px-5 py-6 transition-colors duration-200 group hover:bg-[#1a1a1a]"
+                        className="flex items-center justify-between px-5 py-4 transition-colors duration-200 group hover"
                       >
                         <div className="flex items-center space-x-4">
                           {/* Icon wrapper */}
-                          <div className="w-10 h-10 flex items-center justify-center rounded-md bg-black">
-                            <Icon className="w-5 h-5 text-white" />
+                          <div className="w-14 h-14 flex items-center justify-center rounded-md bg-black">
+                            <Icon className="w-8 h-8 text-gray-100 " />
                           </div>
 
                           {/* Name with hover underline */}
@@ -85,7 +86,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
                   relative text-lg font-normal text-gray-300
                   after:absolute after:left-0 after:-bottom-1
                   after:h-[1px] after:w-full
-                  after:bg-cyan-900 after:scale-x-0
+                  after:bg-brand-primary after:scale-x-0
                   after:origin-left after:transition-transform after:duration-200
                   group-hover:after:scale-x-100
                 "
@@ -111,7 +112,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
                       </Link>
 
                       {/* Permanent gray divider */}
-                      {index < menuItems.length - 1 && (
+                      {index < menuItems.length - 0 && (
                         <div className="h-px mx-5 bg-gray-700" />
                       )}
                     </div>
@@ -123,10 +124,10 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
             {/* Right Content Panel - Pure Black */}
             <div className="flex-1 bg-black py-16 px-20">
               <div className="max-w-2xl">
-                <h3 className="text-4xl font-bold text-white mb-6">
+                <h3 className="text-3xl font-bold text-white mb-4">
                   {activeContent.title}
                 </h3>
-                <p className="text-lg text-gray-300 leading-relaxed mb-10">
+                <p className="text-md text-gray-300 leading-relaxed mb-6">
                   {activeContent.description}
                 </p>
                 <Link
@@ -134,9 +135,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   className="inline-block"
                 >
-                  <button className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-base font-semibold rounded-md transition-all duration-300">
-                    Start a Discussion
-                  </button>
+                  <Button as="span">Start a Discussion</Button>
                 </Link>
               </div>
             </div>

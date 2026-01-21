@@ -1,132 +1,25 @@
-/* =========================
-   IMPORTS (MUST BE FIRST)
-   ========================= */
-   @import "tailwindcss";
+@import "tailwindcss";
 
-   /* =========================
-      THEME TOKENS (Tailwind v4)
-      ========================= */
-   @theme {
-     /* Backgrounds */
-     --color-bg-primary: #000000;        /* Pure black (logo background) */
-     --color-bg-secondary: #0a0a0a;      /* Slightly lighter */
-   
-     /* Brand Colors (From Logo) */
-     --color-brand-cyan: #00D9FF;        /* Logo cyan */
-     --color-brand-lime: #B4FF39;        /* Logo lime/lemon */
-   
-     /* Text */
-     --color-text-primary: #ffffff;
-     --color-text-secondary: #d1d5db;
-     --color-text-muted: #9ca3af;
-   
-     /* Typography
-        --font-inter comes from next/font */
-     --font-family-sans: var(--font-inter),
-       -apple-system,
-       BlinkMacSystemFont,
-       "SF Pro Display",
-       sans-serif;
-   
-     /* Animations */
-     --animate-fade-in: fade-in 0.5s ease-in-out;
-     --animate-slide-up: slide-up 0.5s ease-out;
-     --animate-slide-down: slide-down 0.5s ease-out;
-   }
-   
-   /* =========================
-      KEYFRAMES
-      ========================= */
-   @keyframes fade-in {
-     from {
-       opacity: 0;
-     }
-     to {
-       opacity: 1;
-     }
-   }
-   
-   @keyframes slide-up {
-     from {
-       transform: translateY(20px);
-       opacity: 0;
-     }
-     to {
-       transform: translateY(0);
-       opacity: 1;
-     }
-   }
-   
-   @keyframes slide-down {
-     from {
-       transform: translateY(-20px);
-       opacity: 0;
-     }
-     to {
-       transform: translateY(0);
-       opacity: 1;
-     }
-   }
-   
-   /* =========================
-      BASE STYLES
-      ========================= */
-   * {
-     border-color: rgba(255, 255, 255, 0.1);
-   }
-   
-   html {
-     scroll-behavior: smooth;
-   }
-   
-   body {
-     background-color: var(--color-bg-primary);
-     color: var(--color-text-primary);
-     font-family: var(--font-family-sans);
-     -webkit-font-smoothing: antialiased;
-     -moz-osx-font-smoothing: grayscale;
-   }
-   
-   /* =========================
-      ATOMIC UTILITIES (v4 SAFE)
-      ========================= */
-   @utility gradient-text {
-     background-image: linear-gradient(
-       135deg,
-       var(--color-brand-cyan),
-       var(--color-brand-lime)
-     );
-     background-clip: text;
-     -webkit-background-clip: text;
-     color: transparent;
-   }
-   
-   @utility glass {
-     background-color: rgba(255, 255, 255, 0.05);
-     backdrop-filter: blur(12px);
-     border: 1px solid rgba(255, 255, 255, 0.1);
-   }
-   
-   @utility container-custom {
-     max-width: 80rem;
-     margin-inline: auto;
-     padding-inline: 1.5rem;
-   }
-   
-   @utility section-padding {
-     padding-block: 6rem;
-   }
-   
-   /* =========================
-      COMPLEX UTILITIES
-      ========================= */
-   @layer utilities {
-     .scrollbar-hide {
-       -ms-overflow-style: none;
-       scrollbar-width: none;
-     }
-   
-     .scrollbar-hide::-webkit-scrollbar {
-       display: none;
-     }
-   }
+@theme {
+  /* Backgrounds */
+  --color-bg-primary: #0b0c0c;
+  --color-bg-secondary: #1e1f1f;
+  --color-bg-muted: #3f444b;
+  --color-bg-light: #d9d9d9;
+
+  /* Brand */
+  --color-brand-primary: #ff5c35;
+  --color-brand-danger: #bf1212;
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ffffff4d;
+  --color-text-dark: #0b0c0c;
+
+  /* Typography */
+  --font-family-sans: var(--font-inter),
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    sans-serif;
+}

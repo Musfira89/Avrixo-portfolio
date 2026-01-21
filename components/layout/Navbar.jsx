@@ -33,8 +33,8 @@ export const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-bg-primary/90 backdrop-blur-lg border-b border-white/10"
-            : "bg-bg-primary/50 backdrop-blur-sm"
+            ? "bg-bg-primary backdrop-blur-lg border-b border-white/10"
+            : "bg-bg-primary backdrop-blur-sm"
         }`}
         onMouseLeave={() => setShowDropdown(false)}
       >
@@ -42,7 +42,7 @@ export const Navbar = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo - Left */}
             <Link href="/" className="flex items-center group shrink-0">
-              <div className="relative w-60 h-20 transition-transform duration-300 group-hover:scale-110">
+              <div className="relative w-58 h-20 transition-transform duration-300">
                 <Image
                   src="/logo.png"
                   alt="Avrixo Logo"
@@ -67,14 +67,14 @@ export const Navbar = () => {
                   >
                     {link.name}
                     {/* Cyan to Lime gradient underline */}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-cyan-400 to-lime-400 group-hover:w-full transition-all duration-500 ease-out" />
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-orange-400 to-orange-800 group-hover:w-full transition-all duration-500 ease-out" />
                   </Link>
                 </div>
               ))}
             </div>
 
             {/* Start a Discussion Button - Right */}
-            <div className="hidden lg:flex items-center shrink-0">
+            <div className="hidden lg:flex items-center shrink-0 ">
               <Link href="/contact">
                 <Button as="span">Start a Discussion</Button>
               </Link>
