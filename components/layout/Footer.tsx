@@ -18,13 +18,7 @@ import {
 export const Footer = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubscribe = () => {
-    if (email) {
-      setIsSubscribed(true);
-      setEmail("");
-      setTimeout(() => setIsSubscribed(false), 3000);
-    }
-  };
+ 
 
   const footerSections = [
     {
