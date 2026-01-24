@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/layout/Navbar.jsx", "components/ui/Button.jsx"  ],
+, "components/layout/Navbar.jsx", "components/ui/Button.jsx", "components/home/HeroSection.jsx"  ],
   "exclude": ["node_modules"]
 }

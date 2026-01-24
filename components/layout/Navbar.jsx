@@ -38,13 +38,13 @@ export const Navbar = () => {
         }`}
         onMouseLeave={() => setShowDropdown(false)}
       >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 lg:px-3">
           {/* NAVBAR ROW */}
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center w-[224px] shrink-0">
               <Link href="/" className="flex items-center">
-                <div className="relative w-36 h-12 sm:w-48 sm:h-14 lg:w-52 lg:h-12">
+                <div className="relative w-36 h-12 sm:w-48 sm:h-14 lg:w-48 lg:h-12">
                   <Image
                     src="/logo.png"
                     alt="Avrixo Logo"
