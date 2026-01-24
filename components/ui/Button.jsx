@@ -13,14 +13,14 @@ export default function Button({
     <Component
       className={clsx(
         "relative inline-flex items-center justify-center",
-        "px-5 py-5 rounded-lg",
-        "text-md font-bold whitespace-nowrap",
+        "px-4.5 py-3.5 rounded-md",
+        "text-sm font-semibold whitespace-nowrap",
         "transition-colors duration-300 ease-out",
         "overflow-hidden",
         variant === "primary" && [
           // default state
           "bg-[#ff5227]",
-          "border-2 border-[#ff5c35]",
+          "border border-[#ff5c35]",
           "text-white",
 
           // hover

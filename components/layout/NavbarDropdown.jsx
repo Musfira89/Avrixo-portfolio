@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Users, FileText, MessageCircle, Briefcase } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
 import Button from "@/components/ui/Button";
 
 export const NavbarDropdown = ({ isOpen, onClose }) => {
@@ -12,7 +12,8 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
     {
       id: "about",
       name: "About Us",
-      icon: Users,
+      // Path to your avif file in /public/icons
+      iconPath: "/icons/a1.avif",
       href: "/about",
       title: "About Avrixo",
       description:
@@ -21,7 +22,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
     {
       id: "case-studies",
       name: "Case Studies",
-      icon: FileText,
+      iconPath: "/icons/a2.avif",
       href: "/case-studies",
       title: "Our Success Stories",
       description:
@@ -30,7 +31,7 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
     {
       id: "contact",
       name: "Contact Us",
-      icon: MessageCircle,
+      iconPath: "/icons/a3.avif",
       href: "/contact",
       title: "Get in Touch",
       description:
@@ -39,7 +40,8 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
     {
       id: "careers",
       name: "Careers",
-      icon: Briefcase,
+      // Path to your png file
+      iconPath: "/icons/a4.png",
       href: "/careers",
       title: "Join Our Team",
       description:
@@ -53,67 +55,51 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="absolute top-full left-0 right-0 p-2  bg-[#3d3d3d] shadow-2xl"
+      className="absolute top-full left-0 right-0 p-2 bg-[#3d3d3d] shadow-2xl z-50"
       onMouseLeave={onClose}
     >
-      {/* Existing black container */}
-      <div className="rounded-lg bg-black backdrop-blur-lg p-4">
-        <div className="max-w-350 mx-auto px-20 py-4">
-          <div className="flex min-h-[400px]">
+      <div className="rounded-lg bg-black backdrop-blur-lg p-2">
+        <div className="max-w-7xl mx-auto px-4 md:px-20 py-4">
+          <div className="flex min-h-[380px] flex-col md:flex-row">
             {/* Left Menu Panel */}
-            <div className="w-[490px] bg-[#111111] py-4 px-5 rounded-md">
+            <div className="w-full md:w-[470px] bg-[#181818] py-4 px-4 rounded-md">
               <div className="space-y-0">
                 {menuItems.map((item, index) => {
-                  const Icon = item.icon;
-
                   return (
                     <div key={item.id}>
                       <Link
                         href={item.href}
                         onMouseEnter={() => setActiveItem(item.id)}
                         onClick={onClose}
-                        className="flex items-center justify-between px-5 py-4 transition-colors duration-200 group hover"
+                        className="flex items-center justify-between px-4 py-4 transition-colors duration-200 group"
                       >
-                        <div className="flex items-center space-x-4">
-                          {/* Icon wrapper */}
-                          <div className="w-14 h-14 flex items-center justify-center rounded-md bg-black">
-                            <Icon className="w-8 h-8 text-gray-100 " />
+                        <div className="flex items-center space-x-3">
+                          {/* Updated Icon wrapper for local Images */}
+                          <div className="w-14 h-14 relative flex items-center justify-center overflow-hidden rounded-lg">
+                            <Image
+                              src={item.iconPath}
+                              alt={item.name}
+                              width={52} // Matches w-14
+                              height={52} // Matches h-14
+                              className="object-contain"
+                            />
                           </div>
 
                           {/* Name with hover underline */}
-                          <span
-                            className="
-                  relative text-lg font-normal text-gray-300
-                  after:absolute after:left-0 after:-bottom-1
-                  after:h-[1px] after:w-full
-                  after:bg-brand-primary after:scale-x-0
-                  after:origin-left after:transition-transform after:duration-200
-                  group-hover:after:scale-x-100
-                "
-                          >
+                          <span className="relative text-md font-normal text-gray-300 group">
                             {item.name}
+                            {/* The animated underline */}
+                            <span
+                              className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-orange-400 to-orange-800 
+                              transition-all duration-500 ease-in-out group-hover:w-full"
+                            />
                           </span>
                         </div>
-
-                        {/* Arrow */}
-                        <svg
-                          className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
                       </Link>
 
                       {/* Permanent gray divider */}
                       {index < menuItems.length - 0 && (
-                        <div className="h-px mx-5 bg-gray-700" />
+                        <div className="h-px mx-4 bg-gray-700" />
                       )}
                     </div>
                   );
@@ -121,17 +107,17 @@ export const NavbarDropdown = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Right Content Panel - Pure Black */}
-            <div className="flex-1 bg-black py-16 px-20">
+            {/* Right Content Panel */}
+            <div className="flex-1 bg-black py-12 md:py-16 px-8 md:px-20">
               <div className="max-w-2xl">
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  {activeContent.title}
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  {activeContent?.title}
                 </h3>
-                <p className="text-md text-gray-300 leading-relaxed mb-6">
-                  {activeContent.description}
+                <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                  {activeContent?.description}
                 </p>
                 <Link
-                  href={activeContent.href}
+                  href={activeContent?.href || "#"}
                   onClick={onClose}
                   className="inline-block"
                 >
