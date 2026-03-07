@@ -18,14 +18,11 @@ export default function Button({
         "transition-colors duration-300 ease-out",
         "overflow-hidden",
         variant === "primary" && [
-          // default state
-          "bg-[#ff5227]",
-          "border border-[#ff5c35]",
+          "bg-[#e31e24]",
+          "border border-[#e31e24]",
           "text-white",
-
-          // hover
           "hover:bg-transparent",
-          "hover:text-[#ff5c35]",
+          "hover:text-[#e31e24]",
         ],
         className
       )}

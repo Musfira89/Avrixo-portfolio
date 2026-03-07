@@ -8,28 +8,37 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        /* Background system */
-        bg: {
-          primary: "#0b0c0c",     // dark base (not pure black)
-          secondary: "#1e1f1f",   // section dark
-          muted: "#3f444b",       // cards / borders
-          light: "#d9d9d9",       // light sections
-        },
-
-        /* Brand system */
-        brand: {
-          primary: "#ff5c35",    // 🔥 main CTA / buttons
-          danger: "#bf1212",     // errors / alerts
-        },
-
-        /* Text system */
-        text: {
-          primary: "#ffffff",
-          secondary: "#ffffff4d", // white with opacity
-          dark: "#0b0c0c",        // text on light sections
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
+      colors: {
+        bg: {
+          primary: "#0a0a0a",   // SS 2: Pure Black
+          secondary: "#1a1a1a",
+          light: "#e6e6e6",     // SS 1: Light Gray
+          muted: "#262626",
+        },
+        brand: {
+          primary: "#e31e24",   // SS 3 & 5: Vibrant Red
+          hover: "#c1191f",
+          accent: "#ff3d43",
+        },
+        text: {
+          primary: "#ffffff",
+          dark: "#1a1a1a",      // SS 4: Heading Black
+          muted: "#737373",
+        },
+      },
+      // Adding custom shadow for that AI glow feel
+      boxShadow: {
+        'brand-glow': '0 0 20px rgba(227, 30, 36, 0.2)',
+      }
     },
   },
   plugins: [],

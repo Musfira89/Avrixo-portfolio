@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Backgrounds */
-  --color-bg-primary: #0b0c0c;
-  --color-bg-secondary: #1e1f1f;
-  --color-bg-muted: #3f444b;
-  --color-bg-light: #d9d9d9;
+  /* Background System - Exact Match from SS 1 & 2 */
+  --color-bg-primary: #0a0a0a;    /* Deep Black for dark sections (SS 2) */
+  --color-bg-secondary: #1a1a1a;  /* Slightly lighter matte */
+  --color-bg-light: #e6e6e6;      /* Specific Light Gray (SS 1) */
+  --color-bg-muted: #262626;      /* Card/Border color */
 
-  /* Brand */
-  --color-brand-primary: #ff5c35;
-  --color-brand-danger: #bf1212;
+  /* Brand System - From Logo & Button (SS 3) */
+  --color-brand-primary: #e31e24; /* Avrixo Red */
+  --color-brand-hover: #c1191f;   /* Darker Red for buttons */
+  --color-brand-accent: #ff3d43;  /* Lighter Red for glow/highlights */
 
-  /* Text */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #ffffff4d;
-  --color-text-dark: #0b0c0c;
+  /* Text System - Matching SS 4 & 5 */
+  --color-text-primary: #ffffff;  /* Pure white */
+  --color-text-dark: #1a1a1a;     /* Deep black for light sections (SS 4) */
+  --color-text-muted: #737373;    /* Professional gray for small text */
 
   /* Typography */
-  --font-family-sans: var(--font-inter),
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
+  --font-family-sans: var(--font-inter), 
+    -apple-system, 
+    BlinkMacSystemFont, 
+    "SF Pro Display", 
     sans-serif;
 }
