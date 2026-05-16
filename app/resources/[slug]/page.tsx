@@ -1,0 +1,24 @@
+import { notFound } from "next/navigation";
+import { EnterpriseRoutePage } from "@/components/common/EnterpriseRoutePage";
+import { resourceRoutes } from "@/lib/site-data";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+  return resourceRoutes
+    .filter((route) => route.href.startsWith("/resources/"))
+    .map((route) => ({ slug: route.slug }));
+}
+
+export default async function ResourceDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const route = resourceRoutes.find((item) => item.href === `/resources/${slug}`);
+
+  if (!route) {
+    notFound();
+  }
+
+  return <EnterpriseRoutePage route={route} related={resourceRoutes} />;
+}

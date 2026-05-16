@@ -1,30 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, FileText } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { caseStudies } from "@/lib/case-studies";
 
 export const Projects = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
-
-  const portfolioData = [
-    {
-      id: 1,
-      image: "/portfolio/P1.avif",
-      company: "Coca-Cola",
-      title: "Connecting Millions Digitally",
-      tags: ["Mobile App", "UI/UX"],
-    },
-    {
-      id: 2,
-      image: "/portfolio/P1.avif",
-      company: "Nokia Al-Saudia",
-      title: "Empowering Digital Learning",
-      tags: ["Web App", "Edtech"],
-    },
-  ];
 
   return (
     <section className="bg-bg-primary py-28 overflow-hidden">
@@ -42,78 +26,92 @@ export const Projects = () => {
               </motion.h2>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Global brands and ambitious startups, creating digital solutions
-              that drive meaningful growth.
+              Technical case studies presented as SaaS research papers:
+              abstract, architecture, stack, and measurable outcomes.
             </p>
             <Link
-              href="/portfolio"
+              href="/case-studies"
               className="inline-flex items-center gap-2 text-white font-bold border-b border-brand-primary pb-1 hover:text-brand-primary transition-colors"
             >
-              View All Projects <ArrowUpRight size={16} />
+              Read Case Studies <ArrowUpRight size={16} />
             </Link>
           </div>
 
-          {/* RIGHT: Animated Cards */}
-          <div className="lg:col-span-8 grid md:grid-cols-2 gap-2">
-            {portfolioData.map((project, idx) => (
-              <motion.div
+          {/* RIGHT: Research Paper Cards */}
+          <div className="lg:col-span-8 grid md:grid-cols-2 gap-4">
+            {caseStudies.map((project) => (
+              <Link
                 key={project.id}
-                className="group relative cursor-pointer"
+                href={`/case-studies/${project.id}`}
+                className="group relative block"
                 onMouseEnter={() => setHoveredCard(project.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                // 3D TILT EFFECT
-                whileHover={{ y: -10 }}
               >
-                {/* Card Container with Perspective */}
-                <div className="relative h-[350px] w-full rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-2">
-                  <motion.div
-                    className="relative h-full w-full overflow-hidden rounded-xl"
-                    whileHover={{ scale: 0.98 }}
-                    transition={{ duration: 0.4 }}
-                  >
+                <motion.article
+                  whileHover={{ y: -10 }}
+                  className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-secondary p-3 transition-colors group-hover:border-brand-primary/50"
+                >
+                  <div className="relative h-[230px] overflow-hidden rounded-2xl">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
-                  </motion.div>
-
-                  {/* Floating Action Button */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{
-                      opacity: hoveredCard === project.id ? 1 : 0,
-                      scale: hoveredCard === project.id ? 1 : 0,
-                    }}
-                    className="absolute bottom-8 left-8 z-10 w-14 h-14 bg-brand-primary rounded-full flex items-center justify-center shadow-2xl"
-                  >
-                    <ArrowUpRight className="text-white" size={24} />
-                  </motion.div>
-                </div>
-
-                {/* Content */}
-                <div className="mt-6">
-                  <span className="text-brand-primary text-[10px] font-bold uppercase tracking-widest">
-                    {project.company}
-                  </span>
-                  <h3 className="text-white text-2xl font-bold mt-1 mb-4">
-                    {project.title}
-                  </h3>
-                  <div className="flex gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-gray-400 text-[10px] font-medium border border-white/10 px-3 py-1 rounded-full uppercase tracking-wider"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    <div className="absolute inset-0 bg-linear-to-t from-bg-primary via-bg-primary/20 to-transparent" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-bg-primary/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-text-primary">
+                      {project.label}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-primary">
+                      <FileText className="h-3.5 w-3.5" />
+                      {project.category}
+                    </div>
+                    <h3 className="mt-4 text-2xl font-black leading-tight text-text-primary">
+                      {project.title}
+                    </h3>
+                    {/* <p className="mt-4 line-clamp-4 text-sm leading-6 text-text-primary/60">
+                      {project.abstract[0]}
+                    </p> */}
+
+                    {/* <div className="mt-6 grid grid-cols-3 gap-2">
+                      {project.metrics.map((metric) => (
+                        <div key={metric.label} className="rounded-2xl border border-white/10 bg-bg-primary p-3">
+                          <div className="text-lg font-black text-brand-primary">{metric.value}</div>
+                          <p className="mt-1 text-[10px] leading-4 text-text-primary/55">
+                            {metric.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div> */}
+
+                    <div className="mt-6 flex items-center justify-between gap-4">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full border border-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-text-primary/50"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{
+                          opacity: hoveredCard === project.id ? 1 : 0.45,
+                          scale: hoveredCard === project.id ? 1 : 0.9,
+                        }}
+                        className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-brand-primary"
+                      >
+                        <ArrowUpRight className="text-text-primary" size={20} />
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.article>
+              </Link>
             ))}
           </div>
         </div>

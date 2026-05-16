@@ -6,11 +6,13 @@ import Image from "next/image";
 import { Menu, X, Phone, Grid2x2 } from "lucide-react";
 
 import { NavbarDropdown } from "@/components/layout/NavbarDropdown";
+import { navGroups } from "@/lib/site-data";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState("about");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,13 +23,10 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "About us", href: "/about", hasDropdown: true },
-    { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Industries", href: "/industries" },
-    { name: "Resources", href: "/resources" },
-  ];
+  const navLinks = navGroups.map((group) => ({
+    ...group,
+    hasDropdown: group.items.length > 0,
+  }));
 
   return (
     <nav
@@ -61,7 +60,12 @@ export const Navbar = () => {
             {navLinks.map((link) => (
               <div
                 key={link.name}
-                onMouseEnter={() => link.hasDropdown && setShowDropdown(true)}
+                onMouseEnter={() => {
+                  if (link.hasDropdown) {
+                    setActiveDropdown(link.id);
+                    setShowDropdown(true);
+                  }
+                }}
                 className="relative"
               >
                 <Link
@@ -116,14 +120,27 @@ export const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-1 mb-3 rounded-2xl bg-bg-secondary border border-bg-muted p-6 space-y-6">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="block text-gray-200 text-sm font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
+              <div key={link.name} className="space-y-3">
+                <Link
+                  href={link.href}
+                  className="block text-gray-200 text-sm font-bold"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+                <div className="grid grid-cols-2 gap-2">
+                  {link.items.slice(0, 4).map((item) => (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      className="rounded-xl border border-white/10 bg-bg-primary px-3 py-2 text-[11px] leading-4 text-gray-400"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
 
             <div className="overflow-visible">
@@ -152,6 +169,7 @@ export const Navbar = () => {
       {/* Dropdown */}
       <NavbarDropdown
         isOpen={showDropdown}
+        activeGroup={activeDropdown}
         onClose={() => setShowDropdown(false)}
       />
     </nav>
