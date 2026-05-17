@@ -1,5 +1,5 @@
-import { CaseStudyIndex } from "@/components/common/CaseStudyIndex";
+import { PortfolioPage } from "@/components/pages/PortfolioPage";
 
-export default function PortfolioPage() {
-  return <CaseStudyIndex />;
+export default function Portfolio() {
+  return <PortfolioPage />;
 }

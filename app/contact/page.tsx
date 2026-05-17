@@ -1,12 +1,5 @@
-import { EnterpriseRoutePage } from "@/components/common/EnterpriseRoutePage";
-import { LeadCapture } from "@/components/home/LeadCapture";
-import { standaloneRoutes } from "@/lib/site-data";
+import { ContactPage } from "@/components/pages/ContactPage";
 
-export default function ContactPage() {
-  return (
-    <>
-      <EnterpriseRoutePage route={standaloneRoutes.contact} />
-      <LeadCapture />
-    </>
-  );
+export default function Contact() {
+  return <ContactPage />;
 }

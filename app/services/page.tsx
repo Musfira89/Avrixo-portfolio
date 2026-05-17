@@ -1,6 +1,5 @@
-import { EnterpriseRoutePage } from "@/components/common/EnterpriseRoutePage";
-import { sectionOverviewRoutes, serviceRoutes } from "@/lib/site-data";
+import { ServicesPage } from "@/components/pages/ServicesPage";
 
-export default function ServicesPage() {
-  return <EnterpriseRoutePage route={sectionOverviewRoutes.services} related={serviceRoutes} />;
+export default function Services() {
+  return <ServicesPage />;
 }

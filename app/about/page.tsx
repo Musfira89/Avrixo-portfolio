@@ -1,6 +1,5 @@
-import { EnterpriseRoutePage } from "@/components/common/EnterpriseRoutePage";
-import { aboutRoutes } from "@/lib/site-data";
+import { AboutPage } from "@/components/pages/AboutPage";
 
-export default function AboutPage() {
-  return <EnterpriseRoutePage route={aboutRoutes[0]} related={aboutRoutes} />;
+export default function About() {
+  return <AboutPage />;
 }
