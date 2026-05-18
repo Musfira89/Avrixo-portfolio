@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu, X, Phone, Grid2x2 } from "lucide-react";
 
 import { NavbarDropdown } from "@/components/layout/NavbarDropdown";
+import { companyContact } from "@/lib/company";
 import { navGroups } from "@/lib/site-data";
 
 export const Navbar = () => {
@@ -41,9 +42,9 @@ export const Navbar = () => {
         {/* NAVBAR ROW */}
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center w-56 shrink-0">
+          <div className="flex items-center w-32 sm:w-44 lg:w-56 shrink-0">
             <Link href="/" className="flex items-center">
-              <div className="relative w-36 h-12 sm:w-48 sm:h-14 lg:w-52 lg:h-10">
+              <div className="relative w-28 h-9 sm:w-40 sm:h-12 lg:w-52 lg:h-10">
                 <Image
                   src="/logo-white.png"
                   alt="Avrixo Logo"
@@ -91,10 +92,10 @@ export const Navbar = () => {
                   Any Question
                 </div>
                 <a
-                  href="tel:+923312093664"
+                  href={companyContact.phoneHref}
                   className="text-sm font-semibold text-text-primary hover:text-brand-primary transition-colors"
                 >
-                  +92 331 2093664
+                  {companyContact.phoneDisplay}
                 </a>
               </div>
 
@@ -154,10 +155,10 @@ export const Navbar = () => {
                     Any Question
                   </div>
                   <a
-                    href="tel:+923312093664"
+                    href={companyContact.phoneHref}
                     className="text-xs font-semibold text-text-primary hover:text-brand-primary transition-colors"
                   >
-                    +92 331 2093664
+                    {companyContact.phoneDisplay}
                   </a>
                 </div>
               </div>

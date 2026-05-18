@@ -34,11 +34,12 @@ const resourceVisuals = {
 };
 
 export const ResourcesPage = () => {
-  const featured = resourceRoutes.slice(0, 3);
   const enrichedAll = resourceRoutes.map((r) => ({
     ...r,
     ...(resourceVisuals[r.slug] || resourceVisuals["insights"]),
   }));
+  const featuredResource = enrichedAll[0];
+  const FeaturedIcon = featuredResource?.icon;
 
   return (
     <div>
@@ -138,7 +139,7 @@ export const ResourcesPage = () => {
           </motion.div>
 
           {/* Top featured card */}
-          {enrichedAll[0] && (
+          {featuredResource && (
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -146,36 +147,36 @@ export const ResourcesPage = () => {
               className="mb-5"
             >
               <Link
-                href={enrichedAll[0].href}
+                href={featuredResource.href}
                 className="group grid lg:grid-cols-12 overflow-hidden rounded-3xl border border-text-dark/[0.07] bg-white hover:border-brand-primary/30 hover:shadow-xl hover:shadow-brand-primary/5 transition-all duration-300"
               >
                 <div className="relative min-h-[280px] lg:col-span-5 overflow-hidden">
                   <img
-                    src={enrichedAll[0].image}
-                    alt={enrichedAll[0].eyebrow}
+                    src={featuredResource.image}
+                    alt={featuredResource.eyebrow}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20" />
                   <div className="absolute top-5 left-5">
                     <span className="text-[10px] font-black uppercase tracking-widest text-white border border-white/30 bg-bg-primary/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                      {enrichedAll[0].tag}
+                      {featuredResource.tag}
                     </span>
                   </div>
                 </div>
                 <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center">
-                      <enrichedAll[0].icon className="w-5 h-5 text-brand-primary" />
+                      {FeaturedIcon ? <FeaturedIcon className="w-5 h-5 text-brand-primary" /> : null}
                     </div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-primary">
-                      {enrichedAll[0].eyebrow}
+                      {featuredResource.eyebrow}
                     </p>
                   </div>
                   <h2 className="text-2xl lg:text-3xl font-black text-text-dark leading-tight mb-4">
-                    {enrichedAll[0].title}
+                    {featuredResource.title}
                   </h2>
                   <p className="text-sm text-text-muted leading-relaxed mb-6 max-w-lg">
-                    {enrichedAll[0].summary}
+                    {featuredResource.summary}
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-brand-primary flex items-center justify-center transition-transform group-hover:rotate-45 duration-300">

@@ -15,11 +15,12 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { companyContact } from "@/lib/company";
 
 const contactInfo = [
-  { icon: Phone, label: "Phone", value: "+92 331 2093664", href: "tel:+923312093664" },
-  { icon: Mail, label: "Email", value: "hello@avrixo.com", href: "mailto:hello@avrixo.com" },
-  { icon: MapPin, label: "Location", value: "Remote-first, serving global teams", href: null },
+  { icon: Phone, label: "Phone", value: companyContact.phoneDisplay, href: companyContact.phoneHref },
+  { icon: Mail, label: "Email", value: companyContact.email, href: companyContact.mailto },
+  { icon: MapPin, label: "Location", value: companyContact.location, href: null },
 ];
 
 const socialLinks = [

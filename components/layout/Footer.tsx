@@ -13,6 +13,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
+import { companyContact } from "@/lib/company";
 import { industryRoutes, navGroups, resourceRoutes, serviceRoutes } from "@/lib/site-data";
 
 export const Footer = () => {
@@ -109,22 +110,22 @@ export const Footer = () => {
             </h3>
             <div className="mt-7 space-y-4">
               <a
-                href="tel:+923312093664"
+                href={companyContact.phoneHref}
                 className="flex items-center gap-3 text-sm text-text-primary/65 transition-colors hover:text-brand-primary"
               >
                 <Phone className="h-4 w-4" />
-                +92 331 2093664
+                {companyContact.phoneDisplay}
               </a>
               <a
-                href="mailto:hello@avrixo.com"
+                href={companyContact.mailto}
                 className="flex items-center gap-3 text-sm text-text-primary/65 transition-colors hover:text-brand-primary"
               >
                 <Mail className="h-4 w-4" />
-                hello@avrixo.com
+                {companyContact.email}
               </a>
               <div className="flex items-center gap-3 text-sm text-text-primary/65">
                 <MapPin className="h-4 w-4" />
-                Remote-first, serving global teams
+                {companyContact.location}
               </div>
             </div>
 
