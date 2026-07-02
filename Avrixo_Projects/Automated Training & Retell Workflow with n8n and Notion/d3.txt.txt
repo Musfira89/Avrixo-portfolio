@@ -1,0 +1,12 @@
+Automated Social Media Posting Workflow using n8n
+My role. Automation Engineer | Workflow Developer
+
+Project description.
+
+I designed and implemented a fully automated social media posting system using n8n. The workflow integrates Google Sheets, Facebook Graph API, and Instagram Publisher, enabling businesses to schedule and publish content seamlessly across platforms. The system checks for scheduled posts, randomizes variations, and automatically updates publication status in Google Sheets. Successful publications trigger email notifications, ensuring full visibility of campaign performance. This automation reduces manual effort, eliminates posting errors, and saves valuable time for marketing teams.
+Skills and deliverables
+
+n8n
+Automation
+Automated Workflow
+Google Sheets Automation

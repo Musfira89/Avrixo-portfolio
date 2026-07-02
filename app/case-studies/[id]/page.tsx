@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
+import { buildMetadata } from "@/lib/seo";
+import { siteUrl } from "@/lib/company";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -10,6 +13,18 @@ type PageProps = {
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ id: study.id }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const study = getCaseStudy(id);
+  if (!study) return {};
+  return buildMetadata({
+    title: study.title,
+    description: study.subtitle,
+    path: `/case-studies/${study.id}`,
+    image: study.image,
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: PageProps) {
@@ -20,8 +35,25 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: study.title,
+    headline: study.title,
+    description: study.subtitle,
+    url: `${siteUrl}/case-studies/${study.id}/`,
+    image: `${siteUrl}${study.image}`,
+    creator: { "@type": "Organization", name: "Avrixo", url: siteUrl },
+    about: study.category,
+    keywords: study.tags.join(", "),
+  };
+
   return (
     <div className="bg-bg-primary text-text-primary">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <section className="relative overflow-hidden pt-36 pb-20">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute right-0 top-16 h-96 w-96 rounded-full bg-brand-primary/10 blur-3xl" />
@@ -53,7 +85,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             <div className="lg:col-span-5 rounded-3xl border border-white/10 bg-bg-secondary p-6">
               <div className="grid grid-cols-3 gap-3 text-center">
                 {[
-                  ["Client", study.company],
+                  ["Product", study.company],
                   ["Year", study.year],
                   ["Build", study.duration],
                 ].map(([label, value]) => (

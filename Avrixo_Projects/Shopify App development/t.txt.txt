@@ -1,0 +1,17 @@
+Collentix – Smart Collection Manager for Shopify App
+
+Project description.
+
+Collentix is a powerful and intuitive Shopify app designed to streamline the way you manage your store’s collections. Collentix enables you to import and export both Custom and Smart Collections using simple Excel (.xlsx) files.
+
+With Collentix, you can:
+- Import hundreds of collections at once – no manual work required.
+- Edit your collections offline in Excel and re-import changes effortlessly.
+- Export all existing collections to create backups or move data between stores.
+- Optionally update existing collections based on their handle.
+Skills and deliverables
+
+Shopify
+Shopify Apps
+Node.js
+Remix

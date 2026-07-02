@@ -13,7 +13,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
-import { companyContact } from "@/lib/company";
+import { companyContact, companySocials } from "@/lib/company";
 import { industryRoutes, navGroups, resourceRoutes, serviceRoutes } from "@/lib/site-data";
 
 export const Footer = () => {
@@ -45,11 +45,13 @@ export const Footer = () => {
     },
   ];
 
+  // Only render a social icon when a real profile URL is configured in
+  // lib/company.ts — never link to a bare domain.
   const socialLinks = [
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  ];
+    { icon: Linkedin, href: companySocials.linkedin, label: "LinkedIn" },
+    { icon: Facebook, href: companySocials.facebook, label: "Facebook" },
+    { icon: Instagram, href: companySocials.instagram, label: "Instagram" },
+  ].filter((social) => social.href);
 
   return (
     <footer className="relative overflow-hidden bg-bg-primary text-text-primary">
@@ -85,7 +87,7 @@ export const Footer = () => {
                 {
                   icon: BadgeCheck,
                   title: "Partner-ready",
-                  body: "Prepared for Upwork, direct B2B, and investor procurement flows.",
+                  body: "Prepared for direct B2B engagements and investor procurement flows.",
                 },
                 {
                   icon: ArrowUpRight,
@@ -129,18 +131,22 @@ export const Footer = () => {
               </div>
             </div>
 
-            <div className="mt-8 flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-bg-secondary text-text-primary/60 transition-all hover:border-brand-primary hover:text-brand-primary"
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="mt-8 flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-bg-secondary text-text-primary/60 transition-all hover:border-brand-primary hover:text-brand-primary"
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-2 gap-8 md:grid-cols-4">

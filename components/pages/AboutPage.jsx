@@ -1,52 +1,54 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Target, Lightbulb, Users, Globe, ChevronDown } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Target,
+  Lightbulb,
+  Users,
+  Globe,
+  Brain,
+  LayoutGrid,
+  Database,
+  PenTool,
+  Cloud,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
 
-const team = [
+// Brand-only: we present the disciplines one team brings, not invented
+// individuals. Every engagement is covered by these capability areas in-house.
+const disciplines = [
   {
-    name: "Areeba Khan",
-    role: "CEO & AI Strategist",
-    bio: "10+ years shaping AI systems for enterprise clients across healthcare, fintech, and logistics.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
-    tag: "Strategy",
+    icon: Brain,
+    title: "AI & ML Engineering",
+    body: "RAG pipelines, model integration, and applied AI built to run reliably in production — not just in a notebook.",
   },
   {
-    name: "Omar Siddiqui",
-    role: "Lead Architect",
-    bio: "Expert in RAG pipelines, vector databases, and scalable cloud infrastructure for AI-native products.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-    tag: "Architecture",
+    icon: LayoutGrid,
+    title: "SaaS Product Engineering",
+    body: "Multi-tenant architecture, clean APIs, and admin tooling — the discipline behind our StructumAI platforms.",
   },
   {
-    name: "Zara Malik",
-    role: "Head of Product Design",
-    bio: "Designing AI interfaces that make complex systems feel intuitive, trusted, and easy to adopt.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-    tag: "Design",
+    icon: Database,
+    title: "Data Platforms",
+    body: "Data modeling, pipelines, and analytics that make both reporting and AI safe to build on.",
   },
   {
-    name: "Hassan Ali",
-    role: "ML Engineering Lead",
-    bio: "Building and deploying production ML models with a focus on reliability, explainability, and scale.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-    tag: "Engineering",
+    icon: PenTool,
+    title: "Product & UX Design",
+    body: "Interfaces that make complex, data-heavy systems feel clear, trusted, and easy to adopt.",
   },
   {
-    name: "Nadia Rehan",
-    role: "Data Platform Specialist",
-    bio: "Designing data pipelines, warehouses, and analytics systems that power decision-making at scale.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-    tag: "Data",
+    icon: Cloud,
+    title: "Cloud & DevOps",
+    body: "CI/CD, observability, and resilient infrastructure so releases are repeatable and safe.",
   },
   {
-    name: "Bilal Farooq",
-    role: "DevOps & Cloud Lead",
-    bio: "Building resilient cloud infrastructure with zero-downtime deployments and full observability.",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-    tag: "Infrastructure",
+    icon: ShieldCheck,
+    title: "Architecture & Security",
+    body: "Access boundaries, audit trails, and system design shaped from day one, not bolted on later.",
   },
 ];
 
@@ -95,8 +97,6 @@ const subRoutes = [
 ];
 
 export const AboutPage = () => {
-  const [hoveredTeam, setHoveredTeam] = useState(null);
-
   return (
     <div>
       {/* ══ HERO — Dark ══ */}
@@ -180,8 +180,8 @@ export const AboutPage = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/20 to-transparent" />
               {/* Floating stat */}
               <div className="absolute bottom-6 left-6 rounded-2xl border border-white/15 bg-bg-primary/70 backdrop-blur-md px-5 py-4">
-                <div className="text-3xl font-black text-brand-primary">50+</div>
-                <div className="text-xs text-text-primary/60 mt-0.5">AI systems shipped</div>
+                <div className="text-3xl font-black text-brand-primary">Strategy → Deploy</div>
+                <div className="text-xs text-text-primary/60 mt-0.5">One team, end to end</div>
               </div>
             </motion.div>
           </div>
@@ -266,10 +266,10 @@ export const AboutPage = () => {
         <div className="max-w-6xl mx-auto px-6 lg:px-10 py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: "50+", label: "Projects Delivered" },
-              { value: "98%", label: "Client Retention" },
-              { value: "12+", label: "Industries" },
-              { value: "2026", label: "Actively Shipping" },
+              { value: "2", label: "SaaS Platforms Shipped" },
+              { value: "130+", label: "API Endpoints Built" },
+              { value: "100%", label: "In-House Delivery" },
+              { value: "1", label: "Team, Strategy to Deploy" },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -298,60 +298,35 @@ export const AboutPage = () => {
             className="mb-14"
           >
             <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary mb-4">
-              The Team
+              How We're Built
             </p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <h2 className="text-4xl md:text-5xl font-black text-text-dark leading-tight max-w-xl">
-                Senior builders,{" "}
-                <span className="text-brand-primary">not entry-level freelancers.</span>
+                One team,{" "}
+                <span className="text-brand-primary">every discipline in-house.</span>
               </h2>
               <p className="text-sm text-text-muted max-w-xs leading-relaxed md:text-right">
-                Every project is led and delivered by experienced specialists.
+                Strategy, design, engineering, data, and cloud — covered by the same team,
+                with no handoffs.
               </p>
             </div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {team.map((member, i) => (
+            {disciplines.map((d, i) => (
               <motion.div
-                key={member.name}
+                key={d.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                onMouseEnter={() => setHoveredTeam(member.name)}
-                onMouseLeave={() => setHoveredTeam(null)}
-                className="group relative rounded-2xl border border-text-dark/[0.07] bg-white overflow-hidden hover:border-brand-primary/30 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
+                className="group relative rounded-2xl border border-text-dark/[0.07] bg-white p-7 hover:border-brand-primary/30 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
               >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
-                  {/* Tag */}
-                  <div className="absolute top-3 right-3 text-[9px] font-black uppercase tracking-widest text-brand-primary border border-brand-primary/30 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm">
-                    {member.tag}
-                  </div>
+                <div className="w-11 h-11 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-5 group-hover:bg-brand-primary/20 transition-colors">
+                  <d.icon className="w-5 h-5 text-brand-primary" />
                 </div>
-
-                {/* Info */}
-                <div className="p-5">
-                  <h3 className="text-base font-black text-text-dark mb-0.5">{member.name}</h3>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-brand-primary mb-3">
-                    {member.role}
-                  </p>
-                  <p className="text-xs text-text-muted leading-relaxed">{member.bio}</p>
-                </div>
-
-                {/* Hover line */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-brand-primary"
-                  animate={{ width: hoveredTeam === member.name ? "100%" : "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
+                <h3 className="text-base font-black text-text-dark mb-2">{d.title}</h3>
+                <p className="text-sm text-text-muted leading-relaxed">{d.body}</p>
               </motion.div>
             ))}
           </div>

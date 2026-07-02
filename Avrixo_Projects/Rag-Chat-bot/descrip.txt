@@ -1,0 +1,12 @@
+RAG-Powered AI Chatbot with SQL & Booking Integration
+
+Project description.
+
+Developed a LangGraph-powered multi-agent system with LangChain and FastAPI to automate the software development cycle. Agents managed code generation, testing, debugging, and regeneration through a decision-based workflow. This self-improving pipeline cut debugging time by ~60%, improved code reliability, and accelerated deployment.
+Skills and deliverables
+
+LangChain
+LLM Prompt Engineering
+AI Agent Development
+MLOps
+Generative AI

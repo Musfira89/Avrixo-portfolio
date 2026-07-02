@@ -1,0 +1,10 @@
+Automated Training & Retell Workflow with n8n and Notion
+My role. Automation Workflow Engineer
+
+Project description.
+
+I created a scheduled training and retell automation workflow in n8n, integrated with Notion and GHL. It starts with a scheduled trigger that checks training logs and compares timestamps to ensure timely execution. The workflow loops through reps, retrieves scenarios from Notion, and pulls contact info from GHL. It then triggers retell sessions via API calls with built-in wait functions. This automation streamlined training cycles, reduced manual monitoring, and ensured consistent follow-ups—boosting learning effectiveness and efficiency.
+Skills and deliverables
+
+n8n
+Automation

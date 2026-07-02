@@ -6,7 +6,7 @@ import { ArrowUpRight, Zap, Shield, Clock, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 const trustItems = [
-  { icon: Zap, text: "72h prototype turnaround" },
+  { icon: Zap, text: "Fixed-scope proposals" },
   { icon: Shield, text: "Enterprise-grade security by default" },
   { icon: Clock, text: "30-min strategy call to get started" },
   { icon: MessageCircle, text: "No generic demos — real solutions" },
@@ -100,7 +100,7 @@ export const CTASection = () => {
                   href="/schedule"
                   className="group flex items-center gap-2 px-7 py-4 border border-white/20 text-white font-semibold rounded-2xl text-sm hover:border-brand-primary/60 hover:text-brand-primary transition-all duration-300"
                 >
-                  Book Strategy Call
+                  Book a 30-min Call
                 </Link>
               </motion.div>
             </div>
@@ -116,11 +116,11 @@ export const CTASection = () => {
           className="absolute bottom-8 right-6 lg:right-10 hidden lg:block"
         >
           <div className="rounded-2xl border border-white/10 bg-bg-secondary/80 backdrop-blur-md p-5 text-right">
-            <div className="text-4xl font-black text-brand-primary mb-1">50+</div>
+            <div className="text-4xl font-black text-brand-primary mb-1">2</div>
             <div className="text-xs font-bold text-text-primary/70">
-              AI projects delivered
+              SaaS platforms shipped
             </div>
-            <div className="text-[10px] text-text-muted mt-0.5">across 12+ industries</div>
+            <div className="text-[10px] text-text-muted mt-0.5">production-grade, end to end</div>
           </div>
         </motion.div>
       </div>

@@ -1,0 +1,14 @@
+Project description.
+
+This unified healthcare EMR platform integrates telehealth, in-person care, and hospital operations into a single secure system. It uses AI-driven automation to streamline workflows and improve patient outcomes across all provider levels.
+Integrates telehealth, patient records, and in-person care.
+Operational Efficiency: Connects transport and hospital logistics in one system.
+Scalable Support: Designed for hospitals, clinics, and individual providers.
+Outcome Focused: Prioritizes secure data and improved patient results.
+Skills and deliverables
+
+Web Development
+Mobile App Development
+Scheduling & Assisting Chatbot
+Healthcare Software
+Healthcare Management

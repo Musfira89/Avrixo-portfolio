@@ -1,0 +1,10 @@
+AI-Powered Workflow Automation with n8n & Notion Integration
+My role. AI Workflow Automation Developer
+
+Project description.
+
+I built an advanced AI-driven n8n workflow to streamline data and communication. It starts with a webhook, sends data to an OpenAI-powered agent with structured output parsing, retrieves contact details from GHL, and automates email sending via HTTP requests. It also fetches training data from Notion and updates pages with AI-generated results in real time. This automation reduced manual effort, improved accuracy, and ensured seamless collaboration across CRM, email, and Notion.
+Skills and deliverables
+
+Automation
+n8n

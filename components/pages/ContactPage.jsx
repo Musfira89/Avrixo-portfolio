@@ -15,7 +15,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { companyContact } from "@/lib/company";
+import { companyContact, companySocials, formRecipient } from "@/lib/company";
 
 const contactInfo = [
   { icon: Phone, label: "Phone", value: companyContact.phoneDisplay, href: companyContact.phoneHref },
@@ -23,11 +23,13 @@ const contactInfo = [
   { icon: MapPin, label: "Location", value: companyContact.location, href: null },
 ];
 
+// Only render a social icon when a real profile URL is configured in
+// lib/company.ts — never link to a bare domain.
 const socialLinks = [
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-];
+  { icon: Linkedin, href: companySocials.linkedin, label: "LinkedIn" },
+  { icon: Facebook, href: companySocials.facebook, label: "Facebook" },
+  { icon: Instagram, href: companySocials.instagram, label: "Instagram" },
+].filter((s) => s.href);
 
 const commitments = [
   { icon: Zap, text: "Response within 24 hours" },
@@ -37,6 +39,48 @@ const commitments = [
 
 export const ContactPage = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | submitting | error
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    // Post to FormSubmit, which emails each submission to `formRecipient`.
+    // The AJAX endpoint returns JSON and never redirects, so we can confirm
+    // real delivery before showing the success state.
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${formRecipient}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `New project inquiry — ${data.name || "Website"}`,
+          _template: "table",
+          _captcha: "false",
+          ...data,
+        }),
+      });
+      const result = await res.json();
+      // FormSubmit returns success: "true" (string) on a delivered/queued submit.
+      if (res.ok && (result.success === "true" || result.success === true)) {
+        setStatus("idle");
+        setSubmitted(true);
+        return;
+      }
+      throw new Error(result.message || "Submission failed");
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(
+        "Something went wrong sending your request. Please email us directly at " +
+          companyContact.email +
+          "."
+      );
+    }
+  };
 
   return (
     <section className="min-h-screen bg-bg-primary pt-20 overflow-hidden">
@@ -183,13 +227,7 @@ export const ContactPage = () => {
                   </p>
                 </motion.div>
               ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                  className="space-y-5"
-                >
+                <form onSubmit={handleSubmit} className="space-y-5">
                   {/* Name + Email */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <label className="block space-y-2">
@@ -294,12 +332,19 @@ export const ContactPage = () => {
                     </p>
                     <button
                       type="submit"
-                      className="group flex-shrink-0 flex items-center justify-center gap-2 px-7 py-4 bg-brand-primary text-white font-black text-sm rounded-2xl hover:bg-brand-hover transition-all hover:shadow-[0_0_40px_rgba(227,30,36,0.3)]"
+                      disabled={status === "submitting"}
+                      className="group flex-shrink-0 flex items-center justify-center gap-2 px-7 py-4 bg-brand-primary text-white font-black text-sm rounded-2xl hover:bg-brand-hover transition-all hover:shadow-[0_0_40px_rgba(227,30,36,0.3)] disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Request Strategy Review
+                      {status === "submitting" ? "Sending…" : "Request Strategy Review"}
                       <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
                     </button>
                   </div>
+
+                  {status === "error" && (
+                    <p className="text-xs text-brand-primary font-medium" role="alert">
+                      {errorMsg}
+                    </p>
+                  )}
                 </form>
               )}
             </motion.div>

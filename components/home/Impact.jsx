@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Quote, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Layers, ShieldCheck, Workflow } from "lucide-react";
 import Link from "next/link";
 
 function AnimatedNumber({ to, suffix = "", duration = 1800 }) {
@@ -36,41 +36,39 @@ function AnimatedNumber({ to, suffix = "", duration = 1800 }) {
   );
 }
 
+// Honest, verifiable numbers drawn from real builds (StructumAI Estimating + Plans),
+// not borrowed client claims.
 const stats = [
-  { value: "50", suffix: "+", label: "AI Projects", sub: "Delivered to production" },
-  { value: "98", suffix: "%", label: "Client Retention", sub: "Long-term partnerships" },
-  { value: "12", suffix: "+", label: "Industries Served", sub: "Cross-sector expertise" },
-  { value: "72", suffix: "h", label: "Avg. Prototype", sub: "Concept to working demo" },
+  { value: "2", suffix: "", label: "Production SaaS platforms", sub: "Designed, built, and shipped end to end" },
+  { value: "130", suffix: "+", label: "REST endpoints engineered", sub: "Across our shipped product builds" },
+  { value: "15", suffix: "+", label: "Data tables modeled", sub: "Estimate-to-ledger financial core" },
+  { value: "100", suffix: "%", label: "In-house delivery", sub: "Strategy, design, engineering, cloud" },
 ];
 
-const testimonials = [
+// What working with Avrixo actually looks like — replaces borrowed testimonials
+// with commitments we can stand behind.
+const principles = [
   {
-    quote:
-      "Avrixo transformed our support operations. The AI system reduced triage time by 40% — our senior engineers finally focus on what matters.",
-    name: "Sarah Mitchell",
-    role: "CTO, MedFlow Health",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
-    tag: "Healthcare AI",
+    icon: Workflow,
+    tag: "One team",
+    title: "Strategy to deploy, no handoffs",
+    body: "Product strategy, design, engineering, data, and cloud live under one roof — so the system that ships is the system that was planned.",
   },
   {
-    quote:
-      "The RAG system they built is genuinely enterprise-grade. It cites sources, respects data boundaries — compliance approved it without pushback.",
-    name: "James Okafor",
-    role: "Head of AI, AxisGrid Finance",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
-    tag: "Fintech",
+    icon: ShieldCheck,
+    tag: "Fixed scope",
+    title: "Clear SOW, no surprises",
+    body: "Milestones, deliverables, and acceptance criteria are agreed before we build. You always know the cost, the timeline, and what 'done' means.",
   },
   {
-    quote:
-      "From vague AI roadmap to live SaaS platform in 4 months. Avrixo's combination of strategy, design and engineering is rare in this market.",
-    name: "Priya Sharma",
-    role: "Co-Founder, CargoNet",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
-    tag: "Logistics",
+    icon: Layers,
+    tag: "Production-grade",
+    title: "Real systems, not demos",
+    body: "Multi-tenant data models, permissions, audit trails, and security shaped from day one — the same standard behind StructumAI.",
   },
 ];
 
-const clients = ["Nova Bank", "MedFlow", "AxisGrid", "CargoNet", "UrbanKey", "VentureIQ"];
+const buildTraits = ["Multi-tenant", "Real-time", "AIA billing", "Cloud-native", "Audit-ready"];
 
 export const Impact = () => {
   return (
@@ -97,7 +95,7 @@ export const Impact = () => {
             viewport={{ once: true }}
             className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary mb-4"
           >
-            Proven Impact
+            How we work
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
@@ -106,8 +104,8 @@ export const Impact = () => {
             transition={{ delay: 0.08 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary leading-[1.05] max-w-3xl"
           >
-            Numbers that tell the{" "}
-            <span className="text-brand-primary">real story.</span>
+            Proof in the work, not the{" "}
+            <span className="text-brand-primary">pitch.</span>
           </motion.h2>
         </div>
 
@@ -138,7 +136,7 @@ export const Impact = () => {
           ))}
         </div>
 
-        {/* ── Main Split: Image + Testimonials ── */}
+        {/* ── Main Split: Image + Principles ── */}
         <div className="grid lg:grid-cols-12 gap-5">
           {/* Left: Cinematic image block */}
           <motion.div
@@ -149,21 +147,21 @@ export const Impact = () => {
           >
             <div className="relative h-[320px] lg:h-full min-h-[480px] rounded-3xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=900&fit=crop"
-                alt="Avrixo team collaboration"
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=900&fit=crop"
+                alt="Avrixo engineering team building production software systems"
                 className="w-full h-full object-cover"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/30 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-bg-primary/10" />
 
-              {/* Client logos strip at bottom */}
+              {/* Capability strip at bottom (honest — describes what we build) */}
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-3">
-                  Trusted by teams at
+                  What we build
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {clients.map((name) => (
+                  {buildTraits.map((name) => (
                     <span
                       key={name}
                       className="text-[9px] font-black uppercase tracking-widest text-white/40 border border-white/[0.08] px-2.5 py-1 rounded-full bg-white/[0.03] backdrop-blur-sm"
@@ -186,11 +184,11 @@ export const Impact = () => {
             </div>
           </motion.div>
 
-          {/* Right: Testimonials */}
+          {/* Right: Working principles */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            {testimonials.map((t, i) => (
+            {principles.map((p, i) => (
               <motion.div
-                key={t.name}
+                key={p.title}
                 initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -205,29 +203,17 @@ export const Impact = () => {
                   }}
                 />
 
-                {/* Tag */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[9px] font-black uppercase tracking-widest text-brand-primary border border-brand-primary/30 px-2.5 py-1 rounded-full">
-                    {t.tag}
+                    {p.tag}
                   </span>
-                  <Quote className="w-4 h-4 text-brand-primary/40" />
+                  <p.icon className="w-4 h-4 text-brand-primary/50" />
                 </div>
 
-                <p className="text-sm leading-relaxed text-text-primary/65 mb-5">
-                  "{t.quote}"
+                <h3 className="text-base font-black text-text-primary mb-2">{p.title}</h3>
+                <p className="text-sm leading-relaxed text-text-primary/60">
+                  {p.body}
                 </p>
-
-                <div className="flex items-center gap-3">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-9 h-9 rounded-full object-cover border border-white/10"
-                  />
-                  <div>
-                    <div className="text-sm font-black text-text-primary">{t.name}</div>
-                    <div className="text-[11px] text-text-muted">{t.role}</div>
-                  </div>
-                </div>
               </motion.div>
             ))}
 
@@ -241,10 +227,10 @@ export const Impact = () => {
             >
               <div>
                 <div className="text-sm font-black text-text-primary mb-0.5">
-                  Ready to be our next success story?
+                  Have a system you need built right?
                 </div>
                 <div className="text-xs text-text-muted">
-                  Let's build something intelligent together.
+                  Get a fixed-scope proposal — clear cost, timeline, and milestones.
                 </div>
               </div>
               <Link

@@ -1,0 +1,13 @@
+Elderly Care AI Chatbot Application
+My role. AI Chatbot Developer | AI Developer | Full-Stack Developer (React, Node.js)
+
+Project description.
+
+Elderly Care AI Chatbot App – Developed an AI-powered assistant to support family caregivers with personalized recommendations and local services. Built with Claude, RAG, React, and Node.js, integrating OpenAI for NLP, APIs for resource data, and secure authentication. Delivered a user-friendly tool that improves elderly care management by streamlining information access and support.
+Skills and deliverables
+
+AI Chatbot
+Claude
+API Integration
+AI App Development
+Retrieval Augmented Generation

@@ -5,8 +5,16 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-// Import the 3D Scene
-const NeuralScene = dynamic(() => import("./NeuralScene"), { ssr: false });
+// Import the 3D Scene with a graceful loading placeholder so the hero
+// never flashes empty on slower connections.
+const NeuralScene = dynamic(() => import("./NeuralScene"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[400px] w-[400px] max-w-full items-center justify-center">
+      <div className="h-40 w-40 rounded-full border border-brand-primary/20 animate-pulse" />
+    </div>
+  ),
+});
 
 function Counter({ to, suffix = "" }) {
   const [val, setVal] = useState(0);
@@ -42,19 +50,21 @@ export const HeroSection = () => {
           <div className="lg:col-span-6 space-y-8 flex flex-col justify-center">
             <div className="space-y-4">
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-text-primary leading-[1.2]">
-                Intelligence <br />
+                We Ship <br />
                 <span className="relative inline-block">
-                  Meets
+                  Production
                   <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 300 12" fill="none">
                     <path d="M2 10C50 2 100 2 150 6C200 10 250 10 298 6" stroke="#e31e24" strokeWidth="4" strokeLinecap="round" />
                   </svg>
                 </span> <br />
                 <span className="bg-brand-primary font-black bg-clip-text text-transparent">
-                  Innovation
+                  AI &amp; SaaS
                 </span>
               </h1>
               <p className="text-md text-gray-300 leading-relaxed max-w-md">
-                We transform businesses with cutting-edge AI solutions. From strategy to deployment we make AI work for you.
+                Avrixo is one team that designs, builds, and ships AI products and SaaS
+                platforms end to end — strategy, design, engineering, and cloud. Fixed scope,
+                clear milestones, no surprises.
               </p>
             </div>
 
@@ -71,16 +81,26 @@ export const HeroSection = () => {
                   style={{ opacity: 0.1 }}
                 />
               </Link>
-              <Link href="/services" className="text-white font-medium hover:text-brand-primary transition-colors border-b border-white/20 pb-1 text-sm sm:text-base whitespace-nowrap">
-                Explore Expertise
+              <Link href="/portfolio" className="text-white font-medium hover:text-brand-primary transition-colors border-b border-white/20 pb-1 text-sm sm:text-base whitespace-nowrap">
+                See our work
               </Link>
             </motion.div>
 
+            {/* Micro-trust line */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500"
+            >
+              Production systems, not demos · Fixed-scope proposals · One team, end to end
+            </motion.p>
+
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7 }} className="flex items-center gap-8 pt-2 ">
               {[
-                { val: 50, suffix: "+", label: "AI Projects" },
-                { val: 98, suffix: "%", label: "Client Retention" },
-                { val: 12, suffix: "+", label: "Industries" },
+                { val: 12, suffix: "", label: "Case studies delivered" },
+                { val: 10, suffix: "", label: "Industries & domains" },
+                { val: 100, suffix: "%", label: "In-house delivery" },
               ].map((s, i) => (
                 <div key={i}>
                   <div className="text-2xl font-black text-white"><Counter to={s.val} suffix={s.suffix} /></div>

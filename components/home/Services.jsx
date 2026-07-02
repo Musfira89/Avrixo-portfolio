@@ -7,79 +7,57 @@ import Link from "next/link";
 const services = [
   {
     id: 0,
-    tab: "AI Development",
-    headline: "Smart AI Solutions for Modern Businesses",
+    tab: "AI Automation",
+    headline: "Remove Operational Drag Without Losing Control",
     description:
-      "We build intelligent AI systems including chatbots, virtual assistants, and ChatGPT-powered tools that automate customer support, improve engagement, and streamline business operations.",
-    tags: [
-      "AI Chatbot Development",
-      "ChatGPT Integration",
-      "NLP Solutions",
-    ],
+      "We design AI-assisted workflows that classify, summarize, route, and execute repeatable business processes — with human-in-the-loop approvals and dashboards that track the time you save.",
+    tags: ["Workflow Automation", "Human-in-the-loop", "AI Assistants"],
+    href: "/services/ai-automation",
   },
   {
     id: 1,
-    tab: "Machine & Deep Learning",
-    headline: "Build Models That Learn From Your Data",
+    tab: "Generative AI & RAG",
+    headline: "Answers From Your Data, Backed by Evidence",
     description:
-      "We design and train machine learning and deep learning models that analyze your data, discover patterns, and provide accurate predictions for smarter business decisions.",
-    tags: ["Model Training", "Neural Networks", "Data Modeling"],
+      "Retrieval-augmented AI that answers from your own documents and databases with citations, access boundaries, and guardrails — knowledge copilots your compliance team can actually approve.",
+    tags: ["RAG Pipelines", "Knowledge Copilots", "Answer Guardrails"],
+    href: "/services/generative-ai-rag",
   },
   {
     id: 2,
-    tab: "Computer Vision",
-    headline: "Transform Images and Videos Into Insights",
+    tab: "SaaS Product Engineering",
+    headline: "Multi-Tenant Platforms Built to Scale",
     description:
-      "Our computer vision solutions enable systems to understand visual data through image recognition, object detection, and real-time video analysis for automation and monitoring.",
-    tags: ["Object Detection", "Image Classification", "Video Analytics"],
+      "End-to-end SaaS products with clean architecture, secure tenancy, billing-ready data models, and analytics from day one — the same discipline behind our StructumAI platforms.",
+    tags: ["Product Architecture", "Multi-tenant", "Admin Tooling"],
+    href: "/services/saas-product-engineering",
   },
   {
     id: 3,
-    tab: "Big Data Analytics",
-    headline: "Turn Large Data Into Clear Business Insights",
+    tab: "Data Platforms",
+    headline: "Reliable Data for Analytics and AI",
     description:
-      "We build scalable data pipelines and analytics platforms that process large datasets and convert them into dashboards, reports, and insights for faster decision-making.",
-    tags: ["Data Pipelines", "Real-time Analytics", "BI Dashboards"],
+      "We unify fragmented data into governed pipelines and dashboards leaders can trust — modeling, ETL, quality checks, and lineage that make both reporting and AI safer to build on.",
+    tags: ["Data Modeling", "ETL Pipelines", "BI Dashboards"],
+    href: "/services/data-platforms",
   },
   {
     id: 4,
-    tab: "Predictive Modeling",
-    headline: "Predict Trends and Reduce Business Risks",
+    tab: "Cloud & DevOps",
+    headline: "Ship Safely, Scale Without Chaos",
     description:
-      "Using statistical models and machine learning, we help businesses forecast demand, detect unusual patterns, and make proactive decisions based on future predictions.",
-    tags: ["Demand Forecasting", "Anomaly Detection", "Risk Modeling"],
+      "Cloud infrastructure, CI/CD, observability, and release processes that keep teams moving fast — preview environments, quality gates, monitoring, and rollback built into delivery.",
+    tags: ["CI/CD Pipelines", "Cloud Infrastructure", "Observability"],
+    href: "/services/cloud-devops",
   },
   {
     id: 5,
-    tab: "Custom Software",
-    headline: "Software Built Around Your Business Needs",
+    tab: "UI/UX Product Design",
+    headline: "Make Complex Systems Feel Usable and Trusted",
     description:
-      "We develop custom web applications, SaaS platforms, and internal tools designed specifically for your workflows, ensuring flexibility, performance, and scalability.",
-    tags: ["Web Applications", "SaaS Platforms", "Enterprise Tools"],
-  },
-  {
-    id: 6,
-    tab: "Digital Marketing",
-    headline: "Grow Your Brand and Reach the Right Audience",
-    description:
-      "Our digital marketing strategies combine SEO, paid ads, and data-driven campaigns to increase visibility, attract qualified leads, and boost conversions.",
-    tags: ["SEO & Content", "Paid Ads", "Growth Strategy"],
-  },
-  {
-    id: 7,
-    tab: "DevOps",
-    headline: "Reliable Infrastructure for Faster Deployment",
-    description:
-      "We implement DevOps practices such as CI/CD pipelines, cloud infrastructure, and containerization to improve development speed, reliability, and scalability.",
-    tags: ["CI/CD Pipelines", "Cloud Infrastructure", "Docker & Kubernetes"],
-  },
-  {
-    id: 8,
-    tab: "UI/UX Design",
-    headline: "Design Experiences Users Enjoy",
-    description:
-      "We create user-centered interfaces through research, wireframing, and modern design systems to ensure your product is intuitive, engaging, and easy to use.",
-    tags: ["Design Systems", "User Research", "Prototyping"],
+      "We design enterprise experiences that clarify workflows, surface evidence, and support human review — research, design systems, and high-fidelity prototypes that speed up decisions.",
+    tags: ["Design Systems", "User Research", "AI Interaction Patterns"],
+    href: "/services/ui-ux-product-design",
   },
 ];
 export const Services = () => {
@@ -213,7 +191,7 @@ export const Services = () => {
                   {/* CTA Section */}
                   <div className="flex items-center gap-10">
                     <Link
-                      href="/services"
+                      href={current.href}
                       className="group flex items-center gap-4"
                     >
                       <div className="w-14 h-14 rounded-full bg-brand-primary text-white flex items-center justify-center group-hover:bg-brand-primary/ transition-all duration-500 shadow-xl shadow-black/10">

@@ -41,8 +41,8 @@ export const aboutRoutes: EnterpriseRoute[] = [
     summary:
       "Avrixo partners with founders, enterprises, and transformation leaders to turn AI strategy into secure, measurable software systems.",
     theme: "dark",
-    stat: "50+",
-    statLabel: "AI and software programs shaped from concept to launch",
+    stat: "2",
+    statLabel: "production SaaS platforms designed and shipped end to end",
     highlights: [
       "Product strategy, system architecture, and implementation under one roof.",
       "Senior delivery standards for SaaS, data platforms, automation, and AI workflows.",
@@ -333,8 +333,8 @@ export const industryRoutes: EnterpriseRoute[] = [
     summary:
       "Avrixo builds explainable systems for transaction monitoring, customer intelligence, analyst workflows, and executive reporting.",
     theme: "dark",
-    stat: "52%",
-    statLabel: "false-positive reduction achieved in a modeled risk workflow",
+    stat: "Explainable",
+    statLabel: "risk scoring designed to be inspected, defended, and audited",
     highlights: [
       "Explainable risk scoring and review queues.",
       "Audit-ready case management and policy references.",
@@ -808,7 +808,7 @@ export const sectionOverviewRoutes: Record<string, EnterpriseRoute> = {
     summary:
       "Avrixo helps companies move from technical ambition to reliable digital systems through strategy, product design, AI engineering, data platforms, and deployment.",
     theme: "light",
-    stat: "9",
+    stat: "6",
     statLabel: "service lines connected into one delivery operating model",
     highlights: [
       "AI automation, RAG products, SaaS platforms, data systems, DevOps, and UX.",

@@ -1,0 +1,10 @@
+AI-Based Fraud Detection System for Finance
+My role. Lead AI/ML Engineer & Backend Architect
+
+Project description.
+
+Designed and deployed a secure AI-based fraud detection system with real-time transaction monitoring, behavioral analysis, and risk scoring using Python, AWS, and mobile-integrated dashboards.
+Skills and deliverables
+
+Python
+Python Scikit-Learn

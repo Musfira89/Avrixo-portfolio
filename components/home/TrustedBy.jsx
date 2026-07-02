@@ -1,113 +1,38 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
+// Honest signal: the production-grade stack we actually build on —
+// no borrowed client logos, just the tools behind StructumAI and our other builds.
 const track1 = [
-  {
-    name: "Google",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-  },
-  {
-    name: "Microsoft",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
-  },
-  {
-    name: "Amazon",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-  },
-  {
-    name: "Meta",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
-  },
-  {
-    name: "Netflix",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-  },
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Express",
 ];
 
 const track2 = [
-  {
-    name: "OpenAI",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg",
-  },
-  {
-    name: "Nvidia",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg",
-  },
-  {
-    name: "Salesforce",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
-  },
-  {
-    name: "IBM",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-  },
-  {
-    name: "Intel",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg",
-  },
+  "PostgreSQL",
+  "AWS",
+  "Pusher",
+  "Zod",
+  "Framer Motion",
+  "Three.js",
 ];
 
-function LogoCard({ logo, name }) {
-  const ref = useRef(null);
-  const [hovered, setHovered] = useState(false);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 200, damping: 20 });
-  const sy = useSpring(y, { stiffness: 200, damping: 20 });
-  const rotateX = useTransform(sy, [-0.5, 0.5], [8, -8]);
-  const rotateY = useTransform(sx, [-0.5, 0.5], [-8, 8]);
-
+function StackChip({ name }) {
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={(e) => {
-        const r = ref.current.getBoundingClientRect();
-        x.set((e.clientX - r.left) / r.width - 0.5);
-        y.set((e.clientY - r.top) / r.height - 0.5);
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        x.set(0);
-        y.set(0);
-        setHovered(false);
-      }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        perspective: 600,
-      }}
+    <div
       className="flex-shrink-0 relative flex items-center justify-center
-        w-[148px] h-[64px] mx-3 rounded-xl overflow-hidden cursor-pointer
-        border border-white/[0.05] bg-white/[0.02]"
+        h-[52px] px-7 mx-3 rounded-xl
+        border border-white/[0.06] bg-white/[0.02]"
     >
-      {/* hover wash */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(227,30,36,0.1), transparent 70%)",
-        }}
-      />
-      {/* border glow */}
-      <motion.div
-        className="absolute inset-0 rounded-xl"
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
-        style={{ boxShadow: "inset 0 0 0 1px rgba(227,30,36,0.22)" }}
-      />
-      <img
-        src={logo}
-        alt={name}
-        style={{ transform: "translateZ(10px)" }}
-        className={`h-[18px] w-auto max-w-[100px] object-contain brightness-0 invert
-          pointer-events-none transition-all duration-300
-          ${hovered ? "opacity-90 scale-105" : "opacity-25 scale-95"}`}
-      />
-    </motion.div>
+      <span className="text-sm font-bold tracking-wide text-white/45 whitespace-nowrap">
+        {name}
+      </span>
+    </div>
   );
 }
 
@@ -121,7 +46,7 @@ function MarqueeTrack({ items, reverse = false, speed = 30 }) {
         transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
       >
         {tripled.map((item, i) => (
-          <LogoCard key={i} {...item} />
+          <StackChip key={i} name={item} />
         ))}
       </motion.div>
     </div>
@@ -131,8 +56,6 @@ function MarqueeTrack({ items, reverse = false, speed = 30 }) {
 export const TrustedBy = () => {
   return (
     <section className="relative bg-bg-primary py-8 overflow-hidden">
-      {/* single subtle label */}
-
       {/* Header with Centered Text and Lines */}
       <div className="max-w-5xl mx-auto px-6 mb-6">
         <div className="flex items-center gap-4">
@@ -149,9 +72,9 @@ export const TrustedBy = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center text-[13px] uppercase tracking-[0.2em] text-gray-200 "
+              className="text-center text-[13px] uppercase tracking-[0.2em] text-gray-200 whitespace-nowrap"
             >
-              Trusted by teams at
+              The stack we ship production systems on
             </motion.p>
           </motion.div>
 

@@ -1,0 +1,12 @@
+Custom Next.js Website for HOS Video Production Agency
+My role. Full-Stack Developer (Next.js)
+
+Project description.
+
+Developed a fully custom, SEO-optimized website for HOS, a cinematic video production agency. Using Next.js, I delivered a fast, scalable, and responsive web experience that highlights the brand’s creative identity. The site includes dynamic routing, smooth scroll-based animations, and performance-driven architecture to ensure engaging storytelling and excellent user experience across devices.
+Skills and deliverables
+
+Next.js
+SEO Performance
+Responsive Design
+Custom Web Design

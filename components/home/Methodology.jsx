@@ -1,56 +1,56 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { Search, FileText, Code2, Rocket, Gauge, TrendingUp } from "lucide-react";
 
 const steps = [
   {
     id: "01",
     name: "Audit",
     tag: "Discovery",
-    image: "/portfolio/Audit.png",
+    Icon: Search,
     description:
-      "We dissect your data infrastructure, business objectives, and competitive landscape to identify the highest-leverage AI opportunity.",
+      "We map your data, business objectives, and constraints to find the highest-leverage opportunity worth building.",
   },
   {
     id: "02",
     name: "Architect",
-    tag: "Strategy",
-    image: "/portfolio/Audit.png",
+    tag: "Scope & SOW",
+    Icon: FileText,
     description:
-      "System architecture, model selection, data pipelines, and integration maps — every technical decision documented before a single line of code.",
+      "Architecture, integrations, and a fixed-scope statement of work with milestones and acceptance criteria — agreed before a single line of code.",
   },
   {
     id: "03",
     name: "Engineer",
     tag: "Development",
-    image: "/portfolio/Audit.png",
+    Icon: Code2,
     description:
-      "Rapid agile sprints. Clean, documented code. Rigorous testing at every layer — from model accuracy to API reliability to UI performance.",
+      "Agile sprints, clean documented code, and rigorous testing at every layer — from data integrity to API reliability to UI performance.",
   },
   {
     id: "04",
     name: "Launch",
     tag: "Deployment",
-    image: "/portfolio/Audit.png",
+    Icon: Rocket,
     description:
-      "Zero-downtime releases via automated CI/CD pipelines. Cloud-native or on-premise — your system goes live with full observability from day one.",
+      "Zero-downtime releases via automated CI/CD. Your system goes live with security, permissions, and full observability from day one.",
   },
   {
     id: "05",
     name: "Refine",
     tag: "Optimization",
-    image: "/portfolio/Audit.png",
+    Icon: Gauge,
     description:
-      "Post-launch data drives model retraining, latency reduction, and UX iteration. We don't disappear after delivery — we make it better.",
+      "Real usage drives iteration — performance tuning, UX refinement, and reliability work. We don't disappear after delivery.",
   },
   {
     id: "06",
     name: "Elevate",
     tag: "Scale",
-    image: "/portfolio/Audit.png",
+    Icon: TrendingUp,
     description:
-      "Enterprise-grade scaling. From hundreds to millions of users — infrastructure, models, and teams that grow without friction.",
+      "Production-grade scaling. From first users to high volume — infrastructure and systems that grow without friction.",
   },
 ];
 
@@ -189,21 +189,26 @@ export const Methodology = () => {
                     </motion.p>
                   </div>
 
-                  {/* Image */}
+                  {/* Icon badge */}
                   <div className="flex-shrink-0 ml-auto">
-                    <AnimatePresence>
-                      {isHovered && (
-                        <motion.img
-                          src={step.image}
-                          alt={step.name}
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.96 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-[300px] h-[160px] object-cover"
-                        />
-                      )}
-                    </AnimatePresence>
+                    <motion.div
+                      animate={{
+                        scale: isHovered ? 1 : 0.92,
+                        borderColor: isHovered
+                          ? "rgba(227,30,36,0.35)"
+                          : "rgba(0,0,0,0.08)",
+                        backgroundColor: isHovered
+                          ? "rgba(227,30,36,0.06)"
+                          : "rgba(0,0,0,0.02)",
+                      }}
+                      transition={{ duration: 0.25 }}
+                      className="flex h-16 w-16 items-center justify-center rounded-2xl border"
+                    >
+                      <step.Icon
+                        className="h-7 w-7 transition-colors duration-300"
+                        style={{ color: isHovered ? "#e31e24" : "#737373" }}
+                      />
+                    </motion.div>
                   </div>
                 </div>
 

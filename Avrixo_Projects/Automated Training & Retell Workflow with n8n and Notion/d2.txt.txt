@@ -1,0 +1,10 @@
+n8n Workflow Automation for Data Processing & Contact Management
+My role. Workflow Automation Developer
+
+Project description.
+
+I built an end-to-end automation workflow in n8n to streamline data collection, processing, and contact management. Starting from a webhook trigger, it runs API actors, retrieves results, and extracts structured data. The data is auto-updated in Google Sheets, while a loop creates or updates contact records. This automation reduced manual tasks, improved accuracy, and ensured real-time sync between APIs, spreadsheets, and contacts—delivering faster processing, fewer errors, and scalable growth.
+Skills and deliverables
+
+Automation
+n8n

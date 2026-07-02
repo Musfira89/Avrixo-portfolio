@@ -7,10 +7,10 @@ import Link from "next/link";
 import { caseStudies } from "@/lib/case-studies";
 
 const stats = [
-  { val: "50+", label: "Projects Delivered" },
-  { val: "2", label: "Featured Case Studies" },
-  { val: "12+", label: "Industries" },
-  { val: "100%", label: "Outcome-Led" },
+  { val: "12", label: "Case Studies" },
+  { val: "10", label: "Industries & Domains" },
+  { val: "100%", label: "In-House Delivery" },
+  { val: "Real", label: "Shipped Products" },
 ];
 
 const proofPoints = [
@@ -67,8 +67,8 @@ export const PortfolioPage = () => {
                 transition={{ delay: 0.07 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary leading-[1.05] mb-5"
               >
-                SaaS case studies written like{" "}
-                <span className="text-brand-primary">technical research papers.</span>
+                Real products we&apos;ve designed,{" "}
+                <span className="text-brand-primary">built, and shipped.</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
@@ -76,8 +76,8 @@ export const PortfolioPage = () => {
                 transition={{ delay: 0.13 }}
                 className="text-sm leading-7 text-text-primary/50 max-w-xl"
               >
-                Each study is structured for enterprise buyers: abstract, core problem,
-                technical solution, stack matrix, and measurable business outcomes.
+                Each project is documented as a technical case study: the core problem,
+                the solution we engineered, the stack we used, and the architecture behind it.
               </motion.p>
             </div>
 

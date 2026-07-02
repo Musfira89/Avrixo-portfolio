@@ -85,8 +85,8 @@ export const IndustriesPage = () => {
             <div className="lg:col-span-5">
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { val: "12+", label: "Industries Supported" },
-                  { val: "50+", label: "Systems Shipped" },
+                  { val: "Construction", label: "Proven Domain (StructumAI)" },
+                  { val: "2", label: "SaaS Platforms Shipped" },
                   { val: "Domain", label: "Aware Architecture" },
                   { val: "99.9%", label: "Uptime Target" },
                 ].map((s, i) => (

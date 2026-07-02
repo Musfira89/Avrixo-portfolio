@@ -1,0 +1,6 @@
+Swipsel | Buy, Rent, and Swap with Ease – Mobile App
+
+Project description.
+
+Swipsel is a modern marketplace app built with React Native for renting, swapping, and buying properties, vehicles, and more. It features smart search, filters, user profiles, bookmarks, real-time chat, and subscription-based ad posting. Designed with a clean, intuitive UI, Swipsel makes listing and discovering items fast and seamless.
+Skills and deliverables

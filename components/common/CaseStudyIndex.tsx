@@ -39,8 +39,8 @@ export function CaseStudyIndex() {
                 transition={{ delay: 0.07 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-5"
               >
-                SaaS case studies written like{" "}
-                <span className="text-brand-primary">technical research papers.</span>
+                Real products we&apos;ve designed,{" "}
+                <span className="text-brand-primary">built, and shipped.</span>
               </motion.h1>
             </div>
             <motion.p
@@ -49,8 +49,8 @@ export function CaseStudyIndex() {
               transition={{ delay: 0.13 }}
               className="lg:col-span-4 text-sm leading-7 text-text-primary/55"
             >
-              Each study is structured for enterprise buyers: abstract, core problem,
-              technical solution, stack matrix, and measurable business outcomes.
+              Each project is documented as a technical case study: the core problem,
+              the solution we engineered, the stack we used, and the architecture behind it.
             </motion.p>
           </div>
 

@@ -22,12 +22,12 @@ export const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="text-4xl md:text-5xl font-black text-text-primary tracking-tight"
               >
-                Our <span className="text-brand-primary">Showcase</span>
+                Products we've <span className="text-brand-primary">shipped</span>
               </motion.h2>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Technical case studies presented as SaaS research papers:
-              abstract, architecture, stack, and measurable outcomes.
+              Real, production-grade products we designed and engineered —
+              broken down as technical case studies: problem, architecture, stack, and scope.
             </p>
             <Link
               href="/case-studies"
@@ -39,7 +39,7 @@ export const Projects = () => {
 
           {/* RIGHT: Research Paper Cards */}
           <div className="lg:col-span-8 grid md:grid-cols-2 gap-4">
-            {caseStudies.map((project) => (
+            {caseStudies.slice(0, 4).map((project) => (
               <Link
                 key={project.id}
                 href={`/case-studies/${project.id}`}

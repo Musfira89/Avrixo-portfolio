@@ -1,0 +1,12 @@
+AI-Powered Real Estate Listing Dashboard & Scoring Engine
+My role. Full-Stack Engineer & AI Developer
+
+Project description.
+
+Developed a self-service real estate platform with a Next.js dashboard and Node.js/Express API. Delivered an AI-driven Listing Score analyzing MLS data, media quality, and comps in real time. Integrated ATTOM API, Stripe payments, and end-to-end encryption. Designed multi-step onboarding, QA automation, and CI/CD reducing listing setup time by 70% and cutting brokerage costs by 80%+.
+Skills and deliverables
+
+Node.js
+AI App Development
+AI Agent Development
+Next.js

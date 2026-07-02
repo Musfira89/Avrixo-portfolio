@@ -1,0 +1,13 @@
+Lexium AI – Intelligent Educational Assistant
+My role. Full-Stack AI Developer
+
+Project description.
+
+Lexium AI is an AI-powered educational assistant built with RAG to transform textbooks, lecture notes, and course materials into an interactive tutor. Students can ask natural-language questions and receive accurate, context-aware answers instantly. Piloted with 2,000+ FAST NUCES students, it boosted engagement and reduced repetitive faculty workload by enabling personalized, self-paced learning.
+Skills and deliverables
+
+React
+FastAPI
+Retrieval Augmented Generation
+Python
+Conversational AI
