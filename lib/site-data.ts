@@ -423,12 +423,28 @@ export const resourceRoutes: EnterpriseRoute[] = [
     ],
     sections: [
       {
-        title: "Executive lens",
-        body: "AI transformation is not a single tool purchase. It requires a portfolio of use cases, architecture decisions, adoption planning, and ongoing measurement.",
+        title: "Start with the business case, not the model",
+        body: "Pick workflows where time, cost, or error rates are measurable today. If you can't baseline the current process, you won't be able to prove the AI version is better. The best first candidates are high-volume, repetitive decisions with clear right answers — not open-ended creative work.",
       },
       {
-        title: "Technical lens",
-        body: "The strongest initiatives start with data boundaries, evaluation plans, model-risk controls, and a clear path from proof-of-concept to production.",
+        title: "Audit data readiness before committing budget",
+        body: "Most stalled AI initiatives are data problems in disguise. Before building, confirm who owns the data, how clean and complete it is, whether you can legally use it, and what integration work is needed to reach it. A two-week data audit routinely saves a two-quarter false start.",
+      },
+      {
+        title: "Prototype in weeks, not quarters",
+        body: "A narrow-scope prototype with a written evaluation plan — what accuracy or time-saving threshold counts as success — tells you more than months of vendor comparison. Keep it small enough that failing is cheap and informative.",
+      },
+      {
+        title: "Graduate to a production pilot with real users",
+        body: "Production is a different discipline: security review, human-in-the-loop controls for low-confidence outputs, monitoring, and rollback paths. Run the pilot inside the real workflow with a small user group, and measure adoption — not just model metrics.",
+      },
+      {
+        title: "Plan the operating model change",
+        body: "Someone must own the system after launch: retraining cadence, escalation paths when the model is wrong, prompt and knowledge-base upkeep, and incentives for teams to actually use it. Skipping this step is how pilots quietly die after the launch announcement.",
+      },
+      {
+        title: "Measure, govern, and scale deliberately",
+        body: "Expand to the next workflow only after checkpoint metrics hold in production — accuracy, cost per task, adoption, and incident rate. Add model-risk controls and cost monitoring as usage grows, so scaling is a decision backed by evidence rather than momentum.",
       },
     ],
   },

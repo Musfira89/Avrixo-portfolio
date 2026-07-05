@@ -134,8 +134,11 @@ export function EnterpriseRoutePage({ route, related = [] }: EnterpriseRoutePage
             <img
               src={heroImage}
               alt={route.eyebrow}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
             />
+            {/* Brand duotone — keeps stock photos on the black/red theme */}
+            <div className="absolute inset-0 bg-brand-primary/25 mix-blend-color" />
+            <div className={`absolute inset-0 ${isLight ? "bg-bg-light/20" : "bg-bg-primary/30"}`} />
             <div
               className={`absolute inset-0 ${
                 isLight
@@ -184,7 +187,7 @@ export function EnterpriseRoutePage({ route, related = [] }: EnterpriseRoutePage
                     href="/contact"
                     className="group w-full flex items-center justify-center gap-2 py-3 bg-brand-primary text-white font-black text-sm rounded-xl hover:bg-brand-hover transition-all"
                   >
-                    Discuss This Service
+                    Talk to Our Team
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:rotate-45" />
                   </Link>
                 </div>
@@ -226,8 +229,10 @@ export function EnterpriseRoutePage({ route, related = [] }: EnterpriseRoutePage
                 <img
                   src={heroImage}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover grayscale"
                 />
+                <div className="absolute inset-0 bg-brand-primary/25 mix-blend-color" />
+                <div className={`absolute inset-0 ${isLight ? "bg-bg-light/30" : "bg-bg-primary/40"}`} />
                 <div className={`absolute inset-0 ${isLight ? "bg-gradient-to-r from-bg-light/80 to-transparent" : "bg-gradient-to-r from-bg-primary/80 to-transparent"}`} />
                 <div className="absolute left-7 top-1/2 -translate-y-1/2">
                   <p className={`text-[10px] font-bold uppercase tracking-[0.24em] text-brand-primary mb-2`}>
@@ -248,7 +253,7 @@ export function EnterpriseRoutePage({ route, related = [] }: EnterpriseRoutePage
                   className={`rounded-3xl border p-7 ${cardBg}`}
                 >
                   <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-brand-primary mb-5">
-                    Related Routes
+                    Explore More
                   </p>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {related

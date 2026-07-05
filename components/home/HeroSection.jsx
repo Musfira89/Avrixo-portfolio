@@ -109,7 +109,7 @@ export const HeroSection = () => {
           </div>
 
           {/* RIGHT SIDE - UPDATED 3D SPHERE */}
-          <div className="lg:col-span-6 flex items-center justify-center">
+          <div className="lg:col-span-6 flex items-center justify-center lg:-mt-24">
              <motion.div 
                initial={{ opacity: 0, scale: 0.8 }} 
                animate={{ opacity: 1, scale: 1 }} 

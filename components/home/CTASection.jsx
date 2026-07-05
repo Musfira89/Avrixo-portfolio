@@ -62,7 +62,7 @@ export const CTASection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.08 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-black text-text-primary leading-[1.0] mb-6"
+                className="text-3xl md:text-4xl lg:text-5xl font-black text-text-primary leading-[1.1] mb-6"
               >
                 Ready to make your business{" "}
                 <span
