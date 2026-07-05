@@ -24,13 +24,14 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to Hostinger via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
           server: 46.202.138.85
+          port: 65002
           username: u772304123
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          local-dir: ./out/
-          server-dir: domains/avrixodigitals.com/public_html/
-          dangerous-clean-slate: true
+          sftp_only: true
+          local_path: ./out/*
+          remote_path: /home/u772304123/domains/avrixodigitals.com/public_html
+          delete_remote_files: true
