@@ -39,7 +39,7 @@ export const Projects = () => {
 
           {/* RIGHT: Research Paper Cards */}
           <div className="lg:col-span-8 grid md:grid-cols-2 gap-4">
-            {caseStudies.slice(0, 4).map((project) => (
+            {caseStudies.slice(0, 2).map((project) => (
               <Link
                 key={project.id}
                 href={`/case-studies/${project.id}`}
@@ -51,7 +51,7 @@ export const Projects = () => {
                   whileHover={{ y: -10 }}
                   className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-secondary p-3 transition-colors group-hover:border-brand-primary/50"
                 >
-                  <div className="relative h-[230px] overflow-hidden rounded-2xl">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -72,20 +72,6 @@ export const Projects = () => {
                     <h3 className="mt-4 text-2xl font-black leading-tight text-text-primary">
                       {project.title}
                     </h3>
-                    {/* <p className="mt-4 line-clamp-4 text-sm leading-6 text-text-primary/60">
-                      {project.abstract[0]}
-                    </p> */}
-
-                    {/* <div className="mt-6 grid grid-cols-3 gap-2">
-                      {project.metrics.map((metric) => (
-                        <div key={metric.label} className="rounded-2xl border border-white/10 bg-bg-primary p-3">
-                          <div className="text-lg font-black text-brand-primary">{metric.value}</div>
-                          <p className="mt-1 text-[10px] leading-4 text-text-primary/55">
-                            {metric.label}
-                          </p>
-                        </div>
-                      ))}
-                    </div> */}
 
                     <div className="mt-6 flex items-center justify-between gap-4">
                       <div className="flex flex-wrap gap-2">

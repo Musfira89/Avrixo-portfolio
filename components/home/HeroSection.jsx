@@ -53,9 +53,7 @@ export const HeroSection = () => {
                 We Ship <br />
                 <span className="relative inline-block">
                   Production
-                  <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 300 12" fill="none">
-                    <path d="M2 10C50 2 100 2 150 6C200 10 250 10 298 6" stroke="#e31e24" strokeWidth="4" strokeLinecap="round" />
-                  </svg>
+                 
                 </span> <br />
                 <span className="bg-brand-primary font-black bg-clip-text text-transparent">
                   AI &amp; SaaS

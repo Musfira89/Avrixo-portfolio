@@ -18,12 +18,12 @@ export const NavbarDropdown = ({ isOpen, activeGroup = "about", onClose }) => {
 
   return (
     <div
-      className="absolute top-full left-0 right-0 p-2 bg-bg-muted shadow-2xl z-50"
+      className="absolute top-full left-0 right-0 p-2 bg-bg-muted shadow-2xl z-50 max-h-[calc(100vh-88px)] overflow-y-auto"
       onMouseLeave={onClose}
     >
       <div className="rounded-lg bg-bg-primary backdrop-blur-lg p-2">
         <div className="max-w-7xl mx-auto px-4 md:px-20 py-4">
-          <div className="flex min-h-[380px] flex-col md:flex-row">
+          <div className="flex min-h-[320px] flex-col md:flex-row">
             {/* Left Menu Panel */}
             <div className="w-full md:w-[470px] bg-bg-secondary py-4 px-4 rounded-md">
               <div className="px-4 pb-4">
@@ -42,20 +42,20 @@ export const NavbarDropdown = ({ isOpen, activeGroup = "about", onClose }) => {
                         href={item.href}
                         onMouseEnter={() => setActiveItem(item.id)}
                         onClick={onClose}
-                        className="flex items-center justify-between px-4 py-4 transition-colors duration-200 group"
+                        className="flex items-center justify-between px-4 py-2.5 transition-colors duration-200 group"
                       >
                         <div className="flex items-center space-x-3">
-                          <div className="w-14 h-14 relative flex items-center justify-center overflow-hidden rounded-lg">
+                          <div className="w-10 h-10 relative flex items-center justify-center overflow-hidden rounded-lg">
                             <Image
                               src={item.iconPath}
                               alt={item.name}
-                              width={52}
-                              height={52}
+                              width={36}
+                              height={36}
                               className="object-contain"
                             />
                           </div>
 
-                          <span className="relative text-md font-normal text-gray-300 group">
+                          <span className="relative text-sm font-normal text-gray-300 group">
                             {item.name}
                             <span
                               className="absolute -bottom-1 left-0 h-[2px] w-0 bg-linear-to-r from-brand-primary to-brand-hover 
@@ -75,7 +75,7 @@ export const NavbarDropdown = ({ isOpen, activeGroup = "about", onClose }) => {
             </div>
 
             {/* Right Content Panel */}
-            <div className="flex-1 bg-bg-primary py-12 md:py-16 px-8 md:px-20">
+            <div className="flex-1 bg-bg-primary py-8 md:py-10 px-8 md:px-16">
               <div className="max-w-2xl">
                 <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-brand-primary mb-4">
                   {group.name}

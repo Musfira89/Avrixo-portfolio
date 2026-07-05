@@ -1,12 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Manrope } from "next/font/google"; // Switched to Manrope
-
-const manrope = Manrope({ 
-  subsets: ["latin"], 
-  weight: ['300'] 
-});
 
 export default function PageTransition() {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,9 +47,9 @@ export default function PageTransition() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: -20 }} // Fades and moves up slightly
               transition={{ duration: 0.3 }}
-              className={`${manrope.className} text-gray-500 text-md tracking-[0.4em]`}
+              className="text-gray-500 text-base font-light tracking-[0.4em]"
             >
-              l O A D I N G.
+              L O A D I N G
             </motion.span>
           </div>
 

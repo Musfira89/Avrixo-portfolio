@@ -46,7 +46,7 @@ export const Navbar = () => {
             <Link href="/" className="flex items-center">
               <div className="relative w-28 h-9 sm:w-40 sm:h-12 lg:w-52 lg:h-10">
                 <Image
-                  src="/logo-white.png"
+                  src="/finalLogo-white.png"
                   alt="Avrixo Logo"
                   fill
                   className="object-contain"

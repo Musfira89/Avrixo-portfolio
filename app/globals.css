@@ -52,9 +52,9 @@ html {
   --color-text-muted: #737373;    /* Professional gray for small text */
 
   /* Typography */
-  --font-family-sans: var(--font-inter), 
-    -apple-system, 
-    BlinkMacSystemFont, 
-    "SF Pro Display", 
+  --font-family-sans: var(--font-montserrat),
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
     sans-serif;
 }

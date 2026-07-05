@@ -6,11 +6,17 @@ import { ArrowUpRight, BarChart3, Database, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { caseStudies } from "@/lib/case-studies";
 
+const heroStats = [
+  { value: "12", label: "Documented case studies" },
+  { value: "10", label: "Industries & domains" },
+  { value: "100%", label: "Designed & built in-house" },
+];
+
 export function CaseStudyIndex() {
   return (
     <div className="bg-bg-primary text-text-primary">
       {/* ══ HERO ══ */}
-      <section className="relative overflow-hidden pt-36 pb-0">
+      <section className="relative overflow-hidden pt-36 pb-16 border-b border-white/[0.06]">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute left-0 top-28 h-[500px] w-[500px] rounded-full bg-brand-primary/6 blur-[120px]" />
           <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-brand-primary/4 blur-3xl" />
@@ -24,20 +30,20 @@ export function CaseStudyIndex() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-12 gap-10 items-end pb-14">
+          <div className="grid lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-primary mb-5"
               >
-                Avrixo Research Portfolio
+                Case Study Library
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.07 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] mb-5"
+                className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]"
               >
                 Real products we&apos;ve designed,{" "}
                 <span className="text-brand-primary">built, and shipped.</span>
@@ -47,114 +53,98 @@ export function CaseStudyIndex() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.13 }}
-              className="lg:col-span-4 text-sm leading-7 text-text-primary/55"
+              className="lg:col-span-4 text-sm leading-7 text-text-primary/60"
             >
               Each project is documented as a technical case study: the core problem,
               the solution we engineered, the stack we used, and the architecture behind it.
             </motion.p>
           </div>
 
-          {/* Banner image */}
+          {/* Stats strip */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="relative h-48 md:h-64 rounded-t-3xl overflow-hidden"
+            className="mt-14 grid max-w-2xl grid-cols-3 gap-6"
           >
-            <img
-              src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&h=400&fit=crop"
-              alt="Research portfolio"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/50 to-transparent" />
+            {heroStats.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl md:text-4xl font-black text-brand-primary">
+                  {stat.value}
+                </div>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.18em] leading-4 text-text-primary/55">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ══ CASE STUDY LIST ══ */}
+      {/* ══ CASE STUDY GRID ══ */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="grid gap-6">
+          <div className="grid gap-6 md:grid-cols-2">
             {caseStudies.map((study, i) => (
               <motion.div
                 key={study.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: (i % 2) * 0.08 }}
+                className="h-full"
               >
                 <Link
                   href={`/case-studies/${study.id}`}
-                  className="group grid lg:grid-cols-12 overflow-hidden rounded-3xl border border-white/[0.08] bg-bg-secondary transition-all duration-400 hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-2xl hover:shadow-brand-primary/5"
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-bg-secondary transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-2xl hover:shadow-brand-primary/5"
                 >
-                  {/* Image */}
-                  <div className="relative min-h-[260px] lg:col-span-4 overflow-hidden">
+                  {/* Cover — 16:10 matches the generated covers, so nothing is cropped */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={study.image}
                       alt={study.title}
                       fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary via-transparent to-transparent" />
                     <div className="absolute left-5 top-5">
                       <span className="rounded-full border border-white/15 bg-bg-primary/80 backdrop-blur-sm px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-text-primary">
                         {study.label}
                       </span>
                     </div>
-                    {/* Hover arrow */}
-                    <div className="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ArrowUpRight className="w-5 h-5 text-white" />
+                    <div className="absolute bottom-5 right-5 flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <ArrowUpRight className="h-5 w-5 text-white" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="lg:col-span-8 p-8 md:p-10">
-                    <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-brand-primary mb-5">
+                  <div className="flex flex-1 flex-col p-7">
+                    <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-primary">
                       <span>{study.category}</span>
                       <span className="h-1 w-1 rounded-full bg-brand-primary" />
                       <span>{study.year}</span>
-                      <span className="h-1 w-1 rounded-full bg-brand-primary" />
-                      <span>{study.duration}</span>
                     </div>
 
-                    <div className="flex items-start justify-between gap-6 mb-4">
-                      <h2 className="text-2xl md:text-3xl font-black tracking-tight">
-                        {study.title}
-                      </h2>
-                      <div className="hidden h-12 w-12 flex-none items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:rotate-45 md:flex">
-                        <ArrowUpRight className="h-5 w-5" />
-                      </div>
-                    </div>
+                    <h2 className="text-xl md:text-2xl font-black tracking-tight leading-snug">
+                      {study.title}
+                    </h2>
 
-                    <p className="max-w-2xl text-sm leading-7 text-text-primary/55 mb-7">
+                    <p className="mt-3 mb-6 text-sm leading-6 text-text-primary/60 line-clamp-2">
                       {study.subtitle}
                     </p>
 
-                    <div className="grid gap-3 md:grid-cols-3 mb-7">
-                      {study.metrics.map((metric) => (
-                        <div
-                          key={metric.label}
-                          className="rounded-2xl border border-white/[0.07] bg-bg-primary p-4"
-                        >
-                          <div className="text-2xl font-black text-brand-primary mb-1">
+                    {/* Metrics */}
+                    <div className="mt-auto grid grid-cols-3 gap-4 border-t border-white/[0.07] pt-5">
+                      {study.metrics.slice(0, 3).map((metric) => (
+                        <div key={metric.label}>
+                          <div className="text-lg font-black leading-tight text-brand-primary">
                             {metric.value}
                           </div>
-                          <p className="text-[10px] leading-4 text-text-primary/50 font-medium uppercase tracking-wider">
+                          <p className="mt-1 text-[9px] font-semibold uppercase tracking-wider leading-3 text-text-primary/55 line-clamp-2">
                             {metric.label}
                           </p>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {study.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-white/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-text-primary/45"
-                        >
-                          {tag}
-                        </span>
                       ))}
                     </div>
                   </div>

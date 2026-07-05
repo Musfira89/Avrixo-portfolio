@@ -64,7 +64,7 @@ export const Footer = () => {
         <div className="grid gap-10 border-b border-white/10 py-20 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-6">
             <Image
-              src="/logo-white.png"
+              src="/finalLogo-white.png"
               alt="Avrixo Logo"
               width={220}
               height={64}
@@ -76,33 +76,7 @@ export const Footer = () => {
             </p>
           </div>
 
-          <div className="lg:col-span-6 rounded-3xl border border-white/10 bg-bg-secondary p-6">
-            <div className="grid gap-4 md:grid-cols-3">
-              {[
-                {
-                  icon: ShieldCheck,
-                  title: "Secure by design",
-                  body: "Access, data boundaries, and audit expectations shaped early.",
-                },
-                {
-                  icon: BadgeCheck,
-                  title: "Partner-ready",
-                  body: "Prepared for direct B2B engagements and investor procurement flows.",
-                },
-                {
-                  icon: ArrowUpRight,
-                  title: "Outcome led",
-                  body: "Roadmaps tied to adoption, performance, and measurable impact.",
-                },
-              ].map((signal) => (
-                <div key={signal.title} className="rounded-2xl border border-white/10 bg-bg-primary p-4">
-                  <signal.icon className="h-5 w-5 text-brand-primary" />
-                  <h3 className="mt-4 text-sm font-black">{signal.title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-text-primary/55">{signal.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+    
         </div>
 
         <div className="grid gap-12 py-16 lg:grid-cols-12">

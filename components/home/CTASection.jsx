@@ -21,8 +21,12 @@ export const CTASection = () => {
         <img
           src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&h=900&fit=crop"
           alt="AI technology"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover grayscale"
         />
+
+        {/* Brand duotone — keeps the image on the black/red theme */}
+        <div className="absolute inset-0 bg-brand-primary/25 mix-blend-color" />
+        <div className="absolute inset-0 bg-bg-primary/30" />
 
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/75 to-transparent" />

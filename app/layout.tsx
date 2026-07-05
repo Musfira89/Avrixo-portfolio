@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import PageTransition from "@/components/animations/PageTransition";
 import { siteUrl, companyContact, companySocials } from "@/lib/company";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Avrixo",
   url: siteUrl,
-  logo: `${siteUrl}/logo-white.png`,
+  logo: `${siteUrl}/finalLogo.png`,
   description:
     "AI and SaaS product engineering studio. Strategy, design, engineering, data, and cloud under one roof.",
   email: companyContact.email,
@@ -67,8 +67,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en" className={montserrat.variable}>
+      <body className={`${montserrat.className} antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
