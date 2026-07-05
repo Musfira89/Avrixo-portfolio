@@ -24,14 +24,41 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Deploy to Hostinger via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+      - name: Check SSH port reachable
+        run: |
+          timeout 10 bash -c 'cat < /dev/null > /dev/tcp/46.202.138.85/65002' \
+            && echo "PORT 65002 OPEN" || (echo "PORT 65002 BLOCKED"; exit 1)
+
+      - name: Clean public_html
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          server: 46.202.138.85
+          host: 46.202.138.85
           port: 65002
           username: u772304123
           password: ${{ secrets.FTP_PASSWORD }}
-          sftp_only: true
-          local_path: ./out/*
-          remote_path: /home/u772304123/domains/avrixodigitals.com/public_html
-          delete_remote_files: true
+          script: |
+            cd ~/domains/avrixodigitals.com/public_html
+            rm -rf -- * .[!.]* 2>/dev/null || true
+            echo "public_html cleaned"
+
+      - name: Upload site via SCP
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: 46.202.138.85
+          port: 65002
+          username: u772304123
+          password: ${{ secrets.FTP_PASSWORD }}
+          source: "out"
+          target: "/home/u772304123/domains/avrixodigitals.com/public_html"
+          strip_components: 1
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 46.202.138.85
+          port: 65002
+          username: u772304123
+          password: ${{ secrets.FTP_PASSWORD }}
+          script: |
+            ls ~/domains/avrixodigitals.com/public_html | head -5
+            test -f ~/domains/avrixodigitals.com/public_html/index.html && echo "DEPLOY OK ✓"
