@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { caseStudies } from "@/lib/case-studies";
 
 const heroStats = [
-  { value: "12", label: "Documented case studies" },
+  { value: String(caseStudies.length), label: "Documented case studies" },
   { value: "10", label: "Industries & domains" },
   { value: "100%", label: "Designed & built in-house" },
 ];
@@ -98,8 +98,8 @@ export function CaseStudyIndex() {
                   href={`/case-studies/${study.id}`}
                   className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-bg-secondary transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/40 hover:shadow-2xl hover:shadow-brand-primary/5"
                 >
-                  {/* Cover — 16:10 matches the generated covers, so nothing is cropped */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  {/* Cover — 16:9 matches the module cover art, so nothing is cropped */}
+                  <div className="relative aspect-video overflow-hidden">
                     <Image
                       src={study.image}
                       alt={study.title}

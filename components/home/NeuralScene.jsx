@@ -48,8 +48,8 @@ function NeuralSphere() {
 
 export default function NeuralScene() {
   return (
-    <div className="h-[400px] w-[400px]"> {/* Fixed square container for perfect roundness */}
-      <Canvas camera={{ position: [0, 0, 5], fov: 40 }}>
+    <div className="h-[320px] w-[320px] sm:h-[420px] sm:w-[420px] lg:h-[540px] lg:w-[540px] max-w-full aspect-square"> {/* Square container for perfect roundness */}
+      <Canvas camera={{ position: [0, 0, 5.6], fov: 40 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} color="#e31e24" intensity={2} />
         <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>

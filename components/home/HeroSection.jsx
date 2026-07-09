@@ -96,7 +96,7 @@ export const HeroSection = () => {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7 }} className="flex items-center gap-8 pt-2 ">
               {[
-                { val: 12, suffix: "", label: "Case studies delivered" },
+                { val: 13, suffix: "", label: "Case studies delivered" },
                 { val: 10, suffix: "", label: "Industries & domains" },
                 { val: 100, suffix: "%", label: "In-house delivery" },
               ].map((s, i) => (
@@ -109,7 +109,7 @@ export const HeroSection = () => {
           </div>
 
           {/* RIGHT SIDE - UPDATED 3D SPHERE */}
-          <div className="lg:col-span-6 flex items-center justify-center lg:-mt-24">
+          <div className="lg:col-span-6 flex items-center justify-center lg:-mt-32">
              <motion.div 
                initial={{ opacity: 0, scale: 0.8 }} 
                animate={{ opacity: 1, scale: 1 }} 

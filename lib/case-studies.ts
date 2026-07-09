@@ -30,146 +30,216 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "structumai-estimating-billing",
     label: "AVX-CS-001",
-    image: "/portfolio/structumai-billing.svg",
+    image: "/portfolio/structumai-estimating-billing.png",
     company: "StructumAI",
     title: "StructumAI Estimating & Billing",
     subtitle:
-      "A construction estimating and AIA-compatible contract billing platform that connects a single estimate all the way through to the owner billing ledger.",
+      "A complete estimating-to-billing module — from the first bid to the final AIA pay application — with QuickBooks, Plaid, and AI receipt capture, integrated into a multi-tenant construction platform.",
     category: "Construction SaaS · Product We Engineered",
     year: "2026",
     duration: "Multi-phase build",
-    tags: ["SaaS Platform", "Financial Engineering", "Data Modeling"],
+    tags: ["Construction SaaS", "QuickBooks + Plaid", "Multi-Tenant"],
     abstract: [
-      "StructumAI needed the financial backbone of construction project delivery: an Excel-like estimating surface that flows cleanly into contracts, schedule of values, pay applications, change orders, and a final owner billing ledger. Avrixo designed and engineered the platform end to end.",
-      "The result is a multi-tenant product where a number entered at estimate time stays traceable through every downstream billing document — with the retainage, AIA pay-application, and change-order rules that construction finance teams actually depend on.",
+      "StructumAI needed one module to carry a construction project end to end: estimate → awarded contract → schedule of values → AIA-style pay applications → change orders → billing ledger, plus the full cost side — budgets, purchase orders, and vendor invoices. Avrixo designed, architected, built, and deployed it as a standalone Next.js application integrated natively into the multi-tenant platform.",
+      "The result is a production revenue-and-cost loop where a number entered at bid time stays traceable through every downstream document — accounting-ready through QuickBooks Online, QuickBooks Desktop, and Plaid bank feeds, with AI-assisted receipt capture feeding purchase orders automatically.",
     ],
     coreProblem: [
-      "Construction billing breaks when the estimate, the contract, and the owner invoice live in disconnected spreadsheets. Teams re-key the same values across documents, retainage is calculated by hand, and a single change order can silently desync the whole billing trail.",
-      "The platform had to enforce real financial rules — retainage accrual and release, schedule-of-values integrity, pay-application math, and change-order lineage — while staying fast and familiar enough that estimators would actually use it instead of falling back to Excel.",
+      "Construction firms run estimating, owner billing, change orders, purchase orders, vendor invoices, and accounting sync across spreadsheets and disconnected tools. Values get re-keyed between documents, retainage is calculated by hand, and profitability is invisible until the project is over.",
+      "The module also had to slot into an existing multi-tenant platform — shared login, shared projects, shared database with sibling modules — without colliding with the platform's own finance tables. And the documents had to be real: AIA-compatible pay applications that owners and accountants actually accept, balanced to the cent.",
     ],
     technicalSolution: [
-      "Avrixo built a strict Routes → Controllers → Services → Repositories architecture on Next.js 15 and PostgreSQL, with every input validated by Zod and all SQL isolated in a repository layer. The data model spans 15 core tables linking estimates, contracts, SOV, pay apps, change orders, retainage rules, and stored materials.",
-      "An Excel import pipeline scores each parsed row for confidence and flags anything below a 0.8 threshold as review-required, so bulk imports never silently commit bad data. Retainage release is idempotent, and an internal-only-line guard stops draft estimate detail from bleeding into owner-facing schedule of values.",
-      "Pay applications, owner change-order billing queues, and the running owner ledger are generated from the same source of truth, with PDF and XLSX export wired through AWS S3 and a permission system spanning 18 estimating-specific access keys.",
+      "Avrixo built an Excel-fast estimate grid with seven line types, rule-based markup, internal-vs-owner visibility, versioning with lock/approve controls, and an Excel import with a preview-then-commit flow plus AI special-row detection. An awarded estimate converts into a contract with a balanced schedule of values, AIA-compatible pay applications with retainage and stored materials, owner change orders with full lineage, and a cross-contract billing ledger — exported to PDF and XLSX that balance exactly to AIA math.",
+      "On the cost side: budget baselines from the awarded estimate, commitments and purchase orders, vendor invoices with approval workflows, and profit-fade reporting. An AI receipt pipeline extracts vendor, totals, line items, and CSI codes from uploaded receipts and aggregates them into per-project purchase orders.",
+      "Accounting connectivity was productized for multi-tenant use: QuickBooks Online request-to-pay with a duplicate-bill guard, a QuickBooks Desktop subsystem built on Intuit Web Connector and qbXML with per-customer provisioning and encrypted credentials, and Plaid bank-transaction import with a weighted transaction-to-receipt matching engine. Everything runs behind shared-JWT single sign-on, tenant-scoped RBAC with per-user overrides, and a full permission and billing audit log.",
     ],
     architectureNotes: [
-      "15-table data model carrying a value from estimate to owner ledger.",
-      "Idempotent retainage accrual/release with over-release guards.",
-      "Excel import with ≥0.8 confidence scoring and review-required flagging.",
-      "18 granular permission keys with role mappings for multi-tenant access.",
+      "Shared-database coexistence: colliding finance tables namespaced and migrated with zero impact to the platform's existing data.",
+      "QuickBooks Desktop productized for multi-tenancy — per-customer .QWC provisioning, encrypted credentials, and the full SOAP/qbXML handshake.",
+      "AIA document fidelity: pay-application PDFs and XLSX balance exactly (Original + approved COs = Contract-to-Date; Completed − Retainage − Previous = Current Due).",
+      "Hardened data layer: resilient PostgreSQL pooling with transient-error retry and environment-aware SSL for managed (RDS) and serverless (Neon) databases.",
     ],
     stack: [
       {
         group: "Experience Layer",
-        tools: ["Next.js 15", "React 19", "Tailwind CSS", "Zustand"],
+        tools: ["Next.js 16 (App Router)", "React", "TypeScript (strict)", "Tailwind CSS v4"],
       },
       {
-        group: "Application & API",
-        tools: ["TypeScript", "Express", "Zod Validation", "42 REST Endpoints"],
+        group: "Application & Data",
+        tools: ["Next.js API Routes", "PostgreSQL", "Repository + Service Layers", "Multi-Tenant RBAC"],
       },
       {
-        group: "Data Platform",
-        tools: ["PostgreSQL (Neon)", "Repository-Isolated SQL", "Audit Events"],
+        group: "Integrations",
+        tools: ["QuickBooks Online", "QuickBooks Desktop (qbXML)", "Plaid", "AWS S3"],
       },
       {
-        group: "Documents & Infra",
-        tools: ["jsPDF", "ExcelJS", "AWS S3", "Idempotent Migrations"],
+        group: "Documents & Ops",
+        tools: ["AIA PDF/XLSX Generation", "Shared-JWT SSO", "Audit Logging", "pm2 / Docker"],
       },
     ],
     metrics: [
       {
-        value: "42",
-        label: "production REST endpoints",
+        value: "Bid → Bill",
+        label: "one connected workflow",
         detail:
-          "A complete API surface across estimates, contracts, SOV, pay apps, change orders, retainage, markup, and ledger.",
+          "Estimate, contract, schedule of values, pay applications, change orders, and the owner billing ledger — one workspace, one source of truth.",
       },
       {
-        value: "AIA",
-        label: "compliant pay-app billing",
+        value: "3",
+        label: "accounting & banking integrations",
         detail:
-          "Schedule of values, pay applications, retainage, and change-order lineage built to the standards construction finance teams expect.",
+          "QuickBooks Online, QuickBooks Desktop (Web Connector/qbXML), and Plaid — productized so every customer connects their own accounts independently.",
       },
       {
-        value: "≥0.8",
-        label: "import confidence gate",
+        value: "7",
+        label: "estimate line types",
         detail:
-          "Excel imports score every row and flag low-confidence data for review before it can commit, protecting the billing trail.",
+          "Standard, allowance, alternate, unit-price, deduct, contingency, and internal-only — with per-line markup and owner-visibility control.",
       },
     ],
   },
   {
     id: "structumai-plans-collaboration",
     label: "AVX-CS-002",
-    image: "/portfolio/structumai-plans.svg",
+    image: "/portfolio/structumai-plans.png",
     company: "StructumAI",
-    title: "StructumAI Plans — Real-time Collaboration",
+    title: "StructumAI Plans — Construction Drawing Workspace",
     subtitle:
-      "A collaborative construction drawing platform with live multi-user annotation, presence, measurement, and revision control on large plan sets.",
-    category: "Real-time SaaS · Product We Engineered",
+      "An inherited, half-broken plans module taken over, stabilized at the root cause, integrated into the platform with single sign-on, and extended with five client-facing features.",
+    category: "Construction SaaS · Take-Over & Rescue",
     year: "2026",
-    duration: "Multi-phase build",
-    tags: ["Real-time", "Collaboration", "PDF Engineering"],
+    duration: "Phased engagement",
+    tags: ["Take-Over & Rescue", "Real-time Collaboration", "Platform Integration"],
     abstract: [
-      "StructumAI Plans gives construction teams a shared, live workspace for drawing sets: upload, view, measure, annotate, comment, and assign tasks on plans while seeing exactly where teammates are working in real time.",
-      "Avrixo engineered the full collaboration layer — live cursors, presence, threaded comments, measurement tooling, and revision compare — on top of a heavy PDF rendering pipeline, packaged as a multi-tenant platform with role-based permissions.",
+      "The Plans module is StructumAI's construction-drawing workspace: teams upload plan sets, mark them up, drop CSI-coded stamps that become field tasks, compare revisions, and generate reports — with realtime presence, cursors, and comments. It arrived from a previous developer partially working and disconnected from the main platform.",
+      "Avrixo took it over, root-caused the failures to a single architectural flaw in the session layer, rebuilt the auth core, connected the module to the platform's single sign-on and shared database, and then shipped five paid client-facing features — verified by an end-to-end Playwright suite that ran green before every handoff.",
     ],
     coreProblem: [
-      "Plan review is collaborative by nature but usually happens in disconnected PDF viewers and email threads. Markups get lost, two people unknowingly edit the same sheet, and there's no reliable record of who changed what across revisions.",
-      "The product needed true real-time multi-user editing on large, performance-heavy drawing files, plus measurement, comments, tasks, and permissioned access — all without the viewer becoming sluggish under the weight of a full construction plan set.",
+      "On take-over the module looked broken everywhere: sheets wouldn't load, the notifications API returned HTTP 500, and there was no working connection to the platform's login. Deployment was blocked by a placeholder JWT secret, failing database credentials, and an S3 bucket/region mismatch — with no automated tests to lean on.",
+      "The decisive finding: the inherited session layer threw an exception on any unauthenticated request, and every route turned that into a 500. A logged-out user saw 'server crash' everywhere instead of 'please log in.' The dozens of visible bugs were one architectural flaw in disguise.",
     ],
     technicalSolution: [
-      "Avrixo built a real-time synchronization layer on Pusher that broadcasts live cursors, presence, comments, and annotation changes between users on the same sheet. The PDF viewer uses react-pdf and pdfjs with a measurement and calibration overlay so distances map to real-world units.",
-      "The platform follows the same disciplined Routes → Controllers → Services → Repositories pattern, exposing 88 REST endpoints across plans, annotations, comments, tasks, permissions, notifications, and scheduled reports. Image processing runs through Sharp, with plan files and exports stored on AWS S3.",
-      "Revision history and a compare mode let teams diff plan-set versions, while a permissions matrix governs access by member, company, and trade — turning ad-hoc plan review into an auditable, multi-tenant collaboration system.",
+      "Avrixo rewrote the auth/session core: a typed UnauthorizedError, robust JWT claim mapping, cookie or Bearer token support, and a shared error-response contract that returns 401 for auth failures and 500 only for real errors — one pattern used across ~60 API routes. The gate moved to Next.js 16's proxy convention so pages redirect to login and APIs return clean 401s, with edge-safe token expiry checks.",
+      "Platform integration followed the real contract: the platform signs a JWT shared via a domain cookie, and the module verifies it with the same secret while reading the same multi-tenant Postgres — so the logged-in tenant sees their own projects with no second login. A public health endpoint (database, JWT config, dev-auth flag) made every deployment verifiable with one request, and the live blockers — env-file precedence, DB credentials, S3 region mismatch — were diagnosed and fixed.",
+      "With the foundation stable, Avrixo shipped five client-facing features: page-level report filtering flowing through to PDF/CSV export, markup/stamp count indicators on sheet previews, sheet-level report export straight from the drawing viewer, CSI-code filtering of visible stamps and tasks, and per-stamp visibility overrides that sync over the existing realtime channel.",
     ],
     architectureNotes: [
-      "Pusher-based real-time sync for cursors, presence, comments, and annotations.",
-      "react-pdf / pdfjs viewer with measurement + calibration overlay.",
-      "Revision history and compare mode for plan-set versioning.",
-      "Permissions matrix across members, companies, and trades.",
+      "Single-source auth contract — getUserContext() + a shared error responder across ~60 routes; auth failures are 401 by design, never 500.",
+      "Edge-safe auth gate: token presence and expiry checked at the edge, full signature verification on the Node side.",
+      "Per-stamp visibility stored in annotation geometry, so it propagates over the existing realtime channel with no extra plumbing.",
+      "Public health endpoint (DB, JWT, dev-auth) so any deployment is verifiable with a single unauthenticated request.",
     ],
     stack: [
       {
         group: "Experience Layer",
-        tools: ["Next.js 15", "React 19", "Framer Motion", "Zustand"],
+        tools: ["Next.js 16 (App Router)", "React 19", "TypeScript", "jsPDF Reports"],
       },
       {
-        group: "Real-time & Data",
-        tools: ["Pusher", "React Query", "PostgreSQL", "88 REST Endpoints"],
+        group: "Realtime & Data",
+        tools: ["Pusher", "PostgreSQL (RDS / Neon)", "AWS S3", "React Query"],
       },
       {
-        group: "PDF & Media",
-        tools: ["react-pdf", "pdfjs-dist", "Sharp", "jsPDF"],
+        group: "Platform Integration",
+        tools: ["Shared-JWT SSO", "Edge Auth Gate (proxy.ts)", "Multi-Tenant RBAC", "Health Endpoint"],
       },
       {
-        group: "Infrastructure",
-        tools: ["AWS S3", "Express", "Scheduled Reports", "Notifications"],
+        group: "Quality & Ops",
+        tools: ["Playwright E2E", "PM2 + nginx", "Idempotent DB Bootstrap", "Audit Log"],
       },
     ],
     metrics: [
       {
-        value: "Live",
-        label: "multi-user collaboration",
+        value: "500 → 401",
+        label: "auth fixed at the source",
         detail:
-          "Real-time cursors, presence, comments, and annotation sync keep every reviewer on the same sheet at the same time.",
+          "One architectural flaw made every page crash for logged-out users. The rebuilt session core degrades gracefully — login redirect for pages, clean 401 for APIs.",
       },
       {
-        value: "88",
-        label: "production REST endpoints",
+        value: "5",
+        label: "client-facing features shipped",
         detail:
-          "Plans, annotations, comments, tasks, permissions, notifications, and scheduled reports across one collaboration platform.",
+          "Page-level + CSI report filtering, markup/stamp indicators, sheet-level export from the viewer, and per-stamp visibility — delivered after stabilization.",
       },
       {
-        value: "143",
-        label: "UI components engineered",
+        value: "10/10",
+        label: "end-to-end tests green",
         detail:
-          "A deep viewer, permissions, tasks, reports, and compare experience built for performance on large plan sets.",
+          "A Playwright suite covering auth behavior, notifications, sheets, admin gating, and report filtering — run green before each handoff.",
+      },
+    ],
+  },
+  {
+    id: "structumai-scheduling",
+    label: "AVX-CS-003",
+    image: "/portfolio/structumai-scheduling.png",
+    company: "StructumAI",
+    title: "StructumAI Schedule — Web-Native Construction Scheduling",
+    subtitle:
+      "A browser-based scheduling module in the spirit of MS Project and Primavera P6 — interactive Gantt, a real critical-path engine, dependencies, calendars, and baselines — integrated into the platform with SSO and tenant isolation.",
+    category: "Construction SaaS · Product We Engineered",
+    year: "2026",
+    duration: "Two-phase build",
+    tags: ["Gantt + CPM", "Scheduling Engine", "Platform Integration"],
+    abstract: [
+      "Construction planners live in MS Project and Primavera P6 — powerful tools that are desktop-bound, expensive, and disconnected from the project's drawings, estimates, and documents. StructumAI needed scheduling as a first-class module of its construction-intelligence platform: as capable as the desktop tools, but web-native, multi-user, and behind the same login.",
+      "Avrixo built it in two phases — first as a self-contained scheduling product with a real critical-path engine, then integrated into the StructumAI platform: same sign-on, same projects, same database, correct tenant isolation. It's live on staging, reachable from the platform's top navigation, with sample data loaded for client UAT.",
+    ],
+    coreProblem: [
+      "Desktop schedulers silo the schedule on one person's machine. Collaboration means emailing files and reconciling versions, licensing is expensive for occasional users, and the schedule never connects to the rest of the project's data.",
+      "Matching desktop-class planning power on the web is an engineering problem: a real CPM engine with forward/backward passes and float, four dependency types with lag, working calendars that drive every computed date, baselines, and an interface fast enough that planners don't miss the desktop — all multi-tenant and permission-safe inside a shared platform database.",
+    ],
+    technicalSolution: [
+      "The planning surface pairs an MS-Project-style spreadsheet grid with a synchronized interactive Gantt — drag to move or resize bars, draw dependency links, zoom from day to quarter. The task model covers durations, milestones, WBS roll-ups, constraints, deadlines, and construction-aware fields like trade, zone, work package, and permit flags.",
+      "The scheduling engine is implemented in TypeScript: Critical Path Method with forward and backward passes, total and free float, driving-relationship detection, and working calendars (workweeks, holidays, exceptions, hours-per-day) that drive every calculated date. Baselines capture snapshots for planned-vs-actual comparison, and a guided wizard imports CSV, Excel, and JSON through an async, progress-tracked job.",
+      "The workspace loads in a single round-trip: one bootstrap endpoint primes schedule, tasks, dependencies, and calendars, hydrating Zustand and React Query together so the grid and Gantt render immediately. Mutations are optimistic with controlled server reconciliation. For platform integration, all scheduling tables live in a dedicated Postgres schema on the shared multi-tenant database, projects come from the platform, and the shared-JWT cookie provides single sign-on — the module never touches the platform's auth model.",
+    ],
+    architectureNotes: [
+      "Critical-path engine in TypeScript: forward/backward pass, total & free float, calendar resolution, and a configurable critical threshold.",
+      "Single-round-trip bootstrap endpoint that hydrates the store and query cache together — grid and Gantt render immediately.",
+      "Dedicated `schedule` Postgres schema on the shared platform database, environment-driven, avoiding table collisions with sibling modules.",
+      "Versioned, persisted client cache that always revalidates on mount and reconciles 404s to server truth — instant first paint without phantom records.",
+    ],
+    stack: [
+      {
+        group: "Experience Layer",
+        tools: ["Next.js 16 (App Router)", "React 19", "TypeScript", "Zustand"],
+      },
+      {
+        group: "Scheduling Engine",
+        tools: ["Custom CPM Engine", "4 Dependency Types", "Working Calendars", "Baselines"],
+      },
+      {
+        group: "Data & Platform",
+        tools: ["PostgreSQL (raw SQL)", "TanStack React Query", "Shared-JWT SSO", "AWS S3"],
+      },
+      {
+        group: "Quality & Ops",
+        tools: ["Playwright E2E", "PM2 + nginx", "Async Import Jobs", "PDF / Excel Export"],
+      },
+    ],
+    metrics: [
+      {
+        value: "CPM",
+        label: "real critical-path engine",
+        detail:
+          "Forward and backward passes, total and free float, and calendar-aware dates — the math planners trust desktop tools for, running in the browser.",
+      },
+      {
+        value: "4",
+        label: "dependency link types",
+        detail:
+          "Finish-Start, Start-Start, Finish-Finish, and Start-Finish with lag, plus automatic driving-relationship detection and critical-path highlighting.",
+      },
+      {
+        value: "1",
+        label: "round-trip to load a schedule",
+        detail:
+          "A single bootstrap endpoint primes schedule, tasks, dependencies, and calendars, so the grid and Gantt render immediately.",
       },
     ],
   },
   {
     id: "lexium-educational-assistant",
-    label: "AVX-CS-003",
+    label: "AVX-CS-004",
     image: "/portfolio/lexium.jpg",
     company: "Lexium AI",
     title: "Lexium AI — Intelligent Educational Assistant",
@@ -234,7 +304,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "paravitae-emr-telehealth",
-    label: "AVX-CS-004",
+    label: "AVX-CS-005",
     image: "/portfolio/emr-telehealth.jpg",
     company: "ParaVitae",
     title: "ParaVitae — AI EMR & Telehealth Platform",
@@ -299,7 +369,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "ai-fraud-detection-finance",
-    label: "AVX-CS-005",
+    label: "AVX-CS-006",
     image: "/portfolio/fraud-detection.jpeg",
     company: "PennyPilot",
     title: "AI-Based Fraud Detection System for Finance",
@@ -364,7 +434,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "real-estate-listing-scoring",
-    label: "AVX-CS-006",
+    label: "AVX-CS-007",
     image: "/portfolio/real-estate.jpg",
     company: "TruHome",
     title: "AI Real Estate Listing & Scoring Engine",
@@ -429,7 +499,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "collentix-shopify-app",
-    label: "AVX-CS-007",
+    label: "AVX-CS-008",
     image: "/portfolio/collentix.jpeg",
     company: "Collentix",
     title: "Collentix — Smart Collection Manager for Shopify",
@@ -490,7 +560,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "swipsel-marketplace-app",
-    label: "AVX-CS-008",
+    label: "AVX-CS-009",
     image: "/portfolio/swipsel.jpg",
     company: "Swipsel",
     title: "Swipsel — Buy, Rent & Swap Marketplace App",
@@ -555,7 +625,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "workflow-automation-suite",
-    label: "AVX-CS-009",
+    label: "AVX-CS-010",
     image: "/portfolio/n8n-automation.jpg",
     company: "Workflow Automation",
     title: "AI Workflow Automation Suite (n8n · Notion · GHL)",
@@ -620,7 +690,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "elderly-care-ai-chatbot",
-    label: "AVX-CS-010",
+    label: "AVX-CS-011",
     image: "/portfolio/ai-agent.jpg",
     company: "Elderly Care Assistant",
     title: "Elderly Care AI Chatbot",
@@ -685,7 +755,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "hos-video-agency-website",
-    label: "AVX-CS-011",
+    label: "AVX-CS-012",
     image: "/portfolio/hos.jpg",
     company: "HOS",
     title: "HOS — Video Production Agency Website",
@@ -750,7 +820,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "multi-agent-rag-system",
-    label: "AVX-CS-012",
+    label: "AVX-CS-013",
     image: "/portfolio/rag-agents.png",
     company: "Multi-Agent System",
     title: "Multi-Agent RAG Development System",

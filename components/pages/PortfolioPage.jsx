@@ -7,7 +7,7 @@ import Link from "next/link";
 import { caseStudies } from "@/lib/case-studies";
 
 const stats = [
-  { val: "12", label: "Case Studies" },
+  { val: String(caseStudies.length), label: "Case Studies" },
   { val: "10", label: "Industries & Domains" },
   { val: "100%", label: "In-House Delivery" },
   { val: "Real", label: "Shipped Products" },
@@ -151,7 +151,7 @@ export const PortfolioPage = () => {
                 >
                   {/* Image */}
                   <div
-                    className={`relative min-h-[260px] lg:min-h-0 overflow-hidden ${
+                    className={`relative aspect-video overflow-hidden lg:self-center lg:mx-6 lg:my-6 lg:rounded-2xl ${
                       i % 2 === 0 ? "lg:col-span-5" : "lg:col-span-5 lg:order-2"
                     }`}
                   >

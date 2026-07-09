@@ -51,7 +51,7 @@ export const Projects = () => {
                   whileHover={{ y: -10 }}
                   className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-secondary p-3 transition-colors group-hover:border-brand-primary/50"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+                  <div className="relative aspect-video overflow-hidden rounded-2xl">
                     <Image
                       src={project.image}
                       alt={project.title}
