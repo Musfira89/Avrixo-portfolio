@@ -7,6 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { caseStudies } from "@/lib/case-studies";
 
+// Home cards keep the minimal generated covers; the detailed module art
+// (with its own baked-in text) lives on the case-study pages instead.
+const homeCovers = {
+  "structumai-estimating-billing": "/portfolio/structumai-billing.svg",
+  "structumai-plans-collaboration": "/portfolio/structumai-plans.svg",
+};
+
 export const Projects = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -51,9 +58,9 @@ export const Projects = () => {
                   whileHover={{ y: -10 }}
                   className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-secondary p-3 transition-colors group-hover:border-brand-primary/50"
                 >
-                  <div className="relative aspect-video overflow-hidden rounded-2xl">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <Image
-                      src={project.image}
+                      src={homeCovers[project.id] || project.image}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"

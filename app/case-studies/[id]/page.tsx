@@ -60,7 +60,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       />
 
       {/* ══ HERO ══ */}
-      <section className="relative overflow-hidden pt-36 pb-16">
+      <section className="relative overflow-hidden pt-36 pb-14">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute right-0 top-16 h-96 w-96 rounded-full bg-brand-primary/10 blur-3xl" />
           <div className="absolute left-0 bottom-0 h-72 w-72 rounded-full bg-brand-primary/5 blur-3xl" />
@@ -75,7 +75,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             Back to case studies
           </Link>
 
-          <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-8 items-start">
             <div className="lg:col-span-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-primary">
                 {study.label} · {study.category}
@@ -86,39 +86,31 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               <p className="mt-6 max-w-2xl text-sm md:text-base leading-7 text-text-primary/65">
                 {study.subtitle}
               </p>
-              <div className="mt-7 flex flex-wrap gap-2">
-                {study.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/12 bg-bg-secondary px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-text-primary/70"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
 
-            <div className="lg:col-span-4 rounded-3xl border border-white/10 bg-bg-secondary p-5">
-              <div className="grid grid-cols-3 gap-3 text-center lg:grid-cols-1 lg:text-left">
-                {[
-                  ["Product", study.company],
-                  ["Year", study.year],
-                  ["Engagement", study.duration],
-                ].map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="rounded-2xl border border-white/10 bg-bg-primary px-4 py-3"
-                  >
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-text-primary/50">{label}</p>
-                    <p className="mt-1.5 text-sm font-black">{value}</p>
-                  </div>
-                ))}
-              </div>
+            {/* Meta — plain rows, no cards */}
+            <div className="lg:col-span-4 lg:pt-10">
+              {[
+                ["Product", study.company],
+                ["Year", study.year],
+                ["Engagement", study.duration],
+                ["Focus", study.tags.join("  ·  ")],
+              ].map(([label, value]) => (
+                <div
+                  key={label}
+                  className="flex items-baseline justify-between gap-6 border-b border-white/10 py-3.5"
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-text-primary/45">
+                    {label}
+                  </span>
+                  <span className="text-right text-sm font-bold">{value}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Cover — 16:9 to match module cover art exactly */}
-          <div className="relative mt-14 overflow-hidden rounded-3xl border border-white/10">
+          <div className="relative mt-14 overflow-hidden rounded-3xl">
             <Image
               src={study.image}
               alt={study.title}
@@ -129,16 +121,17 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             />
           </div>
 
-          {/* Impact metrics — right under the cover */}
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {study.metrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-3xl border border-white/10 bg-bg-secondary p-6"
-              >
-                <div className="text-3xl md:text-4xl font-black text-brand-primary">{metric.value}</div>
-                <h3 className="mt-3 text-sm font-black uppercase tracking-wide">{metric.label}</h3>
-                <p className="mt-3 text-xs leading-6 text-text-primary/55">{metric.detail}</p>
+          {/* Impact strip — divided, not boxed */}
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10">
+            {study.metrics.map((metric, i) => (
+              <div key={metric.label} className={i === 0 ? "md:pr-10" : i === 1 ? "md:px-10" : "md:pl-10"}>
+                <div className="text-4xl md:text-5xl font-black text-brand-primary tracking-tight">
+                  {metric.value}
+                </div>
+                <h3 className="mt-3 text-xs font-black uppercase tracking-[0.18em]">
+                  {metric.label}
+                </h3>
+                <p className="mt-3 text-xs leading-6 text-text-primary/50">{metric.detail}</p>
               </div>
             ))}
           </div>
@@ -148,7 +141,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       {/* ══ ABSTRACT ══ */}
       <section className="bg-bg-light py-20 text-text-dark">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-8">
             <div className="lg:col-span-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary">
                 Executive Summary
@@ -184,10 +177,10 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         paragraphs={study.technicalSolution}
       />
 
-      {/* ══ ARCHITECTURE NOTES ══ */}
+      {/* ══ ARCHITECTURE NOTES — dividers, not cards ══ */}
       <section className="bg-bg-primary py-20 text-text-primary">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid lg:grid-cols-12 gap-x-14 gap-y-10">
             <div className="lg:col-span-4">
               <span className="text-5xl font-black leading-none text-white/[0.07] select-none">03</span>
               <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary">
@@ -197,11 +190,11 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 System decisions that made the product viable.
               </h2>
             </div>
-            <div className="lg:col-span-8 grid gap-4 md:grid-cols-2">
+            <div className="lg:col-span-8 grid gap-x-12 md:grid-cols-2">
               {study.architectureNotes.map((note) => (
-                <div key={note} className="rounded-3xl border border-white/10 bg-bg-secondary p-6">
-                  <CheckCircle2 className="h-5 w-5 text-brand-primary" />
-                  <p className="mt-4 text-sm leading-7 text-text-primary/65">{note}</p>
+                <div key={note} className="flex gap-4 border-t border-white/10 py-6">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-brand-primary" />
+                  <p className="text-sm leading-7 text-text-primary/65">{note}</p>
                 </div>
               ))}
             </div>
@@ -209,7 +202,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ══ TECH STACK ══ */}
+      {/* ══ TECH STACK — table rows, not boxes ══ */}
       <section className="bg-bg-light py-20 text-text-dark">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
@@ -231,64 +224,73 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-12">
             {study.stack.map((group) => (
-              <div key={group.group} className="rounded-3xl border border-text-dark/10 bg-white p-6">
-                <h3 className="text-lg font-black">{group.group}</h3>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {group.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="rounded-full border border-text-dark/10 bg-bg-light px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-text-muted"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+              <div
+                key={group.group}
+                className="grid gap-2 border-t border-text-dark/10 py-6 md:grid-cols-12 md:items-baseline"
+              >
+                <h3 className="text-sm font-black uppercase tracking-[0.14em] md:col-span-4">
+                  {group.group}
+                </h3>
+                <p className="text-sm leading-7 text-text-muted md:col-span-8">
+                  {group.tools.join("  ·  ")}
+                </p>
               </div>
             ))}
+            <div className="border-t border-text-dark/10" />
           </div>
         </div>
       </section>
 
-      {/* ══ PREV / NEXT + CTA ══ */}
-      <section className="bg-bg-primary py-16 text-text-primary border-t border-white/[0.06]">
+      {/* ══ PREV / NEXT — plain links ══ */}
+      <section className="bg-bg-primary py-14 text-text-primary border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
-          <div className="grid gap-4 md:grid-cols-2">
-            <Link
-              href={`/case-studies/${prevStudy.id}`}
-              className="group rounded-3xl border border-white/10 bg-bg-secondary p-6 transition-all hover:border-brand-primary/40"
-            >
-              <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-text-primary/50">
-                <ArrowLeft className="h-3.5 w-3.5" /> Previous case study
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+            <Link href={`/case-studies/${prevStudy.id}`} className="group max-w-xs">
+              <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-text-primary/45">
+                <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
+                Previous
               </p>
-              <p className="mt-3 text-lg font-black leading-snug group-hover:text-brand-primary transition-colors">
+              <p className="mt-2 text-base font-black leading-snug transition-colors group-hover:text-brand-primary">
                 {prevStudy.title}
               </p>
             </Link>
-            <Link
-              href={`/case-studies/${nextStudy.id}`}
-              className="group rounded-3xl border border-white/10 bg-bg-secondary p-6 text-right transition-all hover:border-brand-primary/40"
-            >
-              <p className="flex items-center justify-end gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-text-primary/50">
-                Next case study <ArrowRight className="h-3.5 w-3.5" />
+            <Link href={`/case-studies/${nextStudy.id}`} className="group max-w-xs sm:text-right">
+              <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-text-primary/45 sm:justify-end">
+                Next
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </p>
-              <p className="mt-3 text-lg font-black leading-snug group-hover:text-brand-primary transition-colors">
+              <p className="mt-2 text-base font-black leading-snug transition-colors group-hover:text-brand-primary">
                 {nextStudy.title}
               </p>
             </Link>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10 flex flex-col items-start justify-between gap-6 rounded-3xl border border-brand-primary/25 bg-brand-primary/5 p-8 md:flex-row md:items-center">
-            <div>
-              <h2 className="text-xl md:text-2xl font-black">Need a system built like this?</h2>
-              <p className="mt-2 text-sm text-text-primary/60">
-                Fixed scope, clear milestones, and a team that ships production systems end to end.
-              </p>
-            </div>
+      {/* ══ CTA — full-bleed, typography-led ══ */}
+      <section className="relative overflow-hidden border-t border-white/[0.06] bg-bg-primary py-20 text-center text-text-primary">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(227,30,36,0.08) 0%, transparent 65%)",
+          }}
+        />
+        <div className="relative max-w-3xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-primary">
+            Start a Conversation
+          </p>
+          <h2 className="mt-5 text-3xl md:text-4xl font-black tracking-tight">
+            Need a system built like this?
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-text-primary/55">
+            Fixed scope, clear milestones, and a team that ships production systems end to end.
+          </p>
+          <div className="mt-8 flex justify-center">
             <Link
               href="/contact"
-              className="group flex flex-none items-center gap-2 rounded-xl bg-brand-primary px-7 py-4 text-sm font-black text-white transition-all hover:bg-brand-hover"
+              className="group flex items-center gap-2 rounded-xl bg-brand-primary px-8 py-4 text-sm font-black text-white transition-all hover:bg-brand-hover hover:shadow-[0_0_40px_rgba(227,30,36,0.3)]"
             >
               Start a Project
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
@@ -316,7 +318,7 @@ function NumberedSection({
   return (
     <section className={dark ? "bg-bg-primary py-20 text-text-primary" : "bg-bg-light py-20 text-text-dark"}>
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 gap-10">
+        <div className="grid lg:grid-cols-12 gap-x-14 gap-y-8">
           <div className="lg:col-span-4">
             <span
               className={`text-5xl font-black leading-none select-none ${
