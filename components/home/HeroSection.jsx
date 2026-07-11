@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { caseStudies } from "@/lib/case-studies";
 
 // Import the 3D Scene with a graceful loading placeholder so the hero
 // never flashes empty on slower connections.
@@ -96,7 +97,7 @@ export const HeroSection = () => {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7 }} className="flex items-center gap-8 pt-2 ">
               {[
-                { val: 13, suffix: "", label: "Case studies delivered" },
+                { val: caseStudies.length, suffix: "", label: "Case studies delivered" },
                 { val: 4, suffix: "", label: "Core industries" },
                 { val: 100, suffix: "%", label: "In-house delivery" },
               ].map((s, i) => (

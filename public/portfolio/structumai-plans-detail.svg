@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="StructumAI Plans — Drawing &amp; Field Collaboration">
+  <defs>
+    <linearGradient id="bgP" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0c0f"/>
+      <stop offset="1" stop-color="#161318"/>
+    </linearGradient>
+    <radialGradient id="glowP" cx="80%" cy="20%" r="60%">
+      <stop offset="0" stop-color="#e31e24" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#e31e24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bgP)"/>
+  <rect width="1200" height="750" fill="url(#glowP)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 150 H1200 M0 300 H1200 M0 450 H1200 M0 600 H1200"/>
+    <path d="M150 0 V750 M300 0 V750 M450 0 V750 M600 0 V750 M750 0 V750 M900 0 V750 M1050 0 V750"/>
+  </g>
+
+  <!-- abstract blueprint / plan-sheet motif with live cursors -->
+  <g transform="translate(770,110)" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2">
+    <rect x="0" y="0" width="330" height="240" rx="10"/>
+    <path d="M0 75 H330 M0 160 H330 M115 0 V240 M225 0 V240"/>
+  </g>
+  <circle cx="890" cy="195" r="9" fill="#e31e24"/>
+  <circle cx="1000" cy="260" r="9" fill="#ffffff" fill-opacity="0.65"/>
+  <circle cx="835" cy="285" r="9" fill="#ffffff" fill-opacity="0.4"/>
+
+  <!-- eyebrow -->
+  <text x="90" y="260" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="6" fill="#e31e24">AVRIXO · PRODUCT WE ENGINEERED</text>
+
+  <!-- wordmark -->
+  <text x="86" y="360" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="900" fill="#ffffff" letter-spacing="-2">StructumAI</text>
+
+  <!-- accent line -->
+  <rect x="92" y="390" width="120" height="6" rx="3" fill="#e31e24"/>
+
+  <!-- module name -->
+  <text x="90" y="460" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" fill="#ffffff" fill-opacity="0.82">Plans — Drawing &amp; Field Collaboration</text>
+
+  <!-- stat chips -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="90" y="520" width="130" height="80" rx="14" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="112" y="562" font-size="34" font-weight="900" fill="#e31e24">26</text>
+    <text x="112" y="583" font-size="13" fill="#ffffff" fill-opacity="0.55">DB TABLES</text>
+
+    <rect x="234" y="520" width="130" height="80" rx="14" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="256" y="562" font-size="34" font-weight="900" fill="#e31e24">35</text>
+    <text x="256" y="583" font-size="13" fill="#ffffff" fill-opacity="0.55">PERMISSION KEYS</text>
+
+    <rect x="378" y="520" width="150" height="80" rx="14" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="400" y="562" font-size="34" font-weight="900" fill="#e31e24">48+</text>
+    <text x="400" y="583" font-size="13" fill="#ffffff" fill-opacity="0.55">COMMITS, SOLO</text>
+  </g>
+</svg>

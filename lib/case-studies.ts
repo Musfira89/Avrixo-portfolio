@@ -32,8 +32,123 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "structumai-estimating-billing",
+    id: "ai-sdr-agent",
     label: "AVX-CS-001",
+    image: "/portfolio/ai-sdr-agent.png",
+    company: "Avrixo Labs",
+    title: "Autonomous AI SDR Agent",
+    subtitle:
+      "A configurable multi-agent system that discovers, enriches, scores, researches, and writes hyper-personalized outreach for every qualified lead — grounded strictly in verified facts, with zero fabricated data.",
+    category: "Agentic AI · Portfolio Flagship",
+    year: "2026",
+    duration: "Two-Phase Build",
+    tags: ["Multi-Agent System", "LangGraph", "Zero-Hallucination Outreach"],
+    abstract: [
+      "Sales teams and agencies lose hours per batch to manual prospecting — searching for leads, opening every website, reading reviews, judging fit, and hand-writing emails — while generic mass outreach gets ignored. Avrixo built an autonomous AI SDR agent that runs the entire top-of-funnel workflow end to end: discover businesses matching an ideal customer profile, enrich and score each one, research genuine personalization angles, and draft outreach grounded strictly in verified facts.",
+      "Delivered as a live web app, a public GitHub repository, and a documented case study, the system is built as a configurable template — swap the ICP and the offer, and it retargets any vertical, from salons to law firms to DTC brands. The demo instance targets dental clinics for an AI-receptionist / missed-call-capture offer, chosen because the data — websites, reviews, ratings — is entirely public, making the system free to build, demo, and hand to a client pointed at their own market.",
+    ],
+    coreProblem: [
+      "Manual prospecting is slow and inconsistent: finding qualified leads for a niche takes hours per batch, researching each prospect for genuine personalization is the biggest time sink, and the shortcut most teams take — bad targeting plus generic copy — produces low reply rates and wasted spend. Generic mass email gets ignored, and real personalization does not scale with a human doing it lead by lead.",
+      "A basic scraper solves half the problem by dumping a list, but a list alone does not drive replies. The system had to reason about each lead individually — score genuine fit against the ICP, find unique angles instead of generic flattery, and never invent a fact about a business it hadn't actually verified. That last constraint is what separates a demo from a tool a sales team can actually trust to send from.",
+    ],
+    technicalSolution: [
+      "A LangGraph supervisor coordinates four specialist agents through a single lead's journey: a Discovery agent finds N businesses matching the configured ICP via search and directory tools; an Enrichment agent pulls each business's website, contact info, rating, reviews, and services; a Scoring step ranks fit 0–100 with a written reason; and a Research agent digs into recent reviews, service gaps, and news to surface genuine personalization angles before a Writer agent drafts the outreach.",
+      "Every output is schema-validated with Pydantic before it reaches a user — thin-data or low-confidence leads are flagged rather than silently passed through, and duplicates are removed before they reach scoring. The Writer agent operates under an explicit anti-hallucination guardrail: it may only reference facts the Research agent actually found, producing a tailored first email plus two follow-ups per lead instead of one generic template blasted at everyone.",
+      "The system evaluates itself before a batch is trusted: an LLM-as-judge scores personalization quality and fit-score sensibility on a sample set, and Langfuse traces every agent decision per lead — so a fabricated claim or a bad fit score is traceable back to the exact step that produced it, not a black box.",
+      "The whole stack runs on free-tier infrastructure by design — Gemini or Groq for reasoning, Tavily or Serper for search, Streamlit for the UI, hosted on Streamlit Community Cloud — so the same architecture behind the dental-clinic demo can be repointed at any vertical by swapping only the ICP and offer configuration, with results exported to Google Sheets or CSV, or pushed to an n8n-friendly webhook.",
+    ],
+    capabilities: [
+      {
+        group: "Lead Discovery & Enrichment",
+        items: [
+          "ICP and offer defined in simple, swappable configuration",
+          "Lead discovery via search / directory tools, matched to the ICP",
+          "Per-lead enrichment — website, contact info, rating, reviews, services, socials",
+          "Structured, Pydantic-validated output exported to CSV / Google Sheet",
+        ],
+      },
+      {
+        group: "Fit Scoring & Research",
+        items: [
+          "Fit scoring 0–100 with a written, explainable reason per lead",
+          "Deep per-lead research agent surfacing personalization angles (recent reviews, service gaps, news)",
+          "Dedup and low-confidence / thin-data flagging before a lead reaches outreach",
+        ],
+      },
+      {
+        group: "Personalized Outreach",
+        items: [
+          "Tailored first email plus two follow-ups per lead",
+          "Anti-hallucination guardrail — outreach only references facts the research agent actually verified",
+          "Human-review-first design — drafts, never auto-sends",
+        ],
+      },
+      {
+        group: "Orchestration & Observability",
+        items: [
+          "LangGraph supervisor coordinating discovery → enrichment → research → writer agents",
+          "Langfuse tracing of every agent decision, per lead",
+          "LLM-as-judge evaluation of personalization quality and fit-score sensibility",
+        ],
+      },
+      {
+        group: "Delivery & Reuse",
+        items: [
+          "Streamlit input and results UI — enter an ICP, view the scored lead table",
+          "Google Sheet / CSV export plus an n8n-friendly webhook",
+          "Configurable ICP and offer — repoint the same system at any vertical",
+          "Public GitHub repository with a documented case-study README",
+        ],
+      },
+    ],
+    architectureNotes: [
+      "Public-data only, by design: the system uses only publicly available business data — no scraping behind logins and no personal or private data — respecting robots.txt and rate limits with CAN-SPAM / GDPR-aware anti-spam practices built in from the start.",
+      "Drafts, not blasts: outreach is generated for human review before sending; the agent assists a sales rep, it does not mass-blast on its own — a deliberate scope boundary, not a missing feature.",
+      "Zero fabricated data as the actual success bar: the system only counts as working if a stranger can open the live URL, enter a niche, and get a usable lead sheet with drafts that reference real, specific, trace-verifiable details about each business.",
+      "Deliberately bounded scope: no paid data providers (Apollo / ZoomInfo) — free public sources only, keeping the entire stack reproducible at zero cost; no CRM billing, multi-tenant auth, or payments; phone/voice outreach is treated as a separate flagship, not scope creep on this one.",
+    ],
+    stack: [
+      {
+        group: "Reasoning & Search",
+        tools: ["Gemini / Groq (free tier)", "Tavily / Serper", "LLM-as-Judge Eval"],
+      },
+      {
+        group: "Agents & Data",
+        tools: ["LangGraph (Multi-Agent Supervisor)", "Pydantic v2", "SQLite"],
+      },
+      {
+        group: "Enrichment",
+        tools: ["httpx", "BeautifulSoup / trafilatura"],
+      },
+      {
+        group: "Delivery & Ops",
+        tools: ["Streamlit", "Langfuse", "Google Sheets API / CSV", "GitHub (Public Repo)"],
+      },
+    ],
+    metrics: [
+      {
+        value: "5",
+        label: "agent pipeline stages",
+        detail:
+          "Discover, enrich, score, research, and write — one supervisor-coordinated workflow from ICP to a personalized draft.",
+      },
+      {
+        value: "0–100",
+        label: "explainable fit scoring",
+        detail:
+          "Every lead is ranked against the ICP with a written reason, not just dumped into a raw list.",
+      },
+      {
+        value: "Zero",
+        label: "fabricated facts, by design",
+        detail:
+          "Outreach is grounded strictly in verified research and traced per decision — an anti-hallucination guardrail, not a best-effort promise.",
+      },
+    ],
+  },
+  {
+    id: "structumai-estimating-billing",
+    label: "AVX-CS-002",
     image: "/portfolio/structumai-estimating-billing.png",
     company: "StructumAI",
     title: "StructumAI Estimating & Billing",
@@ -162,115 +277,141 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "structumai-plans-collaboration",
-    label: "AVX-CS-002",
-    image: "/portfolio/structumai-plans.png",
+    label: "AVX-CS-003",
+    image: "/portfolio/structumai-plans-detail.svg",
     company: "StructumAI",
-    title: "StructumAI Plans — Construction Drawing Workspace",
+    title: "StructumAI Plans — Drawing & Field Collaboration Platform",
     subtitle:
-      "An inherited, half-broken plans module taken over, stabilized at the root cause, integrated into the platform with single sign-on, and extended with five client-facing features.",
-    category: "Construction SaaS · Take-Over & Rescue",
+      "A PlanGrid-class construction drawing, markup, and field-collaboration module built from the ground up — 26 tables, real-time multi-user collaboration, and a permission engine with 35 discrete access keys.",
+    category: "Construction SaaS · Product We Engineered",
     year: "2026",
-    duration: "Phased engagement",
-    tags: ["Take-Over & Rescue", "Real-time Collaboration", "Platform Integration"],
+    duration: "3-Month Build",
+    tags: ["PDF Markup Engine", "Real-Time Collaboration", "Multi-Tenant SSO"],
     abstract: [
-      "The Plans module is StructumAI's construction-drawing workspace: teams upload plan sets, mark them up, drop CSI-coded stamps that become field tasks, compare revisions, and generate reports — with realtime presence, cursors, and comments. It arrived from a previous developer partially working and disconnected from the main platform.",
-      "Avrixo took it over, root-caused the failures to a single architectural flaw in the session layer, rebuilt the auth core, connected the module to the platform's single sign-on and shared database, and then shipped five paid client-facing features — verified by an end-to-end Playwright suite that ran green before every handoff.",
+      "Plans is StructumAI's construction-drawing workspace, built to stand shoulder-to-shoulder with commercial tools like PlanGrid, Autodesk Build, and Fieldwire: upload blueprint sets, mark them up in the field, track punch-list and RFI-style tasks against exact drawing locations, compare drawing revisions, and roll all of it into reports — inside a secure, multi-tenant product that plugs into a larger platform without ever breaking its shared login.",
+      "Avrixo designed and built the module end to end — architecture, backend, frontend, database, and deployment — in roughly three months. The result is a production system with 26 database tables, a full role-based permission engine, real-time multi-user collaboration, scheduled report automation, and a hardened authentication contract now shared across the platform's other independently-deployed modules.",
     ],
     coreProblem: [
-      "On take-over the module looked broken everywhere: sheets wouldn't load, the notifications API returned HTTP 500, and there was no working connection to the platform's login. Deployment was blocked by a placeholder JWT secret, failing database credentials, and an S3 bucket/region mismatch — with no automated tests to lean on.",
-      "The decisive finding: the inherited session layer threw an exception on any unauthenticated request, and every route turned that into a 500. A logged-out user saw 'server crash' everywhere instead of 'please log in.' The dozens of visible bugs were one architectural flaw in disguise.",
+      "The module had to live inside an existing multi-tenant platform — sharing a single sign-on session issued by a separate API service, with no login screen of its own, and never surfacing a raw server error to a field user mid-shift on a job site. Mixed teams working the same drawing set — GCs, subcontractors, engineers — each needed different visibility into the same sheets, enforced at the permission level, not just hidden in the UI.",
+      "It also had to support real construction workflows, not just 'draw on a PDF': scaled measurements, drawing-revision history, cross-sheet linked call-outs, CSI-coded stamp templates that generate tasks in one click, and a formal publish/archive lifecycle so draft markups don't leak to subcontractors before a foreman approves them — all while running reliably on a modest single server processing large, multi-hundred-page PDF sets without exhausting memory.",
     ],
     technicalSolution: [
-      "Avrixo rewrote the auth/session core: a typed UnauthorizedError, robust JWT claim mapping, cookie or Bearer token support, and a shared error-response contract that returns 401 for auth failures and 500 only for real errors — one pattern used across ~60 API routes. The gate moved to Next.js 16's proxy convention so pages redirect to login and APIs return clean 401s, with edge-safe token expiry checks.",
-      "Platform integration followed the real contract: the platform signs a JWT shared via a domain cookie, and the module verifies it with the same secret while reading the same multi-tenant Postgres — so the logged-in tenant sees their own projects with no second login. A public health endpoint (database, JWT config, dev-auth flag) made every deployment verifiable with one request, and the live blockers — env-file precedence, DB credentials, S3 region mismatch — were diagnosed and fixed.",
-      "With the foundation stable, Avrixo shipped five client-facing features: page-level report filtering flowing through to PDF/CSV export, markup/stamp count indicators on sheet previews, sheet-level report export straight from the drawing viewer, CSI-code filtering of visible stamps and tasks, and per-stamp visibility overrides that sync over the existing realtime channel.",
+      "Multi-file PDF upload triggers automatic sheet extraction — every page of a plan set becomes an individually addressable, searchable sheet with a server-rendered thumbnail (pdfjs-dist + sharp / @napi-rs/canvas), full-text searchable via Postgres tsvector/GIN indexes. On top of that sits an 11-tool markup suite — pin, rectangle, circle, cloud, arrow, freehand, highlight, line, X-mark, text, and a custom 'worm' linked pin for cross-sheet call-outs — with per-annotation styling, undo/redo, and stamp placement that instantly generates a linked, pre-configured task.",
+      "A per-sheet scale-calibration tool derives a real-world scale factor from a reference line, driving a true-distance measure tool. Tasks are drawing-linked, first-class entities surfaced through a Task Center with rich filtering, saved views, and CSI MasterFormat 2018 stamp templates. Sheets carry full revision history with a side-by-side Compare view, plus a carry-forward workflow — review each open markup from the prior revision and mark it carried, skipped, or flagged with a confidence rating, every decision logged — solving the classic 'did we lose our punch list when the drawing was reissued?' problem.",
+      "Every annotation and task carries a publish / unpublish / archive state independent of its workflow status, so field staff can draft privately before a project admin publishes to the wider team. Pusher powers real-time collaboration — live cursors, a presence bar, and instant sync of annotations, tasks, and comments across users on the same sheet — while three report types (Task, Photo, Sheet) export to branded PDF, CSV, and XLSX, backed by a cron-driven Scheduled Reports engine running three production jobs with per-run status tracking.",
+      "Platform integration is the hardest constraint solved: the platform sets a shared JWT cookie on its root domain after login, and the module — deployed as a /plans sub-path of the same host specifically to avoid cross-origin cookie issues — verifies that same token server-side with the same secret, trusting { userId, tenantId, email } and scoping every query by tenant. No second login, no separate user table, no cross-origin dance. Avrixo authored the internal Module ↔ Platform Integration Guide used to onboard the platform's other modules onto this same pattern.",
     ],
     capabilities: [
       {
-        group: "Stabilization",
+        group: "Drawing & Plan Management",
         items: [
-          "Rebuilt session/auth core — typed errors, robust JWT claim mapping, cookie or Bearer support",
-          "Edge-safe auth gate (Next.js 16 proxy convention) — page redirects, clean API 401s",
-          "Fixed notifications 500 — schema mismatch in the embedded-DB bootstrap",
-          "Dev-auth fallback so the module runs locally without the platform cookie",
+          "Multi-file PDF upload with automatic sheet extraction and server-rendered thumbnails",
+          "Plan sets organized into tabs with processing / ready / error status tracking",
+          "Bulk sheet curation — multi-select, batch delete, rename, append-to-set",
+          "Full-text search across sheets and tasks (Postgres tsvector / GIN)",
         ],
       },
       {
-        group: "Platform Integration",
+        group: "Markup & Annotation",
         items: [
-          "Single sign-on via shared-JWT cookie scoped to the platform domain",
-          "Shared multi-tenant Postgres — same projects, same tenant/user IDs as the platform",
-          "Public /api/v1/health endpoint — DB, JWT config, dev-auth flag, no login required",
-          "Diagnosed and resolved live blockers: DB credentials, env precedence, S3 region mismatch",
+          "11 tool types, including a custom cross-sheet \"worm\" linked pin",
+          "Per-annotation styling, undo/redo history, floating toolbar, style panel",
+          "Stamp placement that instantly generates a pre-configured, linked task",
+          "Threaded comments with @mentions driving in-app and email notifications",
         ],
       },
       {
-        group: "Admin & UX Polish",
+        group: "Measurement & Field Tools",
         items: [
-          "Admin-only Permissions page gated by a my-permissions endpoint",
-          "Responsive dashboard header — collapsing nav, protected notification bell",
-          "Brand favicon and logo across headers, sheet cards, and report PDFs",
+          "Per-sheet scale calibration (ft / in / m / cm / mm / yd)",
+          "True-distance measure tool driven by that calibration",
         ],
       },
       {
-        group: "Shipped Features",
+        group: "Task Management",
         items: [
-          "Page-level report filtering (Task/Photo/Sheet), flowing through to PDF/CSV export",
-          "Sheet markup/stamp indicators with live counts on previews",
-          "Sheet-level PDF/CSV export straight from the drawing viewer",
-          "CSI-code filtering of visible/exported stamps and tasks",
-          "Per-stamp visibility override (Show/Hide/Default), synced over realtime",
+          "Drawing-linked tasks — status, priority, assignee, checklist, full change history",
+          "Task Center with rich filtering, saved/shareable views, and bulk actions",
+          "CSI MasterFormat 2018 stamp templates with default checklist and assignee",
+          "Document attachments via presigned S3, plus a generic Linked Objects layer to RFIs, submittals, and issues",
+        ],
+      },
+      {
+        group: "Revisions & Lifecycle",
+        items: [
+          "Full revision history with a side-by-side Compare view",
+          "Carry-forward workflow — carried / skipped / flagged with confidence rating, fully audited",
+          "Publish / unpublish / archive state machine gated by permissions",
+        ],
+      },
+      {
+        group: "Real-Time & Reporting",
+        items: [
+          "Pusher-based live cursors, presence bar, and connection-state indicator",
+          "3 report types (Task, Photo, Sheet) exporting to branded PDF, CSV, and XLSX",
+          "Scheduled Reports — recurring cron delivery with per-run status and retry tracking",
+        ],
+      },
+      {
+        group: "Permissions & Notifications",
+        items: [
+          "35 permission keys across 9 categories, with 6 role templates",
+          "Per-user permission overrides and company / trade-group scoping",
+          "Full permission and membership audit log",
+          "15+ typed notification events with per-user, per-type delivery preferences",
         ],
       },
     ],
     architectureNotes: [
-      "Single-source auth contract — getUserContext() + a shared error responder across ~60 routes; auth failures are 401 by design, never 500.",
-      "Edge-safe auth gate: token presence and expiry checked at the edge, full signature verification on the Node side.",
-      "Per-stamp visibility stored in annotation geometry, so it propagates over the existing realtime channel with no extra plumbing.",
-      "Public health endpoint (DB, JWT, dev-auth) so any deployment is verifiable with a single unauthenticated request.",
+      "Auth failing silently as a 500 instead of a clean 401: centralized every route's error handling through one apiErrorResponse() helper so an expired or missing token returns a proper 401, never a raw crash.",
+      "pdfjs-dist worker version mismatch: a hardcoded CDN worker URL silently broke PDF rendering once the installed package moved to a newer version — traced to the version pin and fixed at the source in both the viewer and compare view.",
+      "Out-of-memory crashes on large plan-set uploads: switched to sequential page rendering, explicit buffer freeing, lower render DPI, and a capped DB connection pool to keep multi-hundred-page uploads stable on a modest single server.",
+      "Schema drift between the handover spec and actual migrations: a production audit found 5 items referenced in code but missing from migrations, reconciled them, and confirmed one phantom table didn't exist anywhere before dropping it from the spec.",
+      "Tenant-context leak from a module-scoped dev shortcut: an early auth shortcut cached a dev identity at module load time, leaking one tenant's context into another's request under real traffic — replaced with a per-request getUserContext(req) call.",
+      "basePath-aware API client: every client-side call routes through a shared apiFetch wrapper that prepends the module's base path and always sends credentials, since a raw fetch/axios call would silently 404 or drop the auth cookie once deployed under /plans.",
     ],
     stack: [
       {
         group: "Experience Layer",
-        tools: ["Next.js 16 (App Router)", "React 19", "TypeScript", "jsPDF Reports"],
+        tools: ["Next.js 16 (App Router)", "React 19", "Tailwind CSS 4", "Zustand"],
       },
       {
-        group: "Realtime & Data",
-        tools: ["Pusher", "PostgreSQL (RDS / Neon)", "AWS S3", "React Query"],
+        group: "PDF & Media Pipeline",
+        tools: ["pdfjs-dist / react-pdf", "pdf-lib", "sharp / @napi-rs/canvas", "jsPDF + autotable"],
       },
       {
-        group: "Platform Integration",
-        tools: ["Shared-JWT SSO", "Edge Auth Gate (proxy.ts)", "Multi-Tenant RBAC", "Health Endpoint"],
+        group: "Data & Real-Time",
+        tools: ["PostgreSQL (26 tables)", "Pusher", "AWS S3 (presigned URLs)", "Zod Validation"],
       },
       {
         group: "Quality & Ops",
-        tools: ["Playwright E2E", "PM2 + nginx", "Idempotent DB Bootstrap", "Audit Log"],
+        tools: ["Playwright E2E", "JWT (HS256) Shared SSO", "PM2 + Nginx", "Ubuntu / AWS EC2"],
       },
     ],
     metrics: [
       {
-        value: "500 → 401",
-        label: "auth fixed at the source",
+        value: "26",
+        label: "database tables",
         detail:
-          "One architectural flaw made every page crash for logged-out users. The rebuilt session core degrades gracefully — login redirect for pages, clean 401 for APIs.",
+          "A production data model spanning plan sets, sheets, annotations, tasks, permissions, notifications, and scheduled reports.",
       },
       {
-        value: "5",
-        label: "client-facing features shipped",
+        value: "35",
+        label: "permission keys",
         detail:
-          "Page-level + CSI report filtering, markup/stamp indicators, sheet-level export from the viewer, and per-stamp visibility — delivered after stabilization.",
+          "Across 9 categories with 6 role templates and per-user overrides — enforced centrally at the API layer, not just the UI.",
       },
       {
-        value: "10/10",
-        label: "end-to-end tests green",
+        value: "48+",
+        label: "commits, solo build",
         detail:
-          "A Playwright suite covering auth behavior, notifications, sheets, admin gating, and report filtering — run green before each handoff.",
+          "Architecture, backend, frontend, database, and deployment — delivered end to end in roughly three months.",
       },
     ],
   },
   {
     id: "structumai-scheduling",
-    label: "AVX-CS-003",
+    label: "AVX-CS-004",
     image: "/portfolio/structumai-scheduling.png",
     company: "StructumAI",
     title: "StructumAI Schedule — Web-Native Construction Scheduling",
@@ -369,7 +510,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "lexium-educational-assistant",
-    label: "AVX-CS-004",
+    label: "AVX-CS-005",
     image: "/portfolio/lexium.jpg",
     company: "Lexium AI",
     title: "Lexium AI — Intelligent Educational Assistant",
@@ -434,7 +575,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "paravitae-emr-telehealth",
-    label: "AVX-CS-005",
+    label: "AVX-CS-006",
     image: "/portfolio/emr-telehealth.jpg",
     company: "ParaVitae",
     title: "ParaVitae — AI EMR & Telehealth Platform",
@@ -499,7 +640,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "ai-fraud-detection-finance",
-    label: "AVX-CS-006",
+    label: "AVX-CS-007",
     image: "/portfolio/fraud-detection.jpeg",
     company: "PennyPilot",
     title: "AI-Based Fraud Detection System for Finance",
@@ -564,7 +705,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "real-estate-listing-scoring",
-    label: "AVX-CS-007",
+    label: "AVX-CS-008",
     image: "/portfolio/real-estate.jpg",
     company: "TruHome",
     title: "AI Real Estate Listing & Scoring Engine",
@@ -629,7 +770,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "collentix-shopify-app",
-    label: "AVX-CS-008",
+    label: "AVX-CS-009",
     image: "/portfolio/collentix.jpeg",
     company: "Collentix",
     title: "Collentix — Smart Collection Manager for Shopify",
@@ -690,7 +831,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "swipsel-marketplace-app",
-    label: "AVX-CS-009",
+    label: "AVX-CS-010",
     image: "/portfolio/swipsel.jpg",
     company: "Swipsel",
     title: "Swipsel — Buy, Rent & Swap Marketplace App",
@@ -755,7 +896,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "workflow-automation-suite",
-    label: "AVX-CS-010",
+    label: "AVX-CS-011",
     image: "/portfolio/n8n-automation.jpg",
     company: "Workflow Automation",
     title: "AI Workflow Automation Suite (n8n · Notion · GHL)",
@@ -820,7 +961,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "elderly-care-ai-chatbot",
-    label: "AVX-CS-011",
+    label: "AVX-CS-012",
     image: "/portfolio/ai-agent.jpg",
     company: "Elderly Care Assistant",
     title: "Elderly Care AI Chatbot",
@@ -885,7 +1026,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "hos-video-agency-website",
-    label: "AVX-CS-012",
+    label: "AVX-CS-013",
     image: "/portfolio/hos.jpg",
     company: "HOS",
     title: "HOS — Video Production Agency Website",
@@ -950,7 +1091,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "multi-agent-rag-system",
-    label: "AVX-CS-013",
+    label: "AVX-CS-014",
     image: "/portfolio/rag-agents.png",
     company: "Multi-Agent System",
     title: "Multi-Agent RAG Development System",

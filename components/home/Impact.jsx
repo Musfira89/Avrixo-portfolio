@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Layers, ShieldCheck, Workflow } from "lucide-react";
 import Link from "next/link";
+import { caseStudies } from "@/lib/case-studies";
 
 function AnimatedNumber({ to, suffix = "", duration = 1800 }) {
   const [val, setVal] = useState(0);
@@ -41,7 +42,7 @@ function AnimatedNumber({ to, suffix = "", duration = 1800 }) {
 const stats = [
   { value: "3", suffix: "", label: "StructumAI modules delivered", sub: "Estimating, Plans & Scheduling" },
   { value: "88", suffix: "+", label: "REST endpoints engineered", sub: "Across our shipped product builds" },
-  { value: "13", suffix: "", label: "Case studies documented", sub: "Problem, architecture, stack, and scope" },
+  { value: String(caseStudies.length), suffix: "", label: "Case studies documented", sub: "Problem, architecture, stack, and scope" },
   { value: "100", suffix: "%", label: "In-house delivery", sub: "Strategy, design, engineering, cloud" },
 ];
 
