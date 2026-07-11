@@ -162,8 +162,8 @@ export const Services = () => {
                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                 className="relative"
               >
-                {/* Visual Watermark Number */}
-                <div className="absolute -top-45 -left-7 text-[180px] font-black text-black/[0.05] select-none pointer-events-none z-0">
+                {/* Visual Watermark Number — decorative only, hidden below lg to avoid overflow/collision on narrow layouts */}
+                <div className="hidden lg:block absolute -top-32 -left-7 text-[180px] font-black text-black/[0.05] select-none pointer-events-none z-0">
                   {String(active + 1).padStart(2, "0")}
                 </div>
 

@@ -24,7 +24,7 @@ export const schedulingUrl = "";
 // confirmation email from FormSubmit to `formRecipient`. Open that email once
 // and click "Activate Form" — after that, every submission is delivered
 // automatically to this inbox. (Do a test submit yourself, then activate.)
-export const formRecipient = "team.avrixodigitals@gmail.com";
+export const formRecipient = "info@avrixodigitals.com";
 
 // Social profiles. Leave a value empty ("") and the footer will NOT render
 // that icon — so we never link to a bare domain or a profile that doesn't

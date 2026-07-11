@@ -14,7 +14,6 @@ import {
   Clock,
   Zap,
 } from "lucide-react";
-import Link from "next/link";
 import { companyContact, companySocials, formRecipient } from "@/lib/company";
 
 const contactInfo = [
@@ -83,103 +82,82 @@ export const ContactPage = () => {
   };
 
   return (
-    <section className="min-h-screen bg-bg-primary pt-20 overflow-hidden">
+    <section className="bg-bg-primary pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-12 min-h-[calc(100vh-80px)] items-stretch gap-0">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl"
+        >
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary mb-5">
+            Contact
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-text-primary leading-[1.1] mb-6">
+            Start with a focused conversation about what you need to{" "}
+            <span className="text-brand-primary">build.</span>
+          </h1>
+          <p className="text-sm text-text-primary/55 leading-relaxed">
+            Share your transformation goal, product idea, or operational bottleneck.
+            Avrixo will help shape the fastest credible path to production.
+          </p>
+        </motion.div>
 
-          {/* ── LEFT PANEL — Dark ── */}
-          <div className="lg:col-span-5 relative py-16 lg:py-24 flex flex-col justify-between">
-            {/* Ambient glow */}
-            <div className="absolute -left-20 top-1/4 w-[400px] h-[400px] rounded-full bg-brand-primary/8 blur-[100px] pointer-events-none" />
+        {/* Commitment tags */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mt-9 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/[0.07] pt-7"
+        >
+          {commitments.map((c) => (
+            <div key={c.text} className="flex items-center gap-2.5">
+              <c.icon className="w-4 h-4 text-brand-primary flex-shrink-0" />
+              <span className="text-xs text-text-primary/60 font-medium">{c.text}</span>
+            </div>
+          ))}
+        </motion.div>
 
-            <div className="relative z-10">
-              {/* Header */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary mb-5">
-                  Contact
-                </p>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-text-primary leading-[1.1] mb-6">
-                  Start with a focused conversation about what you need to{" "}
-                  <span className="text-brand-primary">build.</span>
-                </h1>
-                <p className="text-sm text-text-primary/50 leading-relaxed max-w-sm">
-                  Share your transformation goal, product idea, or operational bottleneck.
-                  Avrixo will help shape the fastest credible path to production.
-                </p>
-              </motion.div>
-
-              {/* Commitment tags */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }}
-                className="mt-8 space-y-3"
-              >
-                {commitments.map((c, i) => (
-                  <div key={c.text} className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
-                      <c.icon className="w-3.5 h-3.5 text-brand-primary" />
-                    </div>
-                    <span className="text-xs text-text-primary/55 font-medium">{c.text}</span>
+        {/* Body: contact rail + form */}
+        <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* ── LEFT — Contact rail ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-4"
+          >
+            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-text-primary/45 mb-6">
+              Direct Contact
+            </p>
+            <div className="space-y-5">
+              {contactInfo.map((item) => (
+                <div key={item.label} className="flex items-start gap-3 border-t border-white/[0.07] pt-5 first:border-t-0 first:pt-0">
+                  <div className="w-9 h-9 rounded-xl bg-bg-secondary border border-white/[0.07] flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-4 h-4 text-brand-primary" />
                   </div>
-                ))}
-              </motion.div>
-
-              {/* Office image */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="mt-10 rounded-2xl overflow-hidden relative h-44"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&h=350&fit=crop"
-                  alt="Avrixo workspace"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 to-transparent" />
-              </motion.div>
+                  <div>
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-text-muted">
+                      {item.label}
+                    </div>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-sm text-text-primary/75 hover:text-brand-primary transition-colors font-medium"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className="text-sm text-text-primary/75 font-medium">{item.value}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Contact details + Social */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="relative z-10 mt-10 lg:mt-0"
-            >
-              {/* Contact info */}
-              <div className="space-y-4 mb-7">
-                {contactInfo.map((item) => (
-                  <div key={item.label} className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-bg-secondary border border-white/[0.07] flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-4 h-4 text-brand-primary" />
-                    </div>
-                    <div>
-                      <div className="text-[9px] font-bold uppercase tracking-widest text-text-muted">
-                        {item.label}
-                      </div>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-sm text-text-primary/70 hover:text-brand-primary transition-colors font-medium"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <span className="text-sm text-text-primary/70 font-medium">{item.value}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Social */}
-              <div className="flex gap-3">
+            {socialLinks.length > 0 && (
+              <div className="mt-8 flex gap-3">
                 {socialLinks.map((s) => (
                   <a
                     key={s.label}
@@ -191,105 +169,81 @@ export const ContactPage = () => {
                   </a>
                 ))}
               </div>
-            </motion.div>
-          </div>
+            )}
+          </motion.div>
 
           {/* Divider */}
-          <div className="hidden lg:flex lg:col-span-1 items-center justify-center">
-            <div className="h-full w-px bg-white/[0.06]" />
+          <div className="hidden lg:block lg:col-span-1">
+            <div className="mx-auto h-full w-px bg-white/[0.07]" />
           </div>
 
-          {/* ── RIGHT PANEL — Light form ── */}
-          <div className="lg:col-span-6 py-16 lg:py-24 lg:pl-10">
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <h2 className="text-xl font-black text-text-primary mb-2">Enterprise Intake</h2>
-              <p className="text-xs text-text-muted mb-8 leading-relaxed">
-                Use this form to frame the business case, technical constraint, and decision timeline.
-              </p>
+          {/* ── RIGHT — Form ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="rounded-2xl border border-brand-primary/25 bg-brand-primary/5 p-8 text-center"
+                role="status"
+                aria-live="polite"
+              >
+                <div className="w-14 h-14 rounded-full bg-brand-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-7 h-7 text-brand-primary" />
+                </div>
+                <h3 className="text-lg font-black text-text-primary mb-2">Request Received</h3>
+                <p className="text-sm text-text-muted">
+                  Qualified requests receive a recommended next step, delivery path,
+                  and strategy-call agenda within 24 hours.
+                </p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Name + Email */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <label className="block space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
+                      Full Name
+                    </span>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Your name"
+                      className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
+                    />
+                  </label>
+                  <label className="block space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
+                      Work Email
+                    </span>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                      className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
+                    />
+                  </label>
+                </div>
 
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="rounded-2xl border border-brand-primary/25 bg-brand-primary/5 p-8 text-center"
-                >
-                  <div className="w-14 h-14 rounded-full bg-brand-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-7 h-7 text-brand-primary" />
-                  </div>
-                  <h3 className="text-lg font-black text-text-primary mb-2">Request Received</h3>
-                  <p className="text-sm text-text-muted">
-                    Qualified requests receive a recommended next step, delivery path,
-                    and strategy-call agenda within 24 hours.
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Name + Email */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <label className="block space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-                        Full Name
-                      </span>
-                      <input
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Your name"
-                        className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
-                      />
-                    </label>
-                    <label className="block space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-                        Work Email
-                      </span>
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="you@company.com"
-                        className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
-                      />
-                    </label>
-                  </div>
-
-                  {/* Company + Org Type */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <label className="block space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-                        Company Name
-                      </span>
-                      <input
-                        name="company"
-                        type="text"
-                        placeholder="Your company"
-                        className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
-                      />
-                    </label>
-                    <label className="block space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-                        Organization Type
-                      </span>
-                      <select
-                        name="organization"
-                        defaultValue=""
-                        className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
-                      >
-                        <option value="" disabled className="text-text-muted">
-                          Select one
-                        </option>
-                        <option>Enterprise</option>
-                        <option>SME / Startup</option>
-                        <option>Investor / Fund</option>
-                        <option>Agency / Partner</option>
-                      </select>
-                    </label>
-                  </div>
-
-                  {/* Primary Need */}
+                {/* Company + Primary Need */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <label className="block space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
+                      Company Name
+                    </span>
+                    <input
+                      name="company"
+                      type="text"
+                      placeholder="Your company"
+                      className="w-full rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted"
+                    />
+                  </label>
                   <label className="block space-y-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
                       Primary Need
@@ -311,44 +265,44 @@ export const ContactPage = () => {
                       <option>Technical due diligence</option>
                     </select>
                   </label>
+                </div>
 
-                  {/* Project Context */}
-                  <label className="block space-y-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-                      Project Context
-                    </span>
-                    <textarea
-                      name="context"
-                      rows={5}
-                      placeholder="Describe the workflow, product, data source, or business bottleneck you want to transform. Include constraints, timeline, and desired outcome."
-                      className="w-full resize-none rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted leading-relaxed"
-                    />
-                  </label>
+                {/* Project Context */}
+                <label className="block space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
+                    Project Context
+                  </span>
+                  <textarea
+                    name="context"
+                    rows={5}
+                    placeholder="Describe the workflow, product, data source, or business bottleneck you want to transform. Include constraints, timeline, and desired outcome."
+                    className="w-full resize-none rounded-xl border border-white/[0.1] bg-bg-secondary text-text-primary placeholder:text-text-muted/40 px-4 py-3.5 text-sm outline-none transition-colors focus:border-brand-primary/50 focus:bg-bg-muted leading-relaxed"
+                  />
+                </label>
 
-                  {/* Submit */}
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1">
-                    <p className="text-xs text-text-muted leading-relaxed max-w-xs">
-                      Qualified requests receive a strategy-call agenda and recommended next step.
-                    </p>
-                    <button
-                      type="submit"
-                      disabled={status === "submitting"}
-                      className="group flex-shrink-0 flex items-center justify-center gap-2 px-7 py-4 bg-brand-primary text-white font-black text-sm rounded-2xl hover:bg-brand-hover transition-all hover:shadow-[0_0_40px_rgba(227,30,36,0.3)] disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {status === "submitting" ? "Sending…" : "Request Strategy Review"}
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
-                    </button>
-                  </div>
+                {/* Submit */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1">
+                  <p className="text-xs text-text-muted leading-relaxed max-w-xs">
+                    Qualified requests receive a strategy-call agenda and recommended next step.
+                  </p>
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="group flex-shrink-0 flex items-center justify-center gap-2 px-7 py-4 bg-brand-primary text-white font-black text-sm rounded-2xl hover:bg-brand-hover transition-all hover:shadow-[0_0_40px_rgba(227,30,36,0.3)] disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "submitting" ? "Sending…" : "Send Request"}
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
+                  </button>
+                </div>
 
-                  {status === "error" && (
-                    <p className="text-xs text-brand-primary font-medium" role="alert">
-                      {errorMsg}
-                    </p>
-                  )}
-                </form>
-              )}
-            </motion.div>
-          </div>
+                {status === "error" && (
+                  <p className="text-xs text-brand-primary font-medium" role="alert">
+                    {errorMsg}
+                  </p>
+                )}
+              </form>
+            )}
+          </motion.div>
         </div>
       </div>
     </section>

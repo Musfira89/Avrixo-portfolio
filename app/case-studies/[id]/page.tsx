@@ -39,6 +39,10 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
   const prevStudy = caseStudies[(index - 1 + caseStudies.length) % caseStudies.length];
   const nextStudy = caseStudies[(index + 1) % caseStudies.length];
 
+  const hasCapabilities = Boolean(study.capabilities && study.capabilities.length > 0);
+  const architectureNum = hasCapabilities ? "04" : "03";
+  const stackNum = hasCapabilities ? "05" : "04";
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -177,12 +181,47 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         paragraphs={study.technicalSolution}
       />
 
+      {/* ══ CAPABILITIES — grouped feature list, no boxes ══ */}
+      {hasCapabilities && (
+        <section className="bg-bg-primary py-20 text-text-primary">
+          <div className="max-w-6xl mx-auto px-6 lg:px-10">
+            <div className="max-w-2xl">
+              <span className="text-5xl font-black leading-none text-white/[0.07] select-none">03</span>
+              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary">
+                What's Inside
+              </p>
+              <h2 className="mt-5 text-3xl md:text-4xl font-black tracking-tight">
+                Every capability, grouped by workflow.
+              </h2>
+            </div>
+
+            <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+              {study.capabilities!.map((group) => (
+                <div key={group.group}>
+                  <h3 className="text-xs font-black uppercase tracking-[0.16em] text-brand-primary">
+                    {group.group}
+                  </h3>
+                  <ul className="mt-4 space-y-3 border-t border-white/10 pt-4">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-6 text-text-primary/65">
+                        <span className="mt-2 h-1 w-1 flex-none rounded-full bg-brand-primary" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ══ ARCHITECTURE NOTES — dividers, not cards ══ */}
-      <section className="bg-bg-primary py-20 text-text-primary">
+      <section className={`bg-bg-primary py-20 text-text-primary ${hasCapabilities ? "border-t border-white/[0.06]" : ""}`}>
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-x-14 gap-y-10">
             <div className="lg:col-span-4">
-              <span className="text-5xl font-black leading-none text-white/[0.07] select-none">03</span>
+              <span className="text-5xl font-black leading-none text-white/[0.07] select-none">{architectureNum}</span>
               <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary">
                 Architecture Notes
               </p>
@@ -207,7 +246,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <span className="text-5xl font-black leading-none text-black/[0.06] select-none">04</span>
+              <span className="text-5xl font-black leading-none text-black/[0.06] select-none">{stackNum}</span>
               <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.28em] text-brand-primary">
                 Tech Stack Matrix
               </p>

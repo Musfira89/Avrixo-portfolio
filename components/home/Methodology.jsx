@@ -143,11 +143,11 @@ export const Methodology = () => {
                 />
 
                 {/* Row content */}
-                <div className="relative flex items-center gap-6 py-6 px-4">
+                <div className="relative flex items-center gap-3 sm:gap-6 py-6 px-4">
                   {/* Number */}
                   <span
-                    className="text-[52px] font-black tabular-nums leading-none
-                    select-none transition-colors duration-300 min-w-[90px]"
+                    className="text-[32px] sm:text-[52px] font-black tabular-nums leading-none
+                    select-none transition-colors duration-300 min-w-[48px] sm:min-w-[90px]"
                     style={{
                       color: isHovered ? "#e31e24" : "rgba(0,0,0,0.08)",
                     }}
@@ -183,7 +183,7 @@ export const Methodology = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isHovered ? 1 : 0 }}
                       transition={{ duration: 0.25 }}
-                      className="text-sm text-text-muted leading-relaxed max-w-md mt-2 h-[48px]"
+                      className="text-xs sm:text-sm text-text-muted leading-relaxed max-w-md mt-2 h-auto overflow-visible sm:h-[64px] sm:overflow-hidden"
                     >
                       {step.description}
                     </motion.p>
@@ -202,10 +202,10 @@ export const Methodology = () => {
                           : "rgba(0,0,0,0.02)",
                       }}
                       transition={{ duration: 0.25 }}
-                      className="flex h-16 w-16 items-center justify-center rounded-2xl border"
+                      className="flex h-11 w-11 sm:h-16 sm:w-16 items-center justify-center rounded-2xl border"
                     >
                       <step.Icon
-                        className="h-7 w-7 transition-colors duration-300"
+                        className="h-5 w-5 sm:h-7 sm:w-7 transition-colors duration-300"
                         style={{ color: isHovered ? "#e31e24" : "#737373" }}
                       />
                     </motion.div>

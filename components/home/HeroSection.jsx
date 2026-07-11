@@ -10,8 +10,8 @@ import dynamic from "next/dynamic";
 const NeuralScene = dynamic(() => import("./NeuralScene"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[400px] w-[400px] max-w-full items-center justify-center">
-      <div className="h-40 w-40 rounded-full border border-brand-primary/20 animate-pulse" />
+    <div className="flex h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] lg:h-[480px] lg:w-[480px] max-w-full items-center justify-center">
+      <div className="h-28 w-28 sm:h-40 sm:w-40 rounded-full border border-brand-primary/20 animate-pulse" />
     </div>
   ),
 });
@@ -97,7 +97,7 @@ export const HeroSection = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.7 }} className="flex items-center gap-8 pt-2 ">
               {[
                 { val: 13, suffix: "", label: "Case studies delivered" },
-                { val: 10, suffix: "", label: "Industries & domains" },
+                { val: 4, suffix: "", label: "Core industries" },
                 { val: 100, suffix: "%", label: "In-house delivery" },
               ].map((s, i) => (
                 <div key={i}>

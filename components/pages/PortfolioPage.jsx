@@ -8,7 +8,7 @@ import { caseStudies } from "@/lib/case-studies";
 
 const stats = [
   { val: String(caseStudies.length), label: "Case Studies" },
-  { val: "10", label: "Industries & Domains" },
+  { val: "4", label: "Core Industries" },
   { val: "100%", label: "In-House Delivery" },
   { val: "Real", label: "Shipped Products" },
 ];

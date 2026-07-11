@@ -57,7 +57,7 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center flex-1 space-x-10">
+          <div className="hidden lg:flex items-center justify-center flex-1 space-x-5 xl:space-x-10">
             {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -71,7 +71,7 @@ export const Navbar = () => {
               >
                 <Link
                   href={link.href}
-                  className="text-white text-md font-light hover:text-white relative group py-2 whitespace-nowrap"
+                  className="text-white text-sm xl:text-base font-light hover:text-white relative group py-2 whitespace-nowrap"
                 >
                   {link.name}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-brand-primary to-brand-hover group-hover:w-full transition-all duration-500" />
@@ -82,26 +82,32 @@ export const Navbar = () => {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center justify-end shrink-0">
-            <div className="flex items-center gap-2 px-4 py-1.5 bg-bg-secondary rounded-lg border border-bg-muted/50">
-              <div className="flex items-center justify-center w-10 h-10 bg-brand-primary/10 rounded-lg">
-                <Phone className="w-5 h-5 text-brand-primary" />
+            <div className="flex items-center gap-2 px-3 xl:px-4 py-1.5 bg-bg-secondary rounded-lg border border-bg-muted/50">
+              <div className="flex items-center justify-center w-9 h-9 xl:w-10 xl:h-10 bg-brand-primary/10 rounded-lg shrink-0">
+                <Phone className="w-4 h-4 xl:w-5 xl:h-5 text-brand-primary" />
               </div>
 
-              <div className="mr-2">
+              <div className="mr-1 xl:mr-2 hidden xl:block">
                 <div className="text-xs text-gray-200 font-medium">
                   Any Question
                 </div>
                 <a
                   href={companyContact.phoneHref}
-                  className="text-sm font-semibold text-text-primary hover:text-brand-primary transition-colors"
+                  className="text-sm font-semibold text-text-primary hover:text-brand-primary transition-colors whitespace-nowrap"
                 >
                   {companyContact.phoneDisplay}
                 </a>
               </div>
+              <a
+                href={companyContact.phoneHref}
+                className="mr-1 text-xs font-semibold text-text-primary hover:text-brand-primary transition-colors whitespace-nowrap xl:hidden"
+              >
+                {companyContact.phoneDisplay}
+              </a>
 
               <Link href="/contact">
-                <button className="w-12 h-12 flex items-center justify-center bg-brand-primary rounded-lg">
-                  <Grid2x2 className="w-6 h-6 text-white" />
+                <button className="w-10 h-10 xl:w-12 xl:h-12 flex items-center justify-center bg-brand-primary rounded-lg shrink-0">
+                  <Grid2x2 className="w-5 h-5 xl:w-6 xl:h-6 text-white" />
                 </button>
               </Link>
             </div>
@@ -117,9 +123,11 @@ export const Navbar = () => {
           </button>
         </div>
 
-        {/* MOBILE MENU PANEL */}
+        {/* MOBILE MENU PANEL — the navbar is position:fixed, so this panel needs
+            its own scroll when content is taller than the viewport, otherwise
+            the bottom links become unreachable on short mobile screens. */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-1 mb-3 rounded-2xl bg-bg-secondary border border-bg-muted p-6 space-y-6">
+          <div className="lg:hidden mt-1 mb-3 max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain rounded-2xl bg-bg-secondary border border-bg-muted p-6 space-y-6">
             {navLinks.map((link) => (
               <div key={link.name} className="space-y-3">
                 <Link

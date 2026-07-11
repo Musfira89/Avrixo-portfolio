@@ -8,7 +8,7 @@ import { caseStudies } from "@/lib/case-studies";
 
 const heroStats = [
   { value: String(caseStudies.length), label: "Documented case studies" },
-  { value: "10", label: "Industries & domains" },
+  { value: "4", label: "Core industries" },
   { value: "100%", label: "Designed & built in-house" },
 ];
 

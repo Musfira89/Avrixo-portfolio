@@ -45,6 +45,17 @@ const serviceDetails = [
   },
 ];
 
+// Short badge tags for service cards — full `highlights` sentences don't fit
+// a pill without mid-word truncation, so cards use these instead.
+const serviceCardTags = {
+  "ai-automation": ["Workflow Automation", "Human-in-the-Loop"],
+  "generative-ai-rag": ["Source Citations", "Hallucination Testing"],
+  "saas-product-engineering": ["Multi-Tenant Architecture", "Billing-Ready Models"],
+  "data-platforms": ["ETL Pipelines", "Data Lineage"],
+  "cloud-devops": ["AWS + Serverless", "CI/CD Pipelines"],
+  "ui-ux-product-design": ["Design Systems", "AI Interaction Patterns"],
+};
+
 export const ServicesPage = () => {
   const [hovered, setHovered] = useState(null);
 
@@ -101,7 +112,7 @@ export const ServicesPage = () => {
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap gap-3"
               >
-                {["9 Service Lines", "One Delivery Team", "Production-First"].map((tag) => (
+                {["6 Service Lines", "One Delivery Team", "Production-First"].map((tag) => (
                   <span
                     key={tag}
                     className="text-[10px] font-black uppercase tracking-widest text-brand-primary border border-brand-primary/30 px-4 py-2 rounded-full bg-brand-primary/5"
@@ -220,12 +231,12 @@ export const ServicesPage = () => {
 
                     {/* Tags */}
                     <div className="mt-4 flex flex-wrap gap-1.5">
-                      {service.highlights.slice(0, 2).map((h) => (
+                      {(serviceCardTags[service.slug] || []).map((tag) => (
                         <span
-                          key={h}
+                          key={tag}
                           className="text-[9px] font-bold uppercase tracking-wider text-text-muted border border-white/[0.06] px-2.5 py-1 rounded-full"
                         >
-                          {h.split(".")[0].split(",")[0].trim().substring(0, 28)}
+                          {tag}
                         </span>
                       ))}
                     </div>

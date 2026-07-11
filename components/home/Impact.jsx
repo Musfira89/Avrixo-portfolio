@@ -39,9 +39,9 @@ function AnimatedNumber({ to, suffix = "", duration = 1800 }) {
 // Honest, verifiable numbers drawn from real builds (StructumAI Estimating + Plans),
 // not borrowed client claims.
 const stats = [
-  { value: "2", suffix: "", label: "Production SaaS platforms", sub: "Designed, built, and shipped end to end" },
-  { value: "130", suffix: "+", label: "REST endpoints engineered", sub: "Across our shipped product builds" },
-  { value: "15", suffix: "+", label: "Data tables modeled", sub: "Estimate-to-ledger financial core" },
+  { value: "3", suffix: "", label: "StructumAI modules delivered", sub: "Estimating, Plans & Scheduling" },
+  { value: "88", suffix: "+", label: "REST endpoints engineered", sub: "Across our shipped product builds" },
+  { value: "13", suffix: "", label: "Case studies documented", sub: "Problem, architecture, stack, and scope" },
   { value: "100", suffix: "%", label: "In-house delivery", sub: "Strategy, design, engineering, cloud" },
 ];
 

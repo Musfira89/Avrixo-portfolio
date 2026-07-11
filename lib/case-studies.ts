@@ -18,6 +18,10 @@ export type CaseStudy = {
   abstract: string[];
   coreProblem: string[];
   technicalSolution: string[];
+  capabilities?: {
+    group: string;
+    items: string[];
+  }[];
   architectureNotes: string[];
   stack: {
     group: string;
@@ -44,36 +48,95 @@ export const caseStudies: CaseStudy[] = [
       "The result is a production revenue-and-cost loop where a number entered at bid time stays traceable through every downstream document — accounting-ready through QuickBooks Online, QuickBooks Desktop, and Plaid bank feeds, with AI-assisted receipt capture feeding purchase orders automatically.",
     ],
     coreProblem: [
-      "Construction firms run estimating, owner billing, change orders, purchase orders, vendor invoices, and accounting sync across spreadsheets and disconnected tools. Values get re-keyed between documents, retainage is calculated by hand, and profitability is invisible until the project is over.",
-      "The module also had to slot into an existing multi-tenant platform — shared login, shared projects, shared database with sibling modules — without colliding with the platform's own finance tables. And the documents had to be real: AIA-compatible pay applications that owners and accountants actually accept, balanced to the cent.",
+      "Construction firms run estimating, owner billing, change orders, purchase orders, vendor invoices, and accounting sync across spreadsheets and disconnected tools. Values get re-keyed between documents, retainage is calculated by hand, and a single change order can silently desync the whole billing trail — profitability stays invisible until the project is over.",
+      "The platform had to enforce real financial rules — retainage accrual and release, schedule-of-values integrity, AIA pay-application math, and change-order lineage — while staying fast and familiar enough that estimators would actually use it instead of falling back to Excel. And it had to slot into an existing multi-tenant platform — shared login, shared projects, shared database with sibling modules — without colliding with the platform's own finance tables.",
     ],
     technicalSolution: [
-      "Avrixo built an Excel-fast estimate grid with seven line types, rule-based markup, internal-vs-owner visibility, versioning with lock/approve controls, and an Excel import with a preview-then-commit flow plus AI special-row detection. An awarded estimate converts into a contract with a balanced schedule of values, AIA-compatible pay applications with retainage and stored materials, owner change orders with full lineage, and a cross-contract billing ledger — exported to PDF and XLSX that balance exactly to AIA math.",
-      "On the cost side: budget baselines from the awarded estimate, commitments and purchase orders, vendor invoices with approval workflows, and profit-fade reporting. An AI receipt pipeline extracts vendor, totals, line items, and CSI codes from uploaded receipts and aggregates them into per-project purchase orders.",
-      "Accounting connectivity was productized for multi-tenant use: QuickBooks Online request-to-pay with a duplicate-bill guard, a QuickBooks Desktop subsystem built on Intuit Web Connector and qbXML with per-customer provisioning and encrypted credentials, and Plaid bank-transaction import with a weighted transaction-to-receipt matching engine. Everything runs behind shared-JWT single sign-on, tenant-scoped RBAC with per-user overrides, and a full permission and billing audit log.",
+      "The estimating surface is an Excel-fast grid with seven line types (standard, allowance, alternate, unit-price, deduct, contingency, internal-only), per-line and rule-based markup, and internal-vs-owner visibility. Estimates carry versioning with lock/approve controls, import from Excel through a preview-then-commit flow with AI special-row detection flagging unusual lines for review, and clone from company-level estimate and line-item templates.",
+      "An awarded estimate converts into a contract and a balanced Schedule of Values. From there: AIA-compatible pay applications with retainage, stored materials, and a submit → approve → owner-approve → record-payment flow; owner change orders with full lineage back to the contract and SOV; a cross-contract billing ledger; and PDF + XLSX export that balances exactly to AIA math.",
+      "On the cost side — budget baselines from the awarded estimate, commitments and purchase orders, vendor invoices with approval and posting, and reports for profit fade, change-order gap, and billing-vs-cost. An AI receipt pipeline extracts vendor, total, line items, CSI codes, and date from an uploaded receipt and auto-aggregates it into a per-project purchase order.",
+      "The module ships as its own Next.js 16 application on a dedicated subdomain, but feels native inside StructumAI: single sign-on via a shared JWT cookie scoped to the platform domain (no second login, logged-out users redirect to the platform login), and a shared multi-tenant PostgreSQL database that reads the platform's real projects and membership — the same projects shown across Plans and Schedule. Where the module's tables would have collided with the platform's own finance tables, they were namespaced so each side stays isolated.",
+    ],
+    capabilities: [
+      {
+        group: "Estimating",
+        items: [
+          "Excel-fast estimate grid — 7 line types with per-line and rule-based markup",
+          "Internal-vs-owner visibility on every line",
+          "Versioning with lock/approve controls",
+          "Excel import — preview-then-commit, with AI special-row detection",
+          "Company-level estimate and line-item templates",
+        ],
+      },
+      {
+        group: "Contracts, SOV & Owner Billing",
+        items: [
+          "Convert an awarded estimate into a contract with a balanced Schedule of Values",
+          "AIA-compatible pay applications — retainage, stored materials, period billing",
+          "Submit / approve / owner-approve / record-payment workflow",
+          "Owner change orders with lineage back to the contract and SOV",
+          "Cross-contract billing ledger with PDF + XLSX export that balances to AIA math",
+        ],
+      },
+      {
+        group: "Cost Side",
+        items: [
+          "Budget baselines generated from the awarded estimate",
+          "Commitments and purchase orders",
+          "Vendor invoices with approval and posting",
+          "Profit-fade, change-order-gap, and billing-vs-cost reporting",
+        ],
+      },
+      {
+        group: "AI-Assisted Receipts",
+        items: [
+          "Upload a receipt — extraction pulls vendor, total, line items, CSI codes, date",
+          "Auto-aggregated into a per-project purchase order",
+        ],
+      },
+      {
+        group: "Accounting & Banking",
+        items: [
+          "QuickBooks Online — push approved POs as payable Bills, sync paid % back",
+          "Duplicate-bill guard and full audit trail on every QBO push",
+          "QuickBooks Desktop — Web Connector + qbXML, per-customer .QWC provisioning",
+          "Plaid — bank-transaction import with weighted transaction-to-receipt matching",
+          "Missing-receipt flagging on unmatched bank transactions",
+        ],
+      },
+      {
+        group: "Permissions & Audit",
+        items: [
+          "Granular tenant-scoped RBAC — role templates and project memberships",
+          "Per-user permission overrides",
+          "Full permission and billing audit log",
+        ],
+      },
     ],
     architectureNotes: [
-      "Shared-database coexistence: colliding finance tables namespaced and migrated with zero impact to the platform's existing data.",
-      "QuickBooks Desktop productized for multi-tenancy — per-customer .QWC provisioning, encrypted credentials, and the full SOAP/qbXML handshake.",
+      "Shared-database coexistence: introspected the live platform schema, namespaced the colliding finance tables, and migrated cleanly with zero impact to the platform's existing data.",
+      "Multi-tenant accounting connectivity: QuickBooks Desktop has no cloud API, so Avrixo built a productized Web Connector/qbXML/SOAP subsystem with per-customer provisioning and encrypted credentials — each customer connects independently.",
+      "Production data migration: re-homed an existing dataset (estimates, contracts, SOV, pay-apps, commitments and more) into the shared platform database, re-tenanted and relationship-preserving, idempotently.",
       "AIA document fidelity: pay-application PDFs and XLSX balance exactly (Original + approved COs = Contract-to-Date; Completed − Retainage − Previous = Current Due).",
       "Hardened data layer: resilient PostgreSQL pooling with transient-error retry and environment-aware SSL for managed (RDS) and serverless (Neon) databases.",
+      "Connected from the platform UI — a top-nav entry carries project context straight from the StructumAI dashboard into the module.",
     ],
     stack: [
       {
         group: "Experience Layer",
-        tools: ["Next.js 16 (App Router)", "React", "TypeScript (strict)", "Tailwind CSS v4"],
+        tools: ["Next.js 16 (App Router, Turbopack)", "React", "TypeScript (strict)", "Tailwind CSS v4"],
       },
       {
         group: "Application & Data",
-        tools: ["Next.js API Routes", "PostgreSQL", "Repository + Service Layers", "Multi-Tenant RBAC"],
+        tools: ["Next.js API Routes", "PostgreSQL (raw pg)", "Repository + Service Layers", "Multi-Tenant RBAC"],
       },
       {
         group: "Integrations",
-        tools: ["QuickBooks Online", "QuickBooks Desktop (qbXML)", "Plaid", "AWS S3"],
+        tools: ["QuickBooks Online (OAuth2/REST)", "QuickBooks Desktop (Web Connector/qbXML/SOAP)", "Plaid", "AWS S3"],
       },
       {
         group: "Documents & Ops",
-        tools: ["AIA PDF/XLSX Generation", "Shared-JWT SSO", "Audit Logging", "pm2 / Docker"],
+        tools: ["AIA PDF/XLSX Generation", "Shared-JWT SSO", "Audit Logging", "pm2 / Docker, Subdomain Deploy"],
       },
     ],
     metrics: [
@@ -121,6 +184,44 @@ export const caseStudies: CaseStudy[] = [
       "Avrixo rewrote the auth/session core: a typed UnauthorizedError, robust JWT claim mapping, cookie or Bearer token support, and a shared error-response contract that returns 401 for auth failures and 500 only for real errors — one pattern used across ~60 API routes. The gate moved to Next.js 16's proxy convention so pages redirect to login and APIs return clean 401s, with edge-safe token expiry checks.",
       "Platform integration followed the real contract: the platform signs a JWT shared via a domain cookie, and the module verifies it with the same secret while reading the same multi-tenant Postgres — so the logged-in tenant sees their own projects with no second login. A public health endpoint (database, JWT config, dev-auth flag) made every deployment verifiable with one request, and the live blockers — env-file precedence, DB credentials, S3 region mismatch — were diagnosed and fixed.",
       "With the foundation stable, Avrixo shipped five client-facing features: page-level report filtering flowing through to PDF/CSV export, markup/stamp count indicators on sheet previews, sheet-level report export straight from the drawing viewer, CSI-code filtering of visible stamps and tasks, and per-stamp visibility overrides that sync over the existing realtime channel.",
+    ],
+    capabilities: [
+      {
+        group: "Stabilization",
+        items: [
+          "Rebuilt session/auth core — typed errors, robust JWT claim mapping, cookie or Bearer support",
+          "Edge-safe auth gate (Next.js 16 proxy convention) — page redirects, clean API 401s",
+          "Fixed notifications 500 — schema mismatch in the embedded-DB bootstrap",
+          "Dev-auth fallback so the module runs locally without the platform cookie",
+        ],
+      },
+      {
+        group: "Platform Integration",
+        items: [
+          "Single sign-on via shared-JWT cookie scoped to the platform domain",
+          "Shared multi-tenant Postgres — same projects, same tenant/user IDs as the platform",
+          "Public /api/v1/health endpoint — DB, JWT config, dev-auth flag, no login required",
+          "Diagnosed and resolved live blockers: DB credentials, env precedence, S3 region mismatch",
+        ],
+      },
+      {
+        group: "Admin & UX Polish",
+        items: [
+          "Admin-only Permissions page gated by a my-permissions endpoint",
+          "Responsive dashboard header — collapsing nav, protected notification bell",
+          "Brand favicon and logo across headers, sheet cards, and report PDFs",
+        ],
+      },
+      {
+        group: "Shipped Features",
+        items: [
+          "Page-level report filtering (Task/Photo/Sheet), flowing through to PDF/CSV export",
+          "Sheet markup/stamp indicators with live counts on previews",
+          "Sheet-level PDF/CSV export straight from the drawing viewer",
+          "CSI-code filtering of visible/exported stamps and tasks",
+          "Per-stamp visibility override (Show/Hide/Default), synced over realtime",
+        ],
+      },
     ],
     architectureNotes: [
       "Single-source auth contract — getUserContext() + a shared error responder across ~60 routes; auth failures are 401 by design, never 500.",
@@ -191,6 +292,35 @@ export const caseStudies: CaseStudy[] = [
       "The planning surface pairs an MS-Project-style spreadsheet grid with a synchronized interactive Gantt — drag to move or resize bars, draw dependency links, zoom from day to quarter. The task model covers durations, milestones, WBS roll-ups, constraints, deadlines, and construction-aware fields like trade, zone, work package, and permit flags.",
       "The scheduling engine is implemented in TypeScript: Critical Path Method with forward and backward passes, total and free float, driving-relationship detection, and working calendars (workweeks, holidays, exceptions, hours-per-day) that drive every calculated date. Baselines capture snapshots for planned-vs-actual comparison, and a guided wizard imports CSV, Excel, and JSON through an async, progress-tracked job.",
       "The workspace loads in a single round-trip: one bootstrap endpoint primes schedule, tasks, dependencies, and calendars, hydrating Zustand and React Query together so the grid and Gantt render immediately. Mutations are optimistic with controlled server reconciliation. For platform integration, all scheduling tables live in a dedicated Postgres schema on the shared multi-tenant database, projects come from the platform, and the shared-JWT cookie provides single sign-on — the module never touches the platform's auth model.",
+    ],
+    capabilities: [
+      {
+        group: "Planning Surface",
+        items: [
+          "Dual view — synchronized spreadsheet grid and interactive Gantt",
+          "Drag to move/resize bars, draw dependency links, zoom day → quarter",
+          "Durations, milestones, WBS roll-ups, constraints (ASAP, SNET, FNET, MSO, MFO)",
+          "Construction-aware fields — trade, zone, work package, permit/inspection flags",
+        ],
+      },
+      {
+        group: "Scheduling Engine",
+        items: [
+          "4 dependency types (FS, SS, FF, SF) with lag and driving-relationship detection",
+          "Critical Path Method — forward/backward pass, total & free float",
+          "Working calendars — workweeks, holidays, exceptions, hours-per-day",
+          "Configurable critical threshold and automatic critical-path highlighting",
+        ],
+      },
+      {
+        group: "Productivity & Data",
+        items: [
+          "Baselines — snapshot and compare planned vs. current",
+          "Guided import (CSV, Excel, JSON) with field-mapping wizard, async progress-tracked job",
+          "Export to Excel, CSV, and a branded PDF schedule report",
+          "Reusable schedule templates, Ctrl-K command palette, undo/redo, saved views",
+        ],
+      },
     ],
     architectureNotes: [
       "Critical-path engine in TypeScript: forward/backward pass, total & free float, calendar resolution, and a configurable critical threshold.",
