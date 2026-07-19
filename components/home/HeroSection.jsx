@@ -61,9 +61,9 @@ export const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-md text-gray-300 leading-relaxed max-w-md">
-                Avrixo is one team that designs, builds, and ships AI products and SaaS
-                platforms end to end — strategy, design, engineering, and cloud. Fixed scope,
-                clear milestones, no surprises.
+                We diagnose, design, and build AI solutions, custom software, automation
+                systems, and SaaS products that move businesses forward. Every engagement
+                starts with understanding how you work today.
               </p>
             </div>
 

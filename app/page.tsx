@@ -3,6 +3,8 @@ import { TrustedBy } from "@/components/home/TrustedBy";
 import { Projects } from "@/components/home/Projects";
 import { Services } from "@/components/home/Services";
 import { Methodology } from "@/components/home/Methodology";
+import { Industries } from "@/components/home/Industries";
+import { TechStack } from "@/components/home/TechStack";
 import { Impact } from "@/components/home/Impact";
 import { RiskReversal } from "@/components/home/RiskReversal";
 import { CTASection } from "@/components/home/CTASection";
@@ -20,6 +22,10 @@ export default function Home() {
       <Methodology />
       {/* "Can you actually build this?" — real StructumAI proof */}
       <Projects />
+      {/* "Who do you serve?" */}
+      <Industries />
+      {/* "What's actually under the hood?" */}
+      <TechStack />
       {/* Credibility: verifiable numbers */}
       <Impact />
       {/* "What if it goes wrong?" — risk reversal */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -9,6 +9,15 @@ import { siteUrl, companyContact, companySocials } from "@/lib/company";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
+});
+
+// Decorative italic serif — used sparingly for red accent words/numbers
+// (section headlines, method-step numbers) to add an editorial touch.
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-instrument-serif",
 });
 
 export const metadata: Metadata = {
@@ -67,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={montserrat.variable}>
+    <html lang="en" className={`${montserrat.variable} ${instrumentSerif.variable}`}>
       <body className={`${montserrat.className} antialiased`}>
         <script
           type="application/ld+json"

@@ -58,3 +58,9 @@ html {
     "SF Pro Display",
     sans-serif;
 }
+
+/* Decorative italic serif accent — section headline highlights, method-step numbers */
+.font-accent {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-style: italic;
+}
