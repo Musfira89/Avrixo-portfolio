@@ -62,7 +62,7 @@ export const Methodology = () => {
             <span className="font-accent text-brand-primary text-[1.15em]">production.</span>
           </h2>
 
-          <p className="text-sm md:text-base text-text-primary/55 leading-relaxed">
+          <p className="text-xs md:text-sm text-text-primary/55 leading-relaxed">
             Every engagement follows the same four stages. It keeps the work transparent,
             the timeline predictable, and the outcome something your team can actually run.
           </p>

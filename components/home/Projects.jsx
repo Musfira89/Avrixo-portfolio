@@ -18,7 +18,7 @@ export const Projects = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
-    <section className="bg-bg-primary py-28 overflow-hidden">
+    <section className="bg-bg-light py-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* LEFT: Text Area */}
@@ -27,18 +27,18 @@ export const Projects = () => {
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="text-4xl md:text-5xl font-black text-text-primary tracking-tight"
+                className="text-4xl md:text-5xl font-black text-text-dark tracking-tight"
               >
                 Products we've <span className="text-brand-primary">shipped</span>
               </motion.h2>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Real, production-grade products we designed and engineered —
-              broken down as technical case studies: problem, architecture, stack, and scope.
+            <p className="text-text-muted text-xs leading-relaxed">
+              Real, production-grade products we designed and engineered, broken down as
+              technical case studies: problem, architecture, stack, and scope.
             </p>
             <Link
               href="/case-studies"
-              className="inline-flex items-center gap-2 text-white font-bold border-b border-brand-primary pb-1 hover:text-brand-primary transition-colors"
+              className="inline-flex items-center gap-2 text-text-dark font-bold border-b border-brand-primary pb-1 hover:text-brand-primary transition-colors"
             >
               Read Case Studies <ArrowUpRight size={16} />
             </Link>
@@ -56,7 +56,7 @@ export const Projects = () => {
               >
                 <motion.article
                   whileHover={{ y: -10 }}
-                  className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-bg-secondary p-3 transition-colors group-hover:border-brand-primary/50"
+                  className="relative h-full overflow-hidden rounded-3xl border border-text-dark/[0.07] bg-white p-3 shadow-sm transition-all duration-300 group-hover:border-brand-primary/40 group-hover:shadow-xl group-hover:shadow-brand-primary/5"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <Image
@@ -65,7 +65,6 @@ export const Projects = () => {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-bg-primary via-bg-primary/20 to-transparent" />
                     <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-bg-primary/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-text-primary">
                       {project.label}
                     </div>
@@ -76,7 +75,7 @@ export const Projects = () => {
                       <FileText className="h-3.5 w-3.5" />
                       {project.category}
                     </div>
-                    <h3 className="mt-4 text-2xl font-black leading-tight text-text-primary">
+                    <h3 className="mt-4 text-2xl font-black leading-tight text-text-dark">
                       {project.title}
                     </h3>
 
@@ -85,7 +84,7 @@ export const Projects = () => {
                         {project.tags.slice(0, 2).map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full border border-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-text-primary/50"
+                            className="rounded-full border border-text-dark/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-text-muted"
                           >
                             {tag}
                           </span>
@@ -99,7 +98,7 @@ export const Projects = () => {
                         }}
                         className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-brand-primary"
                       >
-                        <ArrowUpRight className="text-text-primary" size={20} />
+                        <ArrowUpRight className="text-white" size={20} />
                       </motion.div>
                     </div>
                   </div>

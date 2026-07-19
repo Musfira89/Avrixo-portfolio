@@ -57,7 +57,7 @@ export const ContactPage = () => {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          _subject: `New project inquiry — ${data.name || "Website"}`,
+          _subject: `New project inquiry: ${data.name || "Website"}`,
           _template: "table",
           _captcha: "false",
           ...data,

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Layers, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowUpRight, Search, Layers, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { caseStudies } from "@/lib/case-studies";
 
@@ -46,26 +46,26 @@ const stats = [
   { value: "100", suffix: "%", label: "In-house delivery", sub: "Strategy, design, engineering, cloud" },
 ];
 
-// What working with Avrixo actually looks like — replaces borrowed testimonials
-// with commitments we can stand behind.
+// Why teams choose Avrixo. Not a repeat of the RiskReversal guarantees below
+// (fixed scope, milestones, ownership) — this is the gap we work in.
 const principles = [
   {
-    icon: Workflow,
-    tag: "One team",
-    title: "Strategy to deploy, no handoffs",
-    body: "Product strategy, design, engineering, data, and cloud live under one roof — so the system that ships is the system that was planned.",
-  },
-  {
-    icon: ShieldCheck,
-    tag: "Fixed scope",
-    title: "Clear SOW, no surprises",
-    body: "Milestones, deliverables, and acceptance criteria are agreed before we build. You always know the cost, the timeline, and what 'done' means.",
+    icon: Search,
+    tag: "We diagnose first",
+    title: "The gap between a demo and a working system",
+    body: "Before we write a line of code, we understand the real problem. Often the thing you asked for isn't the thing you need, and finding that out early is what saves the budget.",
   },
   {
     icon: Layers,
-    tag: "Production-grade",
-    title: "Real systems, not demos",
-    body: "Multi-tenant data models, permissions, audit trails, and security shaped from day one — the same standard behind StructumAI.",
+    tag: "We build for production",
+    title: "Standards, not an upsell",
+    body: "Clean architecture, real testing, and proper documentation as the standard, not something you pay extra for later. The difference between a system that lasts and one you rebuild in a year.",
+  },
+  {
+    icon: KeyRound,
+    tag: "We hand it over",
+    title: "No permanent dependency",
+    body: "You own the code, the system, and the knowledge to run it. When we finish, your team can carry it forward independently.",
   },
 ];
 
@@ -231,7 +231,7 @@ export const Impact = () => {
                   Have a system you need built right?
                 </div>
                 <div className="text-xs text-text-muted">
-                  Get a fixed-scope proposal — clear cost, timeline, and milestones.
+                  Get a fixed-scope proposal: clear cost, timeline, and milestones.
                 </div>
               </div>
               <Link

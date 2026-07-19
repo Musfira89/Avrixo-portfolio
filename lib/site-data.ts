@@ -93,8 +93,8 @@ export const aboutRoutes: EnterpriseRoute[] = [
     summary:
       "Avrixo brings architecture, product, and delivery leadership into one practical advisory layer for teams planning digital transformation.",
     theme: "dark",
-    stat: "12+",
-    statLabel: "industries supported through AI and software delivery",
+    stat: "4",
+    statLabel: "core industries supported through AI and software delivery",
     highlights: [
       "Executive-ready technical roadmaps.",
       "Clear tradeoff analysis for build, buy, and integrate decisions.",
@@ -144,9 +144,9 @@ export const serviceRoutes: EnterpriseRoute[] = [
     slug: "ai-solutions",
     href: "/services/ai-solutions",
     eyebrow: "AI Solutions",
-    title: "AI systems that answer, assist, and act — grounded in your own data.",
+    title: "AI systems that answer, assist, and act, grounded in your own data.",
     summary:
-      "Generative AI, RAG, LLM integrations, and AI agents that give your team trusted answers and automate the busywork — built for production trust, not a chatbot demo.",
+      "Generative AI, RAG, LLM integrations, and AI agents that give your team trusted answers and automate the busywork, built for production trust, not a chatbot demo.",
     theme: "light",
     stat: "90%",
     statLabel: "target citation coverage for AI answers grounded in your own data",
@@ -159,7 +159,7 @@ export const serviceRoutes: EnterpriseRoute[] = [
     sections: [
       {
         title: "What we build",
-        body: "Internal knowledge copilots, support-agent assist, policy search, and AI agents that classify, summarize, and route work — all built to explain themselves, not just produce output.",
+        body: "Internal knowledge copilots, support-agent assist, policy search, and AI agents that classify, summarize, and route work, all built to explain themselves, not just produce output.",
       },
       {
         title: "Governance",
@@ -173,7 +173,7 @@ export const serviceRoutes: EnterpriseRoute[] = [
     eyebrow: "Custom Software",
     title: "Web apps, portals, and dashboards built around how your team actually works.",
     summary:
-      "We design and engineer custom web applications, internal tools, and client-facing platforms — interfaces that make complex systems feel usable, backed by architecture that holds up in production.",
+      "We design and engineer custom web applications, internal tools, and client-facing platforms, interfaces that make complex systems feel usable, backed by architecture that holds up in production.",
     theme: "dark",
     stat: "2x",
     statLabel: "faster stakeholder alignment through clickable product prototypes",
@@ -186,7 +186,7 @@ export const serviceRoutes: EnterpriseRoute[] = [
     sections: [
       {
         title: "Design principle",
-        body: "Software needs more than polish. Users must understand context, confidence, and next actions — we design interfaces that make complex systems legible.",
+        body: "Software needs more than polish. Users must understand context, confidence, and next actions. We design interfaces that make complex systems legible.",
       },
       {
         title: "Built to last",
@@ -213,7 +213,7 @@ export const serviceRoutes: EnterpriseRoute[] = [
     sections: [
       {
         title: "What we build",
-        body: "Avrixo creates automation layers for support operations, sales enablement, internal knowledge work, document processing, and executive reporting — every workflow designed around measurable cycle-time reduction.",
+        body: "Avrixo creates automation layers for support operations, sales enablement, internal knowledge work, document processing, and executive reporting, every workflow designed around measurable cycle-time reduction.",
       },
       {
         title: "Engineering approach",
@@ -376,7 +376,7 @@ export const resourceRoutes: EnterpriseRoute[] = [
     sections: [
       {
         title: "Start with the business case, not the model",
-        body: "Pick workflows where time, cost, or error rates are measurable today. If you can't baseline the current process, you won't be able to prove the AI version is better. The best first candidates are high-volume, repetitive decisions with clear right answers — not open-ended creative work.",
+        body: "Pick workflows where time, cost, or error rates are measurable today. If you can't baseline the current process, you won't be able to prove the AI version is better. The best first candidates are high-volume, repetitive decisions with clear right answers, not open-ended creative work.",
       },
       {
         title: "Audit data readiness before committing budget",
@@ -384,11 +384,11 @@ export const resourceRoutes: EnterpriseRoute[] = [
       },
       {
         title: "Prototype in weeks, not quarters",
-        body: "A narrow-scope prototype with a written evaluation plan — what accuracy or time-saving threshold counts as success — tells you more than months of vendor comparison. Keep it small enough that failing is cheap and informative.",
+        body: "A narrow-scope prototype with a written evaluation plan, what accuracy or time-saving threshold counts as success, tells you more than months of vendor comparison. Keep it small enough that failing is cheap and informative.",
       },
       {
         title: "Graduate to a production pilot with real users",
-        body: "Production is a different discipline: security review, human-in-the-loop controls for low-confidence outputs, monitoring, and rollback paths. Run the pilot inside the real workflow with a small user group, and measure adoption — not just model metrics.",
+        body: "Production is a different discipline: security review, human-in-the-loop controls for low-confidence outputs, monitoring, and rollback paths. Run the pilot inside the real workflow with a small user group, and measure adoption, not just model metrics.",
       },
       {
         title: "Plan the operating model change",
@@ -396,7 +396,7 @@ export const resourceRoutes: EnterpriseRoute[] = [
       },
       {
         title: "Measure, govern, and scale deliberately",
-        body: "Expand to the next workflow only after checkpoint metrics hold in production — accuracy, cost per task, adoption, and incident rate. Add model-risk controls and cost monitoring as usage grows, so scaling is a decision backed by evidence rather than momentum.",
+        body: "Expand to the next workflow only after checkpoint metrics hold in production: accuracy, cost per task, adoption, and incident rate. Add model-risk controls and cost monitoring as usage grows, so scaling is a decision backed by evidence rather than momentum.",
       },
     ],
   },
@@ -666,7 +666,7 @@ export const navGroups: NavGroup[] = [
     href: "/services",
     eyebrow: "Capabilities",
     description:
-      "AI solutions, custom software, intelligent automation, and SaaS product engineering — one team, production-grade delivery.",
+      "AI solutions, custom software, intelligent automation, and SaaS product engineering, one team, production-grade delivery.",
     items: serviceRoutes.map((route, index) => ({
       id: route.slug,
       name: route.eyebrow,
@@ -767,14 +767,14 @@ export const sectionOverviewRoutes: Record<string, EnterpriseRoute> = {
     slug: "services",
     href: "/services",
     eyebrow: "Services",
-    title: "AI, SaaS, data, and cloud services for production-minded teams.",
+    title: "AI, software, and automation systems for production-minded teams.",
     summary:
-      "Avrixo helps companies move from technical ambition to reliable digital systems through strategy, product design, AI engineering, data platforms, and deployment.",
+      "Avrixo helps companies move from technical ambition to reliable digital systems through AI solutions, custom software, intelligent automation, and SaaS product engineering.",
     theme: "light",
-    stat: "6",
+    stat: "4",
     statLabel: "service lines connected into one delivery operating model",
     highlights: [
-      "AI automation, RAG products, SaaS platforms, data systems, DevOps, and UX.",
+      "AI solutions, custom software, intelligent automation, and SaaS product engineering.",
       "Architecture and implementation planned together from the start.",
       "Delivery shaped for enterprise buyers, SMEs, and investor-backed teams.",
     ],
@@ -797,8 +797,8 @@ export const sectionOverviewRoutes: Record<string, EnterpriseRoute> = {
     summary:
       "Avrixo adapts AI and product engineering to the operating realities of healthcare, fintech, logistics, real estate, and other complex sectors.",
     theme: "dark",
-    stat: "12+",
-    statLabel: "industry contexts supported through digital transformation work",
+    stat: "4",
+    statLabel: "core industry contexts supported through digital transformation work",
     highlights: [
       "Domain-aware workflows rather than generic AI demos.",
       "Compliance, data sensitivity, and adoption considered early.",

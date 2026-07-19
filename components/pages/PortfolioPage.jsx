@@ -74,7 +74,7 @@ export const PortfolioPage = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-sm leading-7 text-text-primary/50 max-w-xl"
+                className="text-xs leading-6 text-text-primary/50 max-w-xl"
               >
                 Each project is documented as a technical case study: the core problem,
                 the solution we engineered, the stack we used, and the architecture behind it.

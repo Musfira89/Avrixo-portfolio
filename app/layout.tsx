@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Avrixo",
   },
   description:
-    "Avrixo is one team that designs, builds, and ships production-grade AI products and SaaS platforms end to end — strategy, design, engineering, and cloud. Fixed scope, clear milestones.",
+    "Avrixo is one team that designs, builds, and ships production-grade AI products and SaaS platforms end to end: strategy, design, engineering, and cloud. Fixed scope, clear milestones.",
   keywords: [
     "AI product engineering",
     "SaaS development",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Avrixo",
     title: "Avrixo | AI & SaaS Product Engineering",
     description:
-      "One team that designs, builds, and ships production-grade AI products and SaaS platforms — strategy to deploy.",
+      "One team that designs, builds, and ships production-grade AI products and SaaS platforms, strategy to deploy.",
     url: `${siteUrl}/`,
     images: [{ url: "/img.jpg", width: 1200, height: 630, alt: "Avrixo" }],
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Avrixo | AI & SaaS Product Engineering",
     description:
-      "One team that designs, builds, and ships production-grade AI products and SaaS platforms — strategy to deploy.",
+      "One team that designs, builds, and ships production-grade AI products and SaaS platforms, strategy to deploy.",
     images: ["/img.jpg"],
   },
 };

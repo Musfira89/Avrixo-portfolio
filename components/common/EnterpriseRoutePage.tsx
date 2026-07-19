@@ -76,7 +76,7 @@ export function EnterpriseRoutePage({ route, related = [] }: EnterpriseRoutePage
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className={`text-sm leading-relaxed max-w-2xl ${textMuted}`}
+                className={`text-xs leading-relaxed max-w-2xl ${textMuted}`}
               >
                 {route.summary}
               </motion.p>

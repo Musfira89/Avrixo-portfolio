@@ -59,7 +59,7 @@ export const TechStack = () => {
             <span className="font-accent text-brand-primary text-[1.15em]">fit the job.</span>
           </h2>
 
-          <p className="text-sm md:text-base text-text-muted leading-relaxed">
+          <p className="text-xs md:text-sm text-text-muted leading-relaxed">
             We are not tied to one tool or one way of working. We pick the technology
             that fits your problem, your scale, and your team.
           </p>

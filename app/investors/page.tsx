@@ -3,7 +3,7 @@ import { standaloneRoutes } from "@/lib/site-data";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "For Investors — Technical Partnership",
+  title: "For Investors: Technical Partnership",
   description:
     "Technical due diligence, architecture review, and post-investment delivery support for investors backing AI and SaaS companies.",
   path: "/investors",

@@ -8,9 +8,9 @@ const services = [
   {
     id: 0,
     tab: "AI Solutions",
-    headline: "AI That Answers, Assists, and Acts — Grounded in Your Data",
+    headline: "AI That Answers, Assists, and Acts: Grounded in Your Data",
     description:
-      "Generative AI, RAG, LLM integrations, and AI agents that give your team trusted answers and automate the busywork — with citations, guardrails, and evaluation built in, not a chatbot demo.",
+      "Generative AI, RAG, LLM integrations, and AI agents that give your team trusted answers and automate the busywork, with citations, guardrails, and evaluation built in, not a chatbot demo.",
     tags: ["RAG Pipelines", "AI Agents & Chatbots", "Answer Guardrails"],
     href: "/services/ai-solutions",
   },
@@ -19,7 +19,7 @@ const services = [
     tab: "Custom Software",
     headline: "Web Apps and Portals Built Around How Your Team Works",
     description:
-      "Custom web applications, internal tools, dashboards, and client-facing platforms — interfaces that make complex systems feel usable, backed by architecture that holds up in production.",
+      "Custom web applications, internal tools, dashboards, and client-facing platforms, interfaces that make complex systems feel usable, backed by architecture that holds up in production.",
     tags: ["Design Systems", "Custom Web Apps", "Internal Tools"],
     href: "/services/custom-software",
   },
@@ -37,7 +37,7 @@ const services = [
     tab: "SaaS Product Engineering",
     headline: "Multi-Tenant Platforms Built to Scale",
     description:
-      "From first MVP to full-scale product — clean architecture, secure tenancy, billing-ready data models, and cloud infrastructure from day one, the same discipline behind our StructumAI platforms.",
+      "From first MVP to full-scale product: clean architecture, secure tenancy, billing-ready data models, and cloud infrastructure from day one, the same discipline behind our StructumAI platforms.",
     tags: ["Product Architecture", "Multi-Tenant", "MVP to Scale"],
     href: "/services/saas-product-engineering",
   },

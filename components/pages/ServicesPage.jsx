@@ -87,7 +87,7 @@ export const ServicesPage = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-sm leading-7 text-text-muted max-w-xl mb-8"
+                className="text-xs leading-6 text-text-muted max-w-xl mb-8"
               >
                 Avrixo links strategy, design, engineering, and automation so your
                 final product can actually be used, maintained, and scaled.
@@ -279,7 +279,7 @@ export const ServicesPage = () => {
                 {[
                   {
                     title: "One team, all capabilities",
-                    body: "No handoffs between strategy, design, and engineering — one team owns the outcome.",
+                    body: "No handoffs between strategy, design, and engineering: one team owns the outcome.",
                   },
                   {
                     title: "Production-first thinking",

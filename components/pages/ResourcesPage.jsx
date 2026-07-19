@@ -80,7 +80,7 @@ export const ResourcesPage = () => {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-sm leading-7 text-text-primary/50 max-w-lg"
+                className="text-xs leading-6 text-text-primary/50 max-w-lg"
               >
                 Playbooks, readiness frameworks, and investor-facing technical diligence resources
                 for serious buyers evaluating AI investment.

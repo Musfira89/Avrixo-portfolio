@@ -23,12 +23,12 @@ const disciplines = [
   {
     icon: Brain,
     title: "AI & ML Engineering",
-    body: "RAG pipelines, model integration, and applied AI built to run reliably in production — not just in a notebook.",
+    body: "RAG pipelines, model integration, and applied AI built to run reliably in production, not just in a notebook.",
   },
   {
     icon: LayoutGrid,
     title: "SaaS Product Engineering",
-    body: "Multi-tenant architecture, clean APIs, and admin tooling — the discipline behind our StructumAI platforms.",
+    body: "Multi-tenant architecture, clean APIs, and admin tooling: the discipline behind our StructumAI platforms.",
   },
   {
     icon: Database,
@@ -56,7 +56,7 @@ const values = [
   {
     icon: Target,
     title: "Outcome-First",
-    body: "Every decision — from architecture to UX — is measured against the business outcome it needs to support.",
+    body: "Every decision, from architecture to UX, is measured against the business outcome it needs to support.",
   },
   {
     icon: Lightbulb,
@@ -66,7 +66,7 @@ const values = [
   {
     icon: Users,
     title: "Partnership, Not Vendor",
-    body: "We embed into your team's thinking, timeline, and goals — not just the code.",
+    body: "We embed into your team's thinking, timeline, and goals, not just the code.",
   },
   {
     icon: Globe,
@@ -136,10 +136,10 @@ export const AboutPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.12 }}
-                className="text-sm leading-7 text-text-primary/55 max-w-lg mb-10"
+                className="text-xs leading-6 text-text-primary/55 max-w-lg mb-10"
               >
                 Avrixo partners with founders, enterprises, and transformation leaders to turn
-                AI strategy into secure, measurable software systems — from first conversation
+                AI strategy into secure, measurable software systems, from first conversation
                 to production launch.
               </motion.p>
               <motion.div
@@ -225,7 +225,7 @@ export const AboutPage = () => {
               {[
                 {
                   title: "Operating Model",
-                  body: "Senior delivery standards for SaaS, data platforms, automation, and AI workflows — all in one team.",
+                  body: "Senior delivery standards for SaaS, data platforms, automation, and AI workflows, all in one team.",
                   tag: "01",
                 },
                 {
@@ -306,7 +306,7 @@ export const AboutPage = () => {
                 <span className="text-brand-primary">every discipline in-house.</span>
               </h2>
               <p className="text-sm text-text-muted max-w-xs leading-relaxed md:text-right">
-                Strategy, design, engineering, data, and cloud — covered by the same team,
+                Strategy, design, engineering, data, and cloud: covered by the same team,
                 with no handoffs.
               </p>
             </div>

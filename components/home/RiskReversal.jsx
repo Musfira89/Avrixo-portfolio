@@ -8,7 +8,7 @@ const guarantees = [
   {
     icon: FileCheck2,
     title: "Fixed scope",
-    body: "Every engagement starts with a clear statement of work — deliverables defined before we build.",
+    body: "Every engagement starts with a clear statement of work, deliverables defined before we build.",
   },
   {
     icon: Milestone,
@@ -18,7 +18,7 @@ const guarantees = [
   {
     icon: ShieldCheck,
     title: "No surprise costs",
-    body: "You know the cost and timeline up front. Changes are scoped and agreed — never silently billed.",
+    body: "You know the cost and timeline up front. Changes are scoped and agreed, never silently billed.",
   },
   {
     icon: KeyRound,

@@ -53,7 +53,7 @@ export function CaseStudyIndex() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.13 }}
-              className="lg:col-span-4 text-sm leading-7 text-text-primary/60"
+              className="lg:col-span-4 text-xs leading-6 text-text-primary/60"
             >
               Each project is documented as a technical case study: the core problem,
               the solution we engineered, the stack we used, and the architecture behind it.

@@ -2,15 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Zap, Shield, Clock, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-
-const trustItems = [
-  { icon: Zap, text: "Fixed-scope proposals" },
-  { icon: Shield, text: "Enterprise-grade security by default" },
-  { icon: Clock, text: "30-min strategy call to get started" },
-  { icon: MessageCircle, text: "No generic demos — real solutions" },
-];
 
 export const CTASection = () => {
   return (
@@ -127,29 +120,6 @@ export const CTASection = () => {
             <div className="text-[10px] text-text-muted mt-0.5">production-grade, end to end</div>
           </div>
         </motion.div>
-      </div>
-
-      {/* ── Trust bar ── */}
-      <div className="bg-bg-secondary border-t border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10 py-6">
-          <div className="flex flex-wrap items-center justify-between gap-6">
-            {trustItems.map((item, i) => (
-              <motion.div
-                key={item.text}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="flex items-center gap-3"
-              >
-                <div className="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-4 h-4 text-brand-primary" />
-                </div>
-                <span className="text-sm text-text-primary/55 font-medium">{item.text}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

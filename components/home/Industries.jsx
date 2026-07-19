@@ -74,7 +74,7 @@ export const Industries = () => {
             <span className="font-accent text-brand-primary text-[1.15em]">counts.</span>
           </h2>
 
-          <p className="text-sm md:text-base text-text-primary/55 leading-relaxed">
+          <p className="text-xs md:text-sm text-text-primary/55 leading-relaxed">
             We work across industries, with particular depth where operational complexity
             and the need for reliable systems run highest.
           </p>

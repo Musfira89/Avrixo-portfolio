@@ -2,9 +2,9 @@ import { ServicesPage } from "@/components/pages/ServicesPage";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Services — AI, SaaS, Data & Cloud Engineering",
+  title: "Services: AI, SaaS, Data & Cloud Engineering",
   description:
-    "AI automation, RAG products, SaaS product engineering, data platforms, cloud/DevOps, and product design — planned and built together by one team.",
+    "AI automation, RAG products, SaaS product engineering, data platforms, cloud/DevOps, and product design. Planned and built together by one team.",
   path: "/services",
 });
 

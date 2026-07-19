@@ -8,7 +8,7 @@ import { companyContact, schedulingUrl } from "@/lib/company";
 
 const expect = [
   "A focused 30-minute conversation about your goal, constraints, and timeline.",
-  "Honest feasibility — what's buildable now, what needs groundwork.",
+  "Honest feasibility: what's buildable now, what needs groundwork.",
   "A clear recommended next step and a fixed-scope path if it's a fit.",
 ];
 
@@ -33,7 +33,7 @@ export const SchedulePage = () => {
             <span className="text-brand-primary">strategy call.</span>
           </h1>
           <p className="text-sm text-text-primary/55 leading-relaxed">
-            No commitment, no generic demo — just a direct conversation about the system
+            No commitment, no generic demo, just a direct conversation about the system
             you need and the fastest credible path to building it.
           </p>
         </motion.div>
@@ -70,7 +70,7 @@ export const SchedulePage = () => {
                 </h2>
                 <p className="text-sm text-text-primary/55 leading-relaxed mb-7 max-w-md">
                   Send your goal and a couple of times that work for you. We'll confirm a
-                  30-minute call within 24 hours — or reply with a recommended next step.
+                  30-minute call within 24 hours, or reply with a recommended next step.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
