@@ -141,54 +141,83 @@ export const aboutRoutes: EnterpriseRoute[] = [
 
 export const serviceRoutes: EnterpriseRoute[] = [
   {
-    slug: "ai-automation",
-    href: "/services/ai-automation",
-    eyebrow: "AI Automation",
+    slug: "ai-solutions",
+    href: "/services/ai-solutions",
+    eyebrow: "AI Solutions",
+    title: "AI systems that answer, assist, and act — grounded in your own data.",
+    summary:
+      "Generative AI, RAG, LLM integrations, and AI agents that give your team trusted answers and automate the busywork — built for production trust, not a chatbot demo.",
+    theme: "light",
+    stat: "90%",
+    statLabel: "target citation coverage for AI answers grounded in your own data",
+    highlights: [
+      "Document ingestion, chunking, embeddings, and vector retrieval.",
+      "AI agents and chatbots with human-in-the-loop approvals for critical decisions.",
+      "Guardrails for source citation, answer scope, and escalation.",
+      "Evaluation suites for answer quality and hallucination risk.",
+    ],
+    sections: [
+      {
+        title: "What we build",
+        body: "Internal knowledge copilots, support-agent assist, policy search, and AI agents that classify, summarize, and route work — all built to explain themselves, not just produce output.",
+      },
+      {
+        title: "Governance",
+        body: "We architect retrieval boundaries, access controls, audit logging, and confidence scoring so AI output remains useful and defensible inside regulated or high-stakes business contexts.",
+      },
+    ],
+  },
+  {
+    slug: "custom-software",
+    href: "/services/custom-software",
+    eyebrow: "Custom Software",
+    title: "Web apps, portals, and dashboards built around how your team actually works.",
+    summary:
+      "We design and engineer custom web applications, internal tools, and client-facing platforms — interfaces that make complex systems feel usable, backed by architecture that holds up in production.",
+    theme: "dark",
+    stat: "2x",
+    statLabel: "faster stakeholder alignment through clickable product prototypes",
+    highlights: [
+      "UX research, journey mapping, information architecture, and design systems.",
+      "Custom web applications, internal tools, portals, and client-facing platforms.",
+      "AI interaction patterns for confidence, citations, and human review.",
+      "High-fidelity prototypes that accelerate product decisions.",
+    ],
+    sections: [
+      {
+        title: "Design principle",
+        body: "Software needs more than polish. Users must understand context, confidence, and next actions — we design interfaces that make complex systems legible.",
+      },
+      {
+        title: "Built to last",
+        body: "The visual layer is connected to data models, permissions, and workflows so the final product feels coherent at every level, from first click to admin panel.",
+      },
+    ],
+  },
+  {
+    slug: "intelligent-automation",
+    href: "/services/intelligent-automation",
+    eyebrow: "Intelligent Automation",
     title: "Automation systems that remove operational drag without losing control.",
     summary:
-      "We design AI-assisted workflows that help teams classify requests, summarize context, route decisions, and execute repeatable business processes.",
+      "We design AI-assisted workflows and data pipelines that connect disconnected tools, classify requests, route decisions, and execute repeatable business processes end to end.",
     theme: "light",
     stat: "35%",
     statLabel: "typical reduction target for manual workflow handling",
     highlights: [
       "Workflow mapping and automation opportunity scoring.",
+      "System integrations, API connections, and data pipelines.",
       "Human-in-the-loop approvals for critical decisions.",
       "Dashboards that track time saved, exceptions, and adoption.",
     ],
     sections: [
       {
         title: "What we build",
-        body: "Avrixo creates automation layers for support operations, sales enablement, internal knowledge work, document processing, and executive reporting. Every workflow is designed around measurable cycle-time reduction.",
+        body: "Avrixo creates automation layers for support operations, sales enablement, internal knowledge work, document processing, and executive reporting — every workflow designed around measurable cycle-time reduction.",
       },
       {
         title: "Engineering approach",
-        body: "We combine APIs, queues, model calls, validation rules, and observability so automation can be monitored and improved rather than treated like a fragile black box.",
-      },
-    ],
-  },
-  {
-    slug: "generative-ai-rag",
-    href: "/services/generative-ai-rag",
-    eyebrow: "Generative AI",
-    title: "RAG products that answer with evidence, not guesswork.",
-    summary:
-      "We build retrieval-augmented AI experiences for teams that need trusted answers from proprietary documents, databases, and workflow history.",
-    theme: "dark",
-    stat: "90%",
-    statLabel: "target citation coverage for enterprise knowledge responses",
-    highlights: [
-      "Document ingestion, chunking, embeddings, and vector retrieval.",
-      "Guardrails for source citation, answer scope, and escalation.",
-      "Evaluation suites for answer quality and hallucination risk.",
-    ],
-    sections: [
-      {
-        title: "Use cases",
-        body: "Common deployments include internal knowledge copilots, support-agent assist, policy search, technical documentation intelligence, and research interfaces for domain experts.",
-      },
-      {
-        title: "Governance",
-        body: "We architect retrieval boundaries, access controls, audit logging, and confidence scoring so AI output remains useful inside regulated or high-stakes business contexts.",
+        body: "We combine APIs, queues, model calls, ETL pipelines, and observability so automation can be monitored and improved rather than treated like a fragile black box.",
       },
     ],
   },
@@ -198,13 +227,14 @@ export const serviceRoutes: EnterpriseRoute[] = [
     eyebrow: "SaaS Engineering",
     title: "Multi-tenant SaaS platforms built for scale, adoption, and revenue.",
     summary:
-      "Avrixo designs and engineers SaaS products with strong information architecture, clean onboarding, secure tenancy, and analytics from day one.",
-    theme: "light",
-    stat: "MVP+",
-    statLabel: "launch approach that includes growth, governance, and scale planning",
+      "From first MVP to full-scale product, Avrixo designs and engineers SaaS platforms with strong information architecture, clean onboarding, secure tenancy, and analytics from day one.",
+    theme: "dark",
+    stat: "99.9%",
+    statLabel: "availability target for production-grade launch planning",
     highlights: [
-      "Product architecture, UX systems, billing-ready data models, and admin tooling.",
-      "Multi-tenant permissions and workspace isolation.",
+      "MVP development, full SaaS builds, and product architecture.",
+      "Multi-tenant permissions, billing-ready data models, and workspace isolation.",
+      "Cloud infrastructure, CI/CD pipelines, and release processes built in.",
       "Performance and analytics foundations for post-launch iteration.",
     ],
     sections: [
@@ -214,85 +244,7 @@ export const serviceRoutes: EnterpriseRoute[] = [
       },
       {
         title: "Delivery",
-        body: "Teams receive sprint-based builds, design-system consistency, documented architecture, and a clear path from prototype to production launch.",
-      },
-    ],
-  },
-  {
-    slug: "data-platforms",
-    href: "/services/data-platforms",
-    eyebrow: "Data Platforms",
-    title: "Reliable data foundations for analytics, AI, and executive decisions.",
-    summary:
-      "We help companies unify fragmented data, create usable pipelines, and expose metrics through interfaces leaders can trust.",
-    theme: "dark",
-    stat: "10k/sec",
-    statLabel: "event-stream architectures planned for high-volume ingestion",
-    highlights: [
-      "Data modeling, ETL pipelines, warehouse strategy, and dashboard design.",
-      "Quality checks and lineage for decision-critical metrics.",
-      "Real-time and batch processing patterns based on business need.",
-    ],
-    sections: [
-      {
-        title: "Business alignment",
-        body: "A strong data platform starts with the decisions it must support. We define the reporting model, source-of-truth logic, latency needs, and operating cadence before implementation.",
-      },
-      {
-        title: "AI readiness",
-        body: "Clean, governed data pipelines make advanced AI systems safer and more useful. We design foundations that can support both analytics and model-driven products.",
-      },
-    ],
-  },
-  {
-    slug: "cloud-devops",
-    href: "/services/cloud-devops",
-    eyebrow: "Cloud and DevOps",
-    title: "Deployment systems that keep product teams moving safely.",
-    summary:
-      "Avrixo builds cloud infrastructure, CI/CD workflows, observability, and release processes for teams that need speed without operational chaos.",
-    theme: "light",
-    stat: "99.9%",
-    statLabel: "availability target for production-grade launch planning",
-    highlights: [
-      "Cloud architecture for AWS, serverless, managed databases, and containers.",
-      "CI/CD pipelines with preview environments and quality gates.",
-      "Monitoring, alerting, and rollback patterns built into delivery.",
-    ],
-    sections: [
-      {
-        title: "Operational quality",
-        body: "We treat infrastructure as part of the product experience. Releases should be observable, repeatable, and resilient enough for real customer traffic.",
-      },
-      {
-        title: "Cost awareness",
-        body: "Architecture choices are evaluated against performance, reliability, team capability, and cost so clients can scale with fewer surprises.",
-      },
-    ],
-  },
-  {
-    slug: "ui-ux-product-design",
-    href: "/services/ui-ux-product-design",
-    eyebrow: "Product Design",
-    title: "Interfaces that make complex AI systems feel usable and trusted.",
-    summary:
-      "We design enterprise experiences that clarify workflows, expose evidence, and help users understand what the system is doing.",
-    theme: "dark",
-    stat: "2x",
-    statLabel: "faster stakeholder alignment through clickable product prototypes",
-    highlights: [
-      "UX research, journey mapping, information architecture, and design systems.",
-      "AI interaction patterns for confidence, citations, and human review.",
-      "High-fidelity prototypes that accelerate product decisions.",
-    ],
-    sections: [
-      {
-        title: "Design principle",
-        body: "AI products need more than polish. Users must understand context, confidence, evidence, and next actions. We design interfaces that make advanced systems legible.",
-      },
-      {
-        title: "System thinking",
-        body: "The visual layer is connected to data models, permissions, workflows, and adoption requirements so the final product feels coherent at every level.",
+        body: "Teams receive sprint-based builds, cloud infrastructure with CI/CD from day one, and a clear, observable path from prototype to production launch and beyond.",
       },
     ],
   },
@@ -714,15 +666,10 @@ export const navGroups: NavGroup[] = [
     href: "/services",
     eyebrow: "Capabilities",
     description:
-      "Strategy, design, AI engineering, data platforms, and cloud delivery for production-grade digital systems.",
-    items: serviceRoutes.slice(0, 6).map((route, index) => ({
+      "AI solutions, custom software, intelligent automation, and SaaS product engineering — one team, production-grade delivery.",
+    items: serviceRoutes.map((route, index) => ({
       id: route.slug,
-      name:
-        index === 1
-          ? "Generative AI and RAG"
-          : index === 2
-            ? "SaaS Product Engineering"
-            : route.eyebrow,
+      name: route.eyebrow,
       href: route.href,
       iconPath: ["/icons/a1.avif", "/icons/a2.avif", "/icons/a3.avif", "/icons/a4.png"][
         index % 4

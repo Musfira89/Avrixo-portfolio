@@ -5,8 +5,8 @@ export const siteUrl = "https://avrixodigitals.com";
 export const companyContact = {
   email: "info@avrixodigitals.com",
   mailto: "mailto:info@avrixodigitals.com",
-  phoneDisplay: "+92 312 4180123",
-  phoneHref: "tel:+923124180123",
+  phoneDisplay: "+123456789",
+  phoneHref: "tel:+123456789",
   location: "Remote-first, serving global teams",
 } as const;
 

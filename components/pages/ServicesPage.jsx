@@ -2,22 +2,28 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Brain, BarChart3, Eye, Database, Cloud, Palette, Megaphone, GitBranch, Bot } from "lucide-react";
+import { ArrowUpRight, Brain, Palette, Bot, GitBranch } from "lucide-react";
 import Link from "next/link";
 import { serviceRoutes } from "@/lib/site-data";
 
 const serviceDetails = [
   {
-    slug: "ai-automation",
-    icon: Bot,
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=400&fit=crop",
-    color: "from-blue-500/10",
-  },
-  {
-    slug: "generative-ai-rag",
+    slug: "ai-solutions",
     icon: Brain,
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
     color: "from-purple-500/10",
+  },
+  {
+    slug: "custom-software",
+    icon: Palette,
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    color: "from-pink-500/10",
+  },
+  {
+    slug: "intelligent-automation",
+    icon: Bot,
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=400&fit=crop",
+    color: "from-blue-500/10",
   },
   {
     slug: "saas-product-engineering",
@@ -25,35 +31,15 @@ const serviceDetails = [
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
     color: "from-green-500/10",
   },
-  {
-    slug: "data-platforms",
-    icon: Database,
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-    color: "from-yellow-500/10",
-  },
-  {
-    slug: "cloud-devops",
-    icon: Cloud,
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop",
-    color: "from-cyan-500/10",
-  },
-  {
-    slug: "ui-ux-product-design",
-    icon: Palette,
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
-    color: "from-pink-500/10",
-  },
 ];
 
 // Short badge tags for service cards — full `highlights` sentences don't fit
 // a pill without mid-word truncation, so cards use these instead.
 const serviceCardTags = {
-  "ai-automation": ["Workflow Automation", "Human-in-the-Loop"],
-  "generative-ai-rag": ["Source Citations", "Hallucination Testing"],
-  "saas-product-engineering": ["Multi-Tenant Architecture", "Billing-Ready Models"],
-  "data-platforms": ["ETL Pipelines", "Data Lineage"],
-  "cloud-devops": ["AWS + Serverless", "CI/CD Pipelines"],
-  "ui-ux-product-design": ["Design Systems", "AI Interaction Patterns"],
+  "ai-solutions": ["Source Citations", "AI Agents & Chatbots"],
+  "custom-software": ["Design Systems", "Custom Web Apps"],
+  "intelligent-automation": ["Workflow Automation", "System Integrations"],
+  "saas-product-engineering": ["Multi-Tenant Architecture", "MVP to Scale"],
 };
 
 export const ServicesPage = () => {
@@ -94,7 +80,7 @@ export const ServicesPage = () => {
                 transition={{ delay: 0.07 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-dark leading-[1.05] mb-6"
               >
-                AI, SaaS, data, and cloud services for{" "}
+                AI, software, and automation systems for{" "}
                 <span className="text-brand-primary">production-minded</span> teams.
               </motion.h1>
               <motion.p
@@ -103,7 +89,7 @@ export const ServicesPage = () => {
                 transition={{ delay: 0.13 }}
                 className="text-sm leading-7 text-text-muted max-w-xl mb-8"
               >
-                Avrixo links strategy, design, engineering, data, and cloud operations so your
+                Avrixo links strategy, design, engineering, and automation so your
                 final product can actually be used, maintained, and scaled.
               </motion.p>
               <motion.div
@@ -112,7 +98,7 @@ export const ServicesPage = () => {
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap gap-3"
               >
-                {["6 Service Lines", "One Delivery Team", "Production-First"].map((tag) => (
+                {["4 Service Lines", "One Delivery Team", "Production-First"].map((tag) => (
                   <span
                     key={tag}
                     className="text-[10px] font-black uppercase tracking-widest text-brand-primary border border-brand-primary/30 px-4 py-2 rounded-full bg-brand-primary/5"

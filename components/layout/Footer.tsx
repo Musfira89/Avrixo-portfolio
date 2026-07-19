@@ -24,7 +24,7 @@ export const Footer = () => {
     },
     {
       title: "Services",
-      links: serviceRoutes.slice(0, 6).map((route) => ({
+      links: serviceRoutes.map((route) => ({
         name: route.eyebrow,
         href: route.href,
       })),

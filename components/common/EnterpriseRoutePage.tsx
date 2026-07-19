@@ -12,12 +12,10 @@ type EnterpriseRoutePageProps = {
 
 // Curated hero images for known slugs
 const SLUG_IMAGES: Record<string, string> = {
-  "ai-automation": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=700&fit=crop",
-  "generative-ai-rag": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=700&fit=crop",
+  "ai-solutions": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=700&fit=crop",
+  "custom-software": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=700&fit=crop",
+  "intelligent-automation": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=700&fit=crop",
   "saas-product-engineering": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=700&fit=crop",
-  "data-platforms": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=700&fit=crop",
-  "cloud-devops": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1200&h=700&fit=crop",
-  "ui-ux-product-design": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=700&fit=crop",
   "healthcare-ai": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&h=700&fit=crop",
   "fintech-risk": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=700&fit=crop",
   "logistics-automation": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&h=700&fit=crop",

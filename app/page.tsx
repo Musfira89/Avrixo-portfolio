@@ -14,13 +14,13 @@ export default function Home() {
       <HeroSection />
       {/* Honest signal: the production stack we build on */}
       <TrustedBy />
-      {/* "Can you actually build this?" — real StructumAI proof */}
-      <Projects />
       {/* "What exactly do you offer?" */}
       <Services />
-      {/* "How do you work?" — process with SOW baked in */}
+      {/* "How do you work?" — the core differentiator */}
       <Methodology />
-      {/* Credibility: how we work + verifiable numbers */}
+      {/* "Can you actually build this?" — real StructumAI proof */}
+      <Projects />
+      {/* Credibility: verifiable numbers */}
       <Impact />
       {/* "What if it goes wrong?" — risk reversal */}
       <RiskReversal />

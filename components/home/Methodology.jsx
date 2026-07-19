@@ -1,56 +1,40 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, FileText, Code2, Rocket, Gauge, TrendingUp } from "lucide-react";
+import { Search, Code2, Puzzle, Gauge } from "lucide-react";
 
 const steps = [
   {
     id: "01",
-    name: "Audit",
+    name: "Diagnose",
     tag: "Discovery",
     Icon: Search,
     description:
-      "We map your data, business objectives, and constraints to find the highest-leverage opportunity worth building.",
+      "We map your data, business objectives, and constraints to find the highest-leverage opportunity — then lock a fixed-scope plan with clear milestones before a single line of code.",
   },
   {
     id: "02",
-    name: "Architect",
-    tag: "Scope & SOW",
-    Icon: FileText,
+    name: "Build",
+    tag: "Engineering",
+    Icon: Code2,
     description:
-      "Architecture, integrations, and a fixed-scope statement of work with milestones and acceptance criteria — agreed before a single line of code.",
+      "Architecture, integrations, and agile sprints with rigorous testing at every layer — from data integrity to API reliability to UI performance.",
   },
   {
     id: "03",
-    name: "Engineer",
-    tag: "Development",
-    Icon: Code2,
+    name: "Integrate",
+    tag: "Deployment",
+    Icon: Puzzle,
     description:
-      "Agile sprints, clean documented code, and rigorous testing at every layer — from data integrity to API reliability to UI performance.",
+      "Zero-downtime releases that plug directly into your existing systems and workflows, with security, permissions, and full observability live from day one.",
   },
   {
     id: "04",
-    name: "Launch",
-    tag: "Deployment",
-    Icon: Rocket,
-    description:
-      "Zero-downtime releases via automated CI/CD. Your system goes live with security, permissions, and full observability from day one.",
-  },
-  {
-    id: "05",
-    name: "Refine",
-    tag: "Optimization",
+    name: "Optimize",
+    tag: "Iteration",
     Icon: Gauge,
     description:
-      "Real usage drives iteration — performance tuning, UX refinement, and reliability work. We don't disappear after delivery.",
-  },
-  {
-    id: "06",
-    name: "Elevate",
-    tag: "Scale",
-    Icon: TrendingUp,
-    description:
-      "Production-grade scaling. From first users to high volume — infrastructure and systems that grow without friction.",
+      "Real usage drives iteration — performance tuning, UX refinement, and infrastructure that scales without friction. We don't disappear after delivery.",
   },
 ];
 
